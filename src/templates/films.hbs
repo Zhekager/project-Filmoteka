@@ -1,0 +1,15 @@
+<li class="list-item">
+<article class="main-films">
+    <img src="{{backdrop_path}}" alt="{{title}}" class="film-image" />
+    <h2 class="film-title">{{original_title}}</h2>
+    <div class="film-content">
+        <ul class="genres-list">
+            {{#each genre_ids}}
+            <li class="film-genre">{{this}}</li>
+            {{/each}}
+        </ul>
+        <p>{{release_date}}</p>
+        <p class="film-vote">{{vote_average}}</p>
+    </div>
+</article>
+</li>
