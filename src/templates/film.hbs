@@ -1,0 +1,22 @@
+{{#each this}}
+<article class="card-film">
+    <img src="{{backdrop_path}}" alt="{{original_title}}" class="card-image" />
+    <div class="card-content">
+            <h2 class="card-title">{{original_title}}</h2>
+            <p>Vote {{vote_average}}</p>
+            <p>Votes {{vote_count}}</p>
+            <p>Popularity {{popularity}}</p>
+            <h3 class="card-subtitle">Original Title {{original_title}}</h3>
+            <ul class="tag-list">
+                {{#each genres}}
+                <li class="genres-item">Genre {{this}}</li>
+                {{/each}}
+            </ul>
+            <p>About {{overview}}</p>
+        <div>
+            <button>add to Watched</button>
+            <button>add to queue</button> 
+        </div>
+    </div>
+</article>
+{{/each}}

@@ -1,0 +1,40 @@
+.footer {
+  padding-bottom: 30px;
+}
+
+.footer-nav {
+  display: flex;
+  justify-content: center;
+
+  margin-bottom: 69px;
+}
+
+.lisence {
+  margin-bottom: 25px;
+}
+
+.lisense-common {
+  text-align: center;
+
+  font-size: 14px;
+  line-height: 1.142px;
+  color: rgba(84, 84, 84, 1);
+}
+
+.lisense-link {
+  border-bottom: 2px solid #ff6b08;
+}
+
+@media screen and (min-width: 768px) {
+  .footer-lisense {
+    display: flex;
+    justify-content: center;
+  }
+  .lisence {
+    margin: 0px;
+  }
+  .lisense-common {
+    font-size: 16px;
+    line-height: 1.187px;
+  }
+}
