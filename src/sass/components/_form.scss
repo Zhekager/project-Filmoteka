@@ -1,0 +1,24 @@
+.card-film {
+  background-color: #ffffff;
+  margin: 0;
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 280px;
+    height: 958px;
+    padding: 48px, 20px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 618px;
+    height: 562px;
+    padding: 42px, 28px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 882px;
+    height: 568px;
+    padding: 50px, 30px;
+  }
+}
+
+.card-image {
+}
