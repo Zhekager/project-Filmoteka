@@ -1,4 +1,7 @@
 .card-film {
+  display: flex;
+  justify-content: space-between;
+  //position: relative;
   background-color: #ffffff;
   margin: 0;
 
@@ -13,6 +16,7 @@
     height: 562px;
     padding: 42px, 28px;
   }
+
   @media screen and (min-width: 1024px) {
     width: 882px;
     height: 568px;
@@ -21,4 +25,158 @@
 }
 
 .card-image {
+  display: block;
+  border-radius: 5px;
+
+  @media screen and (min-width: 320px) and (max-width: 767px) {
+    width: 240px;
+    height: 357px;
+    margin: 48px, 20px, 30px;
+  }
+
+  @media screen and (min-width: 768px) {
+    width: 264px;
+    height: 374px;
+    margin-top: 42px;
+    margin-right: 32px;
+    margin-left: 28px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    width: 396px;
+    height: 478px;
+  }
+}
+
+.card-title {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  color: #000000;
+
+  @media screen and (min-width: 1024px) {
+    font-size: 30px;
+    line-height: 35px;
+  }
+}
+
+.movie-name-details {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #8c8c8c;
+
+  margin-bottom: 10px;
+}
+
+.tag-list {
+  display: block;
+  list-style: disc;
+  flex-wrap: wrap;
+}
+
+.genres-item {
+  display: flex;
+}
+
+.movie-details-vote {
+  width: 36px;
+  height: 16px;
+  background-color: #ff6b01;
+  border-radius: 5px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffffff;
+
+  display: inline-block;
+}
+
+.movie-details-votes {
+  width: 36px;
+  height: 16px;
+  background-color: #f7f7f7;
+  border-radius: 5px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #000000;
+
+  display: inline-block;
+}
+
+.movie-details {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  text-transform: uppercase;
+  color: #000000;
+
+  margin-bottom: 10px;
+}
+
+.movie-about {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+  text-transform: uppercase;
+
+  margin: 20px, 30px, 21px;
+}
+
+.movie-description {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 20px;
+  color: #000000;
+
+  margin-top: 10px;
+}
+
+.btn-watched {
+  width: 136px;
+  height: 44px;
+  background-color: #ff6b01;
+  border-radius: 5px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #ffffff;
+
+  padding: 14px, 10px, 12px;
+  margin-right: 15px;
+  margin-top: 21px;
+}
+
+.btn-queue {
+  width: 136px;
+  height: 44px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  border: 1px;
+
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #000000;
+
+  padding: 15px, 26px, 13px;
+  margin-top: 21px;
 }
