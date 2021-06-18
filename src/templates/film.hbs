@@ -1,5 +1,5 @@
 {{#each this}}
-<article class="card-film">
+<article class="card-film" data-action="{{id}}>
     <img src="{{backdrop_path}}" alt="{{original_title}}" class="card-image" />
     <div class="card-content">
             <h2 class="card-title">{{original_title}}</h2>
@@ -9,7 +9,7 @@
             <h3 class="movie-name-details">Original Title <span class="movie-details">{{original_title}}</span></h3>
             <ul class="tag-list">
                 {{#each genres}}
-                <li class="genres-item movie-name-details">Genre <span class="movie-details">{{this}}</span></li>
+                <li class="genres-item movie-name-details">Genre <span class="movie-details">{{this.name}}</span></li>
                 {{/each}}
             </ul>
             <p class="movie-about">About <span class="movie-description">{{overview}}</span></p>
@@ -18,5 +18,10 @@
             <button class="btn-queue">add to queue</button> 
         </div>
     </div>
+    <button type="button" class="modal-button-close" data-modal-close>
+        <svg width="30" height="30">
+            <use href="./images/sprite.svg#icon-close-big"></use>
+        </svg>
+    </button>
 </article>
 {{/each}}
