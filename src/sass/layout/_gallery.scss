@@ -1,0 +1,64 @@
+// hidden section title
+.gallery-title-hidden {
+  @extend %is-hidden;
+}
+
+.gallery {
+  padding: 0;
+  margin: 0;
+  padding-top: 20px;
+  padding-bottom: 40px;
+
+  @media screen and (min-width: $tablet) {
+    display: flex;
+    flex-wrap: wrap;
+    margin: -15px;
+    padding-top: 60px;
+    padding-bottom: 50px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    padding-bottom: 46px;
+  }
+}
+
+.gallery-item {
+  height: 440px;
+  width: 280px;
+  margin-bottom: 20px;
+  margin-left: auto;
+  margin-right: auto;
+
+  cursor: pointer;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); //удалить
+
+  @media screen and (min-width: $tablet) {
+    max-width: 294px;
+    height: 440px;
+
+    width: calc((100% - 4 * 15px) / 2);
+    margin: 15px;
+  }
+
+  @media screen and (min-width: $desktop) {
+    width: calc((100% - 6 * 15px) / 3);
+    width: 274px;
+  }
+}
+
+.film-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.film-content {
+  display: flex;
+}
+
+.film-title {
+  @extend %font-title;
+}
+.film-genre {
+  @extend %font-description;
+}

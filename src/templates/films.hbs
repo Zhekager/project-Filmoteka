@@ -1,4 +1,5 @@
-<li class="list-item">
+{{#each this}}
+<li class="list-item" data-action='{{id}}'>
 <article class="main-films">
     <img src="{{backdrop_path}}" alt="{{title}}" class="film-image" />
     <h2 class="film-title">{{original_title}}</h2>
@@ -13,3 +14,4 @@
     </div>
 </article>
 </li>
+{{/each}}

@@ -1,3 +1,4 @@
+
 const BASE_URL = 'https://api.themoviedb.org/3';
 const KEY = '92ffb34e08e714eb390805a25b0a06d3';
 
@@ -66,3 +67,4 @@ export default class FilmApiService{
         }
 }
     
+
