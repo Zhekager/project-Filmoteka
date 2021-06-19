@@ -1,4 +1,10 @@
-
+body {
+  font-family: $main-font;
+  letter-spacing: 0.03em;
+  background-color: $white-color;
+  color: $white-color;
+  
+}
 html {
   box-sizing: border-box;
 }
@@ -42,10 +48,5 @@ p {
   margin-bottom: 0;
 }
 
-// body {
-//   font-family: $main-font;
-//   letter-spacing: 0.03em;
-//   background-color: $white-color;
-//   color: $white-color;
-// }
+
 
