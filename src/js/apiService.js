@@ -8,33 +8,38 @@ export default class FilmApiService {
   }
 
   fetchTrendingMovies() {
-    const url = `${BASE_URL}/trending/movie/week?api_key=${API_KEY}`;
-    // const url =`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.page}`;
-    return fetch(url)
+    //  return fetch`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.page}`;
+
+    return fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`)
       .then(res => res.json())
       .catch(error => console.log(error));
   }
 
-  fetchFilms() {
-    const url = `${BASE_URL}/search/movie?api_key=${API_KEY}}&query=${this.searchQuery}`;
-    return fetch(url).then(res => {
-      this.incrementPage();
-      return res.json();
-    });
+  fetchMovies() {
+    return fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${this.searchQuery}`).then(
+      res => {
+        this.incrementPage();
+        return res.json();
+      },
+    );
   }
+
+  // SearchMovie() {
+  //   return fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`)
+  //     .then(res => res.json())
+  //     .catch(error => console.log(error));
+  // }
 
   // перевірити чи треба
   getMovieById() {
-    const url = `${BASE_URL}movie/${id}?api_key=${API_KEY}`;
-    return fetch(url)
+    return fetch(`${BASE_URL}movie/${id}?api_key=${API_KEY}`)
       .then(res => res.json())
       .catch(error => console.log(error));
   }
 
   // для жанров -- шаблонизатор
   getGenresList() {
-    url = `${BASE_URL}genre/movie/list?api_key=${API_KEY}`;
-    return fetch(url)
+    return fetch(`${BASE_URL}genre/movie/list?api_key=${API_KEY}`)
       .then(response => response.json())
       .then(data => {
         return data.genres;
