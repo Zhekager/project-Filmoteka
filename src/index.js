@@ -1,4 +1,5 @@
 import './sass/main.scss';
+import './js/upScrol';
 import getRefs from './js/refs';
 import FilmApiService from './js/apiService.js'
 import markUpFilmCardTpl from './templates/film.hbs'
