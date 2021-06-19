@@ -9,16 +9,15 @@ $desktop: 1024px;
   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
-
-  @media screen and (min-width: $tablet) {
-    width: $tablet;
-    padding-left: 75px;
-    padding-right: 75px;
+  width: 320px;
+  @media screen and (min-width: 768px) {
+    width: 768px;
+    padding-left: 74px;
+    padding-right: 74px;
   }
-
-  @media screen and (min-width: $desktop) {
-    width: $desktop;
-    padding-left: 71px;
-    padding-right: 71px;
+  @media screen and (min-width: 1024px) {
+    width: 1024px;
+    padding-left: 70px;
+    padding-right: 70px;
   }
 }
