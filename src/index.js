@@ -1,4 +1,7 @@
 import './sass/main.scss';
+
+import './js/showTrendingMovies';
+
 import './js/upScrol';
 import getRefs from './js/refs';
 import FilmApiService from './js/apiService.js'
@@ -50,5 +53,6 @@ function createFilmCardsMarkUp(films) {
 function clearImagesContainer() {
   galleryRef.innerHTML = '';
 }
+
 
 
