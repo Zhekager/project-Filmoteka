@@ -35,7 +35,7 @@ function onSearch(e) {
   clearImagesContainer();
 
   filmsApiService
-    .fetchFilms()
+    .fetchMovies()
     .then(filmData => {
       let result = filmData.results;
       createFilmCardsMarkUp(result);
