@@ -13,7 +13,7 @@
   min-width: 130px;
   min-height: 44px;
 
-  color: #ffffff;
+  color: $white-color;
   text-transform: uppercase;
   background-color: transparent;
 
@@ -22,7 +22,11 @@
   font-size: 12px;
   line-height: 1.33;
   text-align: center;
+
   border: 1px solid #ffffff;
+
+//   border: 1px solid $white-color;
+
   border-radius: 5px;
   cursor: pointer;
 

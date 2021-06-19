@@ -6,8 +6,8 @@
 }
 
 .overlay {
-  height: 230px;
-    width: 320px;
+    height: 230px;
+    // width: 320px;
     margin-left: auto;
     margin-right: auto;
     background-image: linear-gradient(
@@ -18,8 +18,7 @@
         url('../images/img-header/home1x-mob.png');
     // background-image: url('../images/img-header/home1x-mob.png');
     background-repeat: no-repeat;
-    // background-color: #2f303a;
-    // background-position: center;
+    background-size: cover;
 
 
     @media screen and (min-device-pixel-ratio: 2),
@@ -51,9 +50,9 @@
 }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 481px) {
          .overlay {
-    min-width: 768px;
+    // min-width: 768px;
     background-image: linear-gradient(
           to right,
          rgba(0, 0, 0, 0.56),
@@ -93,9 +92,10 @@
     }
 }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 769px) {
       .overlay {
-    min-width: 1024px;
+    // min-width: 1024px;
+    max-width: 1600px;
     background-image: linear-gradient(
           to right,
          rgba(0, 0, 0, 0.56),
@@ -136,7 +136,7 @@
 
 .overlay.library-open {
   height: 230px;
-    width: 320px;
+    // width: 320px;
     margin-left: auto;
     margin-right: auto;
     background-image: linear-gradient(
@@ -147,6 +147,7 @@
         url('../images/img-header/library1x-mob.png');
     // background-image: url('../images/img-header/library1x-mob.png');
     background-repeat: no-repeat;
+    background-size: cover;
     // background-position: center;
 
     @media screen and (min-device-pixel-ratio: 2),
@@ -178,9 +179,9 @@
 }
 }
 
-@media screen and (min-width: 768px) {
-         .overlay.library-open {
-    min-width: 768px;
+@media screen and (min-width: 481px) {
+    .overlay.library-open {
+    // min-width: 768px;
     background-image: linear-gradient(
           to right,
          rgba(0, 0, 0, 0.56),
@@ -219,9 +220,10 @@
     }
 }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 769px) {
       .overlay.library-open {
-    min-width: 1024px;
+    // min-width: 1024px;
+    max-width: 1600px;
     background-image: linear-gradient(
           to right,
          rgba(0, 0, 0, 0.56),
@@ -262,7 +264,7 @@
 
 .overlay.card-open {
   height: 230px;
-    width: 320px;
+    // width: 320px;
     margin-left: auto;
     margin-right: auto;
     background-image: linear-gradient(
@@ -273,6 +275,7 @@
         url('../images/img-header/details1x-mob.png');
     // background-image: url('../images/img-header/library1x-mob.png');
     background-repeat: no-repeat;
+    background-size: cover;
     // background-position: center;
 
     @media screen and (min-device-pixel-ratio: 2),
@@ -304,9 +307,9 @@
 }
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 481px) {
          .overlay.card-open {
-    min-width: 768px;
+    // min-width: 768px;
     background-image: linear-gradient(
           to right,
          rgba(0, 0, 0, 0.56),
@@ -345,9 +348,10 @@
     }
 }
 
-  @media screen and (min-width: 1024px) {
+  @media screen and (min-width: 769px) {
       .overlay.card-open {
-    min-width: 1024px;
+    // min-width: 1024px;
+    max-width: 1600px;
     background-image: linear-gradient(
           to right,
          rgba(0, 0, 0, 0.56),
@@ -389,17 +393,10 @@
   margin-left: auto;
   margin-right: auto;
   padding: 24px 20px 98px 20px;
-  // padding-left: 20px;
-  // padding-right: 20px;
-  // padding-top: 24px;
-  // padding-bottom: 98px;
 
   @media screen and (min-width: 768px) {
     // width: 768px;
     padding: 20px 74px 98px 74px;
-    // padding-left: 74px;
-    // padding-right: 74px;
-    // padding-top: 20px;
   }
 
    @media screen and (min-width: 1024px) {
@@ -436,8 +433,7 @@
         display: inline-flex;
         align-items: center;
         margin-left: 10px;
-        color: #FFFFFF;
-        font-family: 'Roboto', sans-serif;;
+        color: $white-color;
         font-weight: 500;
         font-size: 30px;
         line-height: 1.17;
@@ -445,7 +441,7 @@
 }
 
 .navigation {
-display: flex;
+    display: flex;
     margin-left: auto;
 }
 
@@ -468,7 +464,7 @@ display: flex;
     font-size: 12px;
     font-weight: 500;
     line-height: 1.17;
-    color: #ffffff;
+    color: $white-color;
 
     &-current {
       position: relative;
@@ -478,25 +474,22 @@ display: flex;
 .nav-link-current::after {
     position: absolute;
     content: '';
-
     display: block;
     width: 100%;
     height: 3px;
-
     border-radius: 2px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    background-color: #FF6B08;
+    // box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: $line-orange-color;
 }
 
 .form-label-film {
   position: relative;
   display: flex;
   align-items: center;
-
     border-top: none;
     border-left: none;
     border-right: none;
-  border-bottom: 0.5px solid #FFFFFF;
+  border-bottom: 0.5px solid $white-color;
 
   width: 280px;
     height: 20px;
@@ -514,7 +507,7 @@ width: 336px;
 
 .input-film {
     padding: 4px 20px 4px 4px;
-    color: #ffffff;
+    color: $white-color;
     width: 100%;
     background-color: transparent;
     border: none;
@@ -524,7 +517,7 @@ width: 336px;
     padding: 4px;
     display: flex;
 align-items: center;
-    color: #ffffff;
+    color: $white-color;
 font-weight: 400;
 font-size: 14px;
 line-height: 1.14;
@@ -559,16 +552,18 @@ line-height: 1.14;
     .button {
     @extend %button;
     background-color: transparent;
-    border-color: #FFFFFF;
+    border-color: $white-color;
+    box-shadow: none;
     // border: 1px solid #FFFFFF;
 
-    @include transit(background-color, border-color);
+    @include transit(background-color, border-color, box-shadow);
 
   &:hover,
   &:focus {
-    background-color: #FF6B01;
+    background-color: $btn-accent-color;
     // border: 1px solid #FF6B01;
-    border-color: #FF6B01;
+    border-color: $btn-accent-color;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
   }
 }
 }
