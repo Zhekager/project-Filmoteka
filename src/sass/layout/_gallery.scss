@@ -22,7 +22,7 @@
   }
 }
 
-.gallery-item {
+.list-item {
   height: 440px;
   width: 280px;
   margin-bottom: 20px;
@@ -31,7 +31,7 @@
 
   cursor: pointer;
   border-radius: 5px;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); //удалить
+  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); //удалить
 
   @media screen and (min-width: $tablet) {
     max-width: 294px;
@@ -49,7 +49,16 @@
 
 .film-image {
   position: relative;
+  margin-bottom: 10px;
+  width: 280px;
+  height: 398px;
   overflow: hidden;
+  @media screen and (min-width: $tablet) {
+    width: 294px;
+  }
+  @media screen and (min-width: $desktop) {
+    width: 274px;
+  }
 }
 
 .film-content {
@@ -59,6 +68,37 @@
 .film-title {
   @extend %font-title;
 }
-.film-genre {
+.film-content {
   @extend %font-description;
+  color: $btn-accent-color;
+}
+.genres-list {
+  padding: 0;
+}
+
+.film-genre {
+  display: inline;
+}
+
+.delimiter {
+  padding: 0 3px 0 3px;
+}
+
+.film-date {
+  margin-right: 10px;
+}
+
+.film-vote-background {
+  display: flex;
+  justify-content: center;
+  width: 36px;
+  height: 16px;
+  background: #ff6b01;
+  border-radius: 5px;
+  color: $white-color;
+}
+
+.is-hidden {
+  visibility: hidden;
+  opacity: 0;
 }
