@@ -20,11 +20,14 @@ function openModal(evt) {
 }
 
 function getFullMovieInfo(id) {
-            filmsApiService.getFullMovieInfo(id)
+    filmsApiService.getFullMovieInfo(id)
         .then(movieInfo => {
             const markup = filmTpl(movieInfo);
             const modal = basicLightbox.create(markup);
-                modal.show();
+            modal.show();
         })
         .catch(error => console.log('error', error));
+   
 }
+//ryjgrf pfrhsnm
+

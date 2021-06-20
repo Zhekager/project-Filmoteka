@@ -1,28 +1,54 @@
 <article class="card-film">
-    <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}" alt="{{original_title}}" class="card-image" />
 
-    <div class="card-content">
-            <h2 class="card-title">{{original_title}}</h2>
-            <p class="movie-name-details">Vote <span class="movie-details-vote">{{vote_average}}</span></p>
-            <p class="movie-name-details">Votes <span class="movie-details-votes"> {{vote_count}}</span></p>
-            <p class="movie-name-details">Popularity <span class="movie-details">{{popularity}}</span></p>
-            <h3 class="movie-name-details">Original Title <span class="movie-details">{{original_title}}</span></h3>
-            <ul class="tag-list">
-                {{#each genres}}
-                <li class="genres-item movie-name-details" id="genres">Genre <span class="movie-details">{{this.genre_ids}}</span></li>
-                {{/each}}
-            </ul>
-            <p class="movie-about">About <span class="movie-description">{{overview}}</span></p>
-        <div>
-            <button class="btn-watched">add to Watched</button>
-            <button class="btn-queue">add to queue</button> 
-        </div>
+    <div class="card-image">
+    <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}" alt="{{original_title}}" class="card-poster"/>
     </div>
+
+    <div class="card-description">
+    <h2 class="card-description-title">{{original_title}}</h2>
+    
+    <div class="card-description-content">
+    <ul class="card-description-list-name">
+        <li class="card-description-list-name-item">Vote / Votes</li>
+        <li class="card-description-list-name-item">Popularity</li>
+        <li class="card-description-list-name-item">Original title</li>
+        <li class="card-description-list-name-item">Genre</li>
+    </ul>
+
+    <ul class="card-description-list-details"> 
+        <li class="card-description-list-details-item">
+            <span class="movie-rating filler">{{this.vote_average}}</span> /
+            <span class="movie-vote-count filler">{{this.vote_count}}</span>
+        </li>
+        <li class="card-description-list-details-item">
+            {{this.popularity}}
+        </li>
+        <li class="card-description-list-details-item">
+            <span class="original-title">{{this.original_title}}</span>
+        </li>
+        <li class="card-description-list-details-item">
+            {{#each this.genres}}
+            {{name}}&nbsp;&nbsp;
+            {{/each}}
+        </li>
+    </ul>
+</div>
+
+    
+    <div class="movie-about">
+        <p class="movie-about-title">About </p>
+        <p class="movie-about-description">{{overview}}</p>
+    </div>
+        <button class="add-to-watched">add to Watched</button>
+        <button class="add-to-queue">add to queue</button> 
+        
+   
     <button type="button" class="modal-button-close" data-modal-close>
         <svg width="30" height="30">
             <use href="./images/sprite.svg#icon-close-big"></use>
         </svg>
     </button>
+</div>
 </article>
 
 
