@@ -14,7 +14,7 @@ export default function getRefs() {
       btnModalQueue: document.querySelector('.btn-queue'),
       btnModalWatched: document.querySelector('.btn-watched'),
       loaderRef: document.querySelector('.loader'),
-     
+     navigation: document.querySelector('.navigation'),
 
   };
 }

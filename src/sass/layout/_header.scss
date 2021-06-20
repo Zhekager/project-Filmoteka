@@ -438,6 +438,10 @@
     margin-left: auto;
 }
 
+.navigation.is-hidden {
+  display: none;
+}
+
 .nav-list {
     @extend %list;  
     display: flex;
