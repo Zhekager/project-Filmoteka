@@ -10,7 +10,7 @@
             <h3 class="movie-name-details">Original Title <span class="movie-details">{{original_title}}</span></h3>
             <ul class="tag-list">
                 {{#each genres}}
-                <li class="genres-item movie-name-details">Genre <span class="movie-details">{{this.name}}</span></li>
+                <li class="genres-item movie-name-details" id="genres">Genre <span class="movie-details">{{this.genre_ids}}</span></li>
                 {{/each}}
             </ul>
             <p class="movie-about">About <span class="movie-description">{{overview}}</span></p>
