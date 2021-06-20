@@ -519,14 +519,17 @@ line-height: 1.14;
 .search-form {
     display: flex;
     justify-content: center;
-    // display: none;
 }
 
-.btns-library {
-    display: none;
+.search-form.is-hidden {
+   display: none;
 }
 
 .btns-library.is-hidden {
+  display: none;
+}
+
+.btns-library {
    .button-list {
     display: flex;
     align-items: center;
