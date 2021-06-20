@@ -1,5 +1,6 @@
 export default function getRefs() {
     return {
+
       logo: document.querySelector('.js-logo'),
       home: document.querySelector('.js-nav-home'),
       overlay: document.querySelector('.js-overlay'),
@@ -13,6 +14,8 @@ export default function getRefs() {
       btnModalQueue: document.querySelector('.btn-queue'),
       btnModalWatched: document.querySelector('.btn-watched'),
       loaderRef: document.querySelector('.loader'),
-        
+      loaderRef: document.querySelector('.loader'),  
+
   };
 }
+
