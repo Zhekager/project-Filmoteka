@@ -1,32 +1,37 @@
 import MyLibraryBtns from './button.js';
+import markUpFilmCardTpl from '../templates/films.hbs';
+import FilmApiService from './apiService.js';
 import getRefs from './refs.js';
-import createFilmCardsMarkUp from './showTrendingMovies'
 
 const refs = getRefs();
+
+const filmsApiService = new FilmApiService();
 
 // const Library = {
 //   QUEUE: 'queue-library',
 //   WATCHED: 'watched-library',
 // };
 
-// const LIBRARY_KEY = "library";
+const QUEUE_KEY = "queue";
+const WATCHED_KEY = "watched";
 
 
 // const myLibraryBtnModalQueue = new MyLibraryBtns({ selector: '[data-action="btn-modal-queue"]', hidden: true });
 // const myLibraryBtnModalWatched = new MyLibraryBtns({ selector: '[data-action="btn-modal-watched"]', hidden: true });
-// const myLibraryBtnQueue = new MyLibraryBtns({ selector: '[data-action="btn-queue"]', hidden: true });
+const myLibraryBtnQueue = new MyLibraryBtns({ selector: '[data-action="btn-queue"]'});
 // const myLibraryBtnWatched = new MyLibraryBtns({ selector: '[data-action="btn-watched"]', hidden: true });
 
 // myLibraryBtnModalQueue.refs.button.addEventListener('click', onLibraryBtnModalQueue);
 // myLibraryBtnModalWatched.refs.button.addEventListener('click', onLibraryBtnModalWatched);
-// myLibraryBtnQueue.refs.button.addEventListener('click', onLibraryBtnQueue);
+myLibraryBtnQueue.refs.button.addEventListener('click', onLibraryBtnQueue);
 // myLibraryBtnWatched.refs.button.addEventListener('click', onLibraryBtnWatched);
 
 
 // function onLibraryBtnModalQueue(e) {
 //     myLibraryBtnModalQueue.disable();
-//     localStorage.setItem('queue', JSON.stringify({ name: '', age: '' }));
-//     localStorage.removeItem('watched');
+//     console.log(e.target);
+    // localStorage.setItem('queue', JSON.stringify({ name: '', age: '' }));
+    // localStorage.removeItem('watched');
 // }
 
 // function onLibraryBtnModalWatched(e) {
@@ -35,11 +40,13 @@ const refs = getRefs();
 //     localStorage.removeItem('queue');
 // }
 
-// function onLibraryBtnQueue(e) {
-//     myLibraryBtnsShown.disable();
-//     savedData('queue');
-    
-// }
+// refs.btnsLibrary.addEventListener('click', onLibraryBtnQueue)
+
+
+function onLibraryBtnQueue() {
+    // myLibraryBtnQueue.disable();
+    savedData('queue');
+}
 
 // function onLibraryBtnWatched(e) {
 // myLibraryBtnsShown.disable();
@@ -47,15 +54,15 @@ const refs = getRefs();
 // }
 
 
-// function savedData(key) {
-//     const saveFilm = localStorage.getItem(key);
+function savedData(key) {
+    const saveFilm = localStorage.getItem(key);
 
-//     if (saveFilm) {
-//         const parceFilm = JSON.stringify(saveFilm);
-//         createFilmCardsMarkUp(saveFilm);
-//     // return parceFilm;
-//     }
-// }
+    if (saveFilm) {
+        const parceFilm = JSON.parse(saveFilm);
+        createFilmCardsMarkUp(saveFilm);
+    // return parceFilm;
+    }
+}
 
 
 
@@ -82,6 +89,20 @@ function onLibraryClick(e) {
     // localStorage.getItem(queue);
     // localStorage.getItem(watched);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

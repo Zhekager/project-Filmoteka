@@ -1,8 +1,8 @@
 export default class MyLibraryBtns {
-  constructor({ selector, hidden = false }) {
+  constructor({ selector}) {
     this.refs = this.getRefs(selector);
 
-    hidden && this.hide();
+    // hidden && this.hide();
   }
 
   getRefs(selector) {
@@ -27,13 +27,13 @@ export default class MyLibraryBtns {
     // this.refs.spinner.classList.remove('is-hidden');
   }
 
-  show() {
-    this.refs.button.classList.remove('is-hidden');
-  }
+  // show() {
+  //   this.refs.button.classList.remove('is-hidden');
+  // }
 
-  hide() {
-    this.refs.button.classList.add('is-hidden');
-  }
+  // hide() {
+  //   this.refs.button.classList.add('is-hidden');
+  // }
 
 //   showEnd() {
 //     this.refs.button.disabled = true;
