@@ -12,6 +12,7 @@ export default function getRefs() {
       btnWatched: document.querySelector('.js-btn-watched'),
       btnModalQueue: document.querySelector('.btn-queue'),
       btnModalWatched: document.querySelector('.btn-watched'),
+      loaderRef: document.querySelector('.loader'),
         
   };
 }
