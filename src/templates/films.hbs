@@ -5,8 +5,8 @@
     <h2 class="film-title">{{original_title}}</h2>
     <div class="film-content">
         <ul class="genres-list">
-            {{#each genre_ids}}
-            <li class="film-genre">{{this}}</li>
+            {{#each genres}}
+            <li class="film-genre">{{this.name}}</li>
             {{/each}}
         </ul>
         <p>{{release_date}}</p>
