@@ -1,0 +1,30 @@
+import filmTpl from '../templates/film.hbs';
+import * as basicLightbox from 'basiclightbox';
+import 'basiclightbox/dist/basicLightbox.min.css';
+import getRefs from '../js/refs';
+import FilmApiService from './apiService.js';
+const refs = getRefs();
+
+const filmsApiService = new FilmApiService();
+
+const cardFilm = document.querySelector('.gallery');
+cardFilm.addEventListener('click', openModal);
+ 
+function openModal(evt) {
+    evt.preventDefault();
+    let id = evt.target.dataset.action;
+
+    if (evt.target.nodeName !== 'li') {
+        getFullMovieInfo(id)
+    }
+}
+
+function getFullMovieInfo(id) {
+            filmsApiService.getFullMovieInfo(id)
+        .then(movieInfo => {
+            const markup = filmTpl(movieInfo);
+            const modal = basicLightbox.create(markup);
+                modal.show();
+        })
+        .catch(error => console.log('error', error));
+}
