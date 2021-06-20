@@ -22,4 +22,4 @@ var o;function t(o){return(t="function"==typeof Symbol&&"symbol"==typeof Symbol.
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/showTrendingMovies"),require("./js/upScrol"),require("./js/modalTeam");
 },{"./sass/main.scss":"clu1","./js/showTrendingMovies":"nlib","./js/upScrol":"XtGD","./js/modalTeam":"fDFk"}]},{},["Focm"], null)
-//# sourceMappingURL=/project-Filmoteka/src.e5d1c23d.js.map
+//# sourceMappingURL=/project-Filmoteka/src.ac27552a.js.map
