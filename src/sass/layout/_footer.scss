@@ -54,6 +54,14 @@ font-size: 16px;
 .text-company-link {
   margin: 0;
   color: $footer-text-color;
+  cursor: pointer;
+  transition: 0.8s;
+   &:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.493);
+    transform: scale(1.03);
+    color: $white-color;
+    background-color: $film-details;
+  }
 }
 
 @media screen and (min-width: 768px) {
