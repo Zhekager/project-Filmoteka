@@ -88,4 +88,29 @@ function clearImagesContainer() {
   galleryRef.innerHTML = '';
 }
 
-export { clearImagesContainer, renderTrendingMovies }
+
+
+// Изменение стилей и рендеринг при клике на home и logo   
+refs.logo.addEventListener('click', onLogo);
+refs.home.addEventListener('click', onHome);
+
+function onLogo(e) {
+    e.preventDefault();
+    toggleHomeLogo();
+}
+
+function onHome(e) {
+    e.preventDefault();
+    toggleHomeLogo()
+}
+
+function toggleHomeLogo() {
+    refs.library.classList.remove('nav-link-current');
+    refs.searchForm.classList.remove('is-hidden');
+    refs.btnsLibrary.classList.add('is-hidden');
+    refs.overlay.classList.remove('library-open');
+    refs.home.classList.add('nav-link-current');
+  renderTrendingMovies();
+}
+
+export { clearImagesContainer };
