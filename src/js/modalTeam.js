@@ -1,6 +1,7 @@
-
+import refs from './refs';
 
 (() => {
+  // document.body.style.overflow = 'hidden';
   const btns = {
     openModalBtn: document.querySelector("[data-modal-open]"),
     closeModalBtn: document.querySelector(".team-modal-close-button"),
@@ -14,8 +15,10 @@
       window.addEventListener("keydown", onPressEscape);
       btns.closeModalBtn.addEventListener("click", closeModal);
     btns.modal.addEventListener("click", backdropCloseModal);
+    // refs.body.classList.add('scroll-hidden');
     };
   function closeModal() {
+    // refs.body.classList.remove('scroll-hidden');
     btns.closeModalBtn.removeEventListener("click", closeModal);
     btns.modal.classList.add("is-hidden");
     btns.modal.removeEventListener("click", closeModal);
