@@ -1,6 +1,6 @@
 export default function getRefs() {
     return {
-
+      body: document.querySelector('body'),
       logo: document.querySelector('.js-logo'),
       home: document.querySelector('.js-nav-home'),
       overlay: document.querySelector('.js-overlay'),
