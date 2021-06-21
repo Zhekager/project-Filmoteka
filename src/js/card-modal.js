@@ -18,6 +18,8 @@ function openModal(evt) {
     if (evt.target.nodeName !== 'li') {
         getFullMovieInfo(id)
     }
+
+    
 }
 
 function getFullMovieInfo(id) {
@@ -28,12 +30,13 @@ function getFullMovieInfo(id) {
             modal.show();
 
             addToLibrary();
+            cardFilm.removeEventListener('click');
 
         })
         .catch(error => console.log('error', error));
    
 }
-            
+       
 
 //ryjgrf pfrhsnm
 

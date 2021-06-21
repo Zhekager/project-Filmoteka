@@ -22,10 +22,7 @@
   font-size: 12px;
   line-height: 1.33;
   text-align: center;
-
-  border: 1px solid #ffffff;
-
-//   border: 1px solid $white-color;
+  border: 1px solid $white-color;
 
   border-radius: 5px;
   cursor: pointer;
@@ -34,6 +31,21 @@
     min-width: 136px;
     padding: 13px 38px;
   }
+
+  // &[disabled] {
+  //   background-color: #757575;
+  //   cursor: not-allowed;
+  //   border-color: transparent;
+  //   color: #545454;
+    
+
+  //    &:hover,
+  //    &:focus {
+  //      background-color: #757575;
+  //   border-color: transparent;
+  //   box-shadow: none;
+  //    }
+  // }
 }
 
 %flex-left {
