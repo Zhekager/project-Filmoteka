@@ -1,8 +1,13 @@
+
 <article class="card-film">
+
 
     <div class="card-image">
     <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}" alt="{{original_title}}" class="card-poster"/>
     </div>
+
+
+
 
     <div class="card-description">
     <h2 class="card-description-title">{{original_title}}</h2>
@@ -34,20 +39,21 @@
     </ul>
 </div>
 
-    
     <div class="movie-about">
         <p class="movie-about-title">About </p>
         <p class="movie-about-description">{{overview}}</p>
     </div>
-    <div id="add-to-library">
-        <button class="add-to-watched" id="add-to-watched" data-act='{{id}}'>add to Watched</button>
-        <button class="add-to-queue" id="add-to-queue" data-act='{{id}}'>add to queue</button> 
-    </div>
-    <button type="button" class="modal-button-close" data-modal-close>
-        <svg width="30" height="30">
-            <use href="./images/sprite.svg#icon-close-big"></use>
-        </svg>
-    </button>
+
+        <div class="modal-btns" id="add-to-library">
+        <button type="button" class="add-to-watched" id="add-to-watched" data-act='{{id}}'>add to watched</button>
+        <button type="button" class="add-to-queue" id="add-to-queue" data-act='{{id}}'>add to queue</button> 
+        </div>
+<button type="button" class="modal-button-close">
+     {{!-- <svg>
+        <use href="./images/sprite.svg#icon-close-big"></use>
+    </svg>  --}}
+</button>
+    
 </div>
 </article>
 
