@@ -1,4 +1,5 @@
 .card-film {
+  position: relative;
   width: 320px;
   max-height: 100vh;
   font-size: 12px;
@@ -8,11 +9,11 @@
   background-color: #ffffff;
   border-radius: 5px;
   padding-top: 48px;
-
+  overflow-x: hidden;
   @media screen and (min-width: 768px) {
     display: flex;
     width: 618px;
-    max-height: 514px;
+    min-height: 514px;
   }
 
   @media screen and (min-width: 1024px) {
@@ -95,11 +96,12 @@
   border-radius: 5px;
   width: 36px;
   height: 16px;
-  padding-top: 1px;
+  padding-top: 2px;
 }
 .movie-rating {
   background-color: #ff6b01;
   color: white;
+  //padding: 3px, 10px;
 }
 
 .movie-vote-count {
@@ -164,6 +166,7 @@
   &:focus {
     background-color: #ff6b01;
     color: #ffffff;
+    border: 1px solid #ff6b01;
   }
 }
 
@@ -187,13 +190,14 @@
   &:focus {
     background-color: #ff6b01;
     color: #ffffff;
+    border: 1px solid #ff6b01;
   }
 }
 
 .modal-button-close {
   font-size: 18px;
   position: absolute;
-  top: 15px;
+  top: 10px;
   right: 10px;
   background-color: #ffffff;
   border: 1px solid transparent;
