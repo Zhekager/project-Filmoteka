@@ -19,6 +19,7 @@ function getFullMovieInfo(id) {
             const markup = filmTpl(movieInfo);
             const modal = basicLightbox.create(markup);
             modal.show();
+        
 
     const buttonCls = document.querySelector('.modal-button-close');
     buttonCls.addEventListener('click', closeModal);
@@ -39,14 +40,16 @@ function closeModal(evt) {
 
     })
         .catch(error => console.log('error', error));
+    
 }
 
 function openModal(evt) {
     evt.preventDefault();
     let id = evt.target.dataset.action;
-    if (evt.target.nodeName !== 'li') {
-        getFullMovieInfo(id)
+    if (evt.target.nodeName !== 'IMG') {
+       return
     }
+     getFullMovieInfo(id)
     
 
 
