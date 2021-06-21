@@ -43,9 +43,10 @@
         <p class="movie-about-title">About </p>
         <p class="movie-about-description">{{overview}}</p>
     </div>
-        <div class="modal-btns">
-        <button type="button" class="add-to-watched">add to watched</button>
-        <button type="button" class="add-to-queue">add to queue</button> 
+
+        <div class="modal-btns" id="add-to-library">
+        <button type="button" class="add-to-watched" id="add-to-watched" data-act='{{id}}'>add to watched</button>
+        <button type="button" class="add-to-queue" id="add-to-queue" data-act='{{id}}'>add to queue</button> 
         </div>
 <button type="button" class="modal-button-close">
      {{!-- <svg>
