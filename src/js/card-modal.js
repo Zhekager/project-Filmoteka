@@ -3,6 +3,7 @@ import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import getRefs from '../js/refs';
 import FilmApiService from './apiService.js';
+import addToLibrary from './library.js';
 const refs = getRefs();
 
 const filmsApiService = new FilmApiService();
@@ -25,9 +26,14 @@ function getFullMovieInfo(id) {
             const markup = filmTpl(movieInfo);
             const modal = basicLightbox.create(markup);
             modal.show();
+
+            addToLibrary();
+
         })
         .catch(error => console.log('error', error));
    
 }
+            
+
 //ryjgrf pfrhsnm
 
