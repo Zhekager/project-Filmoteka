@@ -12,14 +12,18 @@ refs.searchInput.addEventListener('input', debounce(onSearch, 500));
 let galleryRef = document.querySelector('.gallery');
 
 // фетч популярных фильмов - стартовая страница
-filmsApiService
-  .fetchTrendingMovies()
-  .then(movieData => {
-    let result = movieData.results;
-    // createFilmCardsMarkUp(result);
-    initialize(result);
-  })
-  .catch(error => console.log('error', error));
+renderTrendingMovies();
+
+function renderTrendingMovies() {
+  filmsApiService
+    .fetchTrendingMovies()
+    .then(movieData => {
+      let result = movieData.results;
+      // createFilmCardsMarkUp(result);
+      initialize(result);
+    })
+    .catch(error => console.log('error', error));
+}
 
 // поиск фильмов
 function onSearch(e) {
@@ -83,3 +87,5 @@ function createFilmCardsMarkUp(movieInfo) {
 function clearImagesContainer() {
   galleryRef.innerHTML = '';
 }
+
+export { clearImagesContainer, renderTrendingMovies }

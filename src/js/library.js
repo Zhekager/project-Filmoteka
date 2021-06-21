@@ -1,57 +1,77 @@
 import MyLibraryBtns from './button.js';
 import markUpFilmCardTpl from '../templates/films.hbs';
 import FilmApiService from './apiService.js';
+import { clearImagesContainer, renderTrendingMovies } from './showTrendingMovies.js';
 import getRefs from './refs.js';
 
 const refs = getRefs();
 
 const filmsApiService = new FilmApiService();
 
+
+// добавление в библиотеку при клике на кнопки в модальной карточке фильма
 // const Library = {
 //   QUEUE: 'queue-library',
 //   WATCHED: 'watched-library',
 // };
 
-const QUEUE_KEY = "queue";
-const WATCHED_KEY = "watched";
+// const QUEUE_KEY = "queue";
+// const WATCHED_KEY = "watched";
 
 
-// export default function addToLibrary() {
-//     let btnAddToWatched = document.querySelector('#add-to-watched');
-//     let btnAddToQueue = document.querySelector('#add-to-queue');
-
-//     btnAddToWatched.addEventListener('click', onBtnAddToWatched);
-//     btnAddToQueue.addEventListener('click', onBtnAddToQueue);
-
-//     function onBtnAddToWatched(e) {
-//         console.log(e.target);
-//         let id = e.target.dataset.act;
-//         getMovie(id);
-
-//     }
-
-//     function onBtnAddToQueue(e) {
-//         console.log(e.target);
-//         let id = e.target.dataset.act;
-//         getMovie(id);
-//     }
-// }
-
+// let STORAGE_MOVIE = ;
 
 export default function addToLibrary() {
-    let btnAddToLibrary = document.querySelector('#add-to-library');
-    btnAddToLibrary.addEventListener('click', onBtnAddToLibrary);
+    let btnAddToWatched = document.querySelector('#add-to-watched');
+    let btnAddToQueue = document.querySelector('#add-to-queue');
 
-    function onBtnAddToLibrary(e) {
-        // myLibraryBtnModalQueue.disable();
+    btnAddToWatched.addEventListener('click', onBtnAddToWatched);
+    btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+
+    function onBtnAddToWatched(e) {
         console.log(e.target);
-        let id = e.target.dataset.act;
-        getMovie(id);
-    
-        // localStorage.setItem('queue', JSON.stringify(id));
-        // localStorage.removeItem('watched');
+        let movieId = e.target.dataset.act;
+        getMovie(movieId);
+
+        let movieIdStorage = {
+                    'Movie ID': movieId,
+        }
+        
+        localStorage.setItem('watched', JSON.stringify(movieIdStorage));
+
+    }
+
+    function onBtnAddToQueue(e) {
+        console.log(e.target);
+        let movieId = e.target.dataset.act;
+        getMovie(movieId);
+
+        let movieIdStorage = {
+                    'Movie ID': movieId,
+        }
+        
+        localStorage.setItem('queue', JSON.stringify(movieIdStorage));
     }
 }
+
+// export default function addToLibrary() {
+//     let btnAddToLibrary = document.querySelector('#add-to-library');
+//     btnAddToLibrary.addEventListener('click', onBtnAddToLibrary);
+
+//     function onBtnAddToLibrary(e) {
+//         e.target.disabled = true;
+//         console.log(e.target);
+//         let movieId = e.target.dataset.act;
+
+//         getMovie(movieId);
+
+//         let movieIdStorage = {
+//                     'Movie ID': movieId,
+//         }
+        
+//         localStorage.setItem(STORAGE_MOVIE, JSON.stringify(movieIdStorage));
+//     };
+// }
 
 function getMovie(id) {
     filmsApiService.getFullMovieInfo(id)
@@ -63,10 +83,12 @@ function getMovie(id) {
 }
 
 
-    refs.library.addEventListener('click', onLibraryClick);
+// Изменение стилей, очистка контейнера и рендеринг из localStories при клике на My Library
+refs.library.addEventListener('click', onLibraryClick);
 
-    function onLibraryClick(e) {
-        console.log(e.target);
+function onLibraryClick(e) {
+    e.preventDefault();
+    clearImagesContainer()
     
         refs.library.classList.add('nav-link-current');
         refs.home.classList.remove('nav-link-current');
@@ -77,7 +99,31 @@ function getMovie(id) {
         // localStorage.getItem(queue);
         // localStorage.getItem(watched);
 
-    }
+}
+
+// Изменение стилей и рендеринг при клике на home и logo   
+refs.logo.addEventListener('click', onLogo);
+refs.home.addEventListener('click', onHome);
+
+function onLogo(e) {
+    e.preventDefault();
+    toggleHomeLogo()
+}
+
+function onHome(e) {
+    e.preventDefault();
+    toggleHomeLogo()
+}
+
+function toggleHomeLogo() {
+refs.home.classList.add('nav-link-current');
+    refs.library.classList.remove('nav-link-current');
+    refs.searchForm.classList.remove('is-hidden');
+    refs.btnsLibrary.classList.add('is-hidden');
+    refs.overlay.classList.remove('library-open');
+    renderTrendingMovies();
+}
+
 
 
     // const myLibraryBtnQueue = new MyLibraryBtns({ selector: '[data-action="btn-queue"]'});
