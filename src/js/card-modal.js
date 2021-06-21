@@ -18,7 +18,7 @@ cardFilm.addEventListener('click', openModal);
     }
 
     
-}
+
 
  //функция получения фильма по ид
 
