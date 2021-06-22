@@ -564,6 +564,12 @@ line-height: 1.14;
     box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
   }
 
+  &.add {
+    background-color: $btn-accent-color;
+    border-color: $btn-accent-color;
+    box-shadow: 0px 8px 43px rgba(255, 107, 1, 0.6);
+  }
+
   &[disabled] {
     background-color: #757575;
     cursor: not-allowed;
