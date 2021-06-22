@@ -1,5 +1,4 @@
 import filmTpl from '../templates/film.hbs';
-import films from '../templates/film.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import getRefs from '../js/refs';
@@ -39,7 +38,7 @@ function closeModalHandler(evt) {
         }
     }
             
-function closeModal(evt) {
+function closeModal() {
          modal.close();
     // window.removeEventListener('click', closeModal);
     window.removeEventListener('keydown', closeModalHandler);

@@ -95,12 +95,14 @@ refs.logo.addEventListener('click', onLogo);
 refs.home.addEventListener('click', onHome);
 
 function onLogo(e) {
-    e.preventDefault();
+    // e.preventDefault();
+  clearImagesContainer();
     toggleHomeLogo();
 }
 
 function onHome(e) {
-    e.preventDefault();
+  e.preventDefault();
+  clearImagesContainer();
     toggleHomeLogo()
 }
 
@@ -113,4 +115,4 @@ function toggleHomeLogo() {
   renderTrendingMovies();
 }
 
-export { clearImagesContainer };
+export { clearImagesContainer, createFilmCardsMarkUp };
