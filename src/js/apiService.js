@@ -52,25 +52,29 @@ export default class FilmApiService {
   }
 
   watchedLocalStorage(id) {
-    this.movieWatchedIdList.push(id);
-
-    let movieIdStorage = {
-      'Movie ID': this.movieWatchedIdList,
+    if (this.movieWatchedIdList === [] || !this.movieWatchedIdList.includes(id)) {
+      this.movieWatchedIdList.push(id);
     }
 
-    localStorage.setItem('watched', JSON.stringify(movieIdStorage));
+    let movieIdStorageW = {
+      'MovieIDW': this.movieWatchedIdList,
+    }
+
+    localStorage.setItem('watched', JSON.stringify(movieIdStorageW));
+
   }
 
   queueLocalStorage(id) {
-  this.movieQueueIdList.push(id);
-
-    let movieIdStorage = {
-      'Movie ID': this.movieQueueIdList,
+    if (this.movieQueueIdList === [] || !this.movieQueueIdList.includes(id)) {
+      this.movieQueueIdList.push(id);
     }
 
-    localStorage.setItem('queue', JSON.stringify(movieIdStorage));
-  }
+    let movieIdStorageQ = {
+      'MovieIDQ': this.movieQueueIdList,
+    }
 
+    localStorage.setItem('queue', JSON.stringify(movieIdStorageQ));
+  }
   
 }
 
