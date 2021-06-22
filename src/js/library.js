@@ -112,9 +112,9 @@ function renderLibrary() {
         console.log(parceLibraryArr);
        
         for (let i = 0; i < parceLibraryArr.length; i += 1) {
-            if (parceLibraryArr[0] === parceLibraryArr[i]) {
-                parceLibraryArr.shift();
-            }
+            // if (parceLibraryArr[0] === parceLibraryArr[i]) {
+            //     parceLibraryArr.shift();
+            // }
              let id = parceLibraryArr[i];
                 console.log(id);
             
