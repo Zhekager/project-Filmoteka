@@ -28,9 +28,10 @@
   },
   "dependencies": {
 
+    "basiclightbox": "^5.0.4",
     "debounce": "^1.2.1",
 
-    "basiclightbox": "^5.0.4",
+
 
     "lodash.throttle": "^4.1.1",
     "spin.js": "^4.1.0",

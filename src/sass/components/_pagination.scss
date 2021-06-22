@@ -1,0 +1,81 @@
+.pagination {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.pagination-pages {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.pagination-arrow {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  background-position: center;
+  background-color: $footer-background-color;
+
+  &:hover {
+    background-color: $line-orange-color;
+    color: $white-color;
+  }
+  &:active {
+    background-color: $line-orange-color;
+  }
+}
+.arrow-left {
+  background-image: url('../../src/images/pagination/arrow-left.svg');
+  background-repeat: no-repeat;
+}
+
+.arrow-right {
+  background-image: url('../../src/images/pagination/arrow-right.svg');
+  background-repeat: no-repeat;
+}
+
+.pages-numbers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.pages-numbers button {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 1.33;
+}
+.dots {
+  width: 40px;
+  height: 40px;
+  margin: 5px;
+  display: inline-block;
+  text-align: center;
+  padding: 10px 5px 1px 5px;
+}
+
+@media screen and (max-width: 767px) {
+  .dots {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .dots {
+    display: inline-block;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.disabled-arrow {
+  pointer-events: none;
+  background-color: #c4c0c0;
+}
