@@ -1,16 +1,17 @@
 {{#each this}}
-<li class="list-item" data-action='{{id}}'>
-<article class="main-films">
-    <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}"  alt="{{title}}" class="film-image" />
+<li class="list-item"  >
+<article class="main-films" >
+    <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}"  alt="{{title}}" class="film-image" data-action='{{id}}' />
     <h2 class="film-title">{{original_title}}</h2>
     <div class="film-content">
         <ul class="genres-list">
-            {{#each genre_ids}}
-            <li class="film-genre">{{this}}</li>
+            {{#each genres}}
+            <li class="film-genre">{{this.name}}</li>
             {{/each}}
         </ul>
-        <p>{{release_date}}</p>
-        <p class="film-vote">{{vote_average}}</p>
+        <span class="delimiter">&#448;</span>
+        <p class="film-date">{{release_date}}</p>
+        <span class="film-vote-background is-hidden"><p class="film-vote">{{vote_average}}</p></span>
     </div>
 </article>
 </li>

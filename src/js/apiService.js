@@ -7,43 +7,29 @@ export default class FilmApiService {
     this.page = 1;
   }
 
+  getFullMovieInfo(movie_id) {
+    return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}&language=en-US`)
+      .then(res => res.json())
+      .catch(error => console.log('error', error));
+  }
+
   fetchTrendingMovies() {
+    // версия для популярных фильмов
     //  return fetch`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.page}`;
-
-    return fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}`)
+    return fetch(
+      `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US&page=${this.page}`,
+    )
       .then(res => res.json())
       .catch(error => console.log(error));
   }
 
-  fetchMovies() {
-    return fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&query=${this.searchQuery}`).then(
-      res => {
-        this.incrementPage();
-        return res.json();
-      },
-    );
-  }
-
-  // SearchMovie() {
-  //   return fetch(`${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`)
-  //     .then(res => res.json())
-  //     .catch(error => console.log(error));
-  // }
-
-  // перевірити чи треба
-  getMovieById() {
-    return fetch(`${BASE_URL}movie/${id}?api_key=${API_KEY}`)
-      .then(res => res.json())
-      .catch(error => console.log(error));
-  }
-
-  // для жанров -- шаблонизатор
-  getGenresList() {
-    return fetch(`${BASE_URL}genre/movie/list?api_key=${API_KEY}`)
-      .then(response => response.json())
-      .then(data => {
-        return data.genres;
-      });
+  fetchSearch() {
+    return fetch(
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`,
+    ).then(res => {
+      this.incrementPage();
+      return res.json();
+    });
   }
 
   incrementPage() {
@@ -54,11 +40,11 @@ export default class FilmApiService {
     this.page = 1;
   }
 
-  getQuery() {
+  get query() {
     return this.searchQuery;
   }
 
-  setQuery() {
+  set query(newQuery) {
     this.searchQuery = newQuery;
   }
 }

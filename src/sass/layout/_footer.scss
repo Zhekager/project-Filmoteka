@@ -4,26 +4,6 @@
   background-color: $footer-background-color;
 }
 
-.container-footer {
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 20px;
-  padding-right: 20px;
-  width: 320px;
-
-  @media screen and (min-width: 768px) {
-    padding-left: 74px;
-  padding-right: 74px;
-  width: 768px;
-  }
-
-  @media screen and (min-width: 1024px) {
-    padding-left: 70px;
-    padding-right: 70px;
-    width: 1024px;
-  }
-}
-
 .footer-lisense {
   margin: 0;
   padding: 0;
@@ -50,9 +30,19 @@ font-size: 16px;
   margin: 0;
 }
 
-.lisense-link {
+.lisense-link,
+.text-company-link {
   margin: 0;
+  text-decoration: underline;
   color: $footer-text-color;
+  cursor: pointer;
+  transition: 0.8s;
+   &:hover {
+    text-decoration: none;
+    transform: scale(1.03);
+    color: $red-text-color;
+  
+  }
 }
 
 @media screen and (min-width: 768px) {
