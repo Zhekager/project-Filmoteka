@@ -57,6 +57,7 @@ function onBtnQueue() {
 }
 
 function onBtnWatched() {
+    refs.btnQueue.classList.remove('add');
     let saveFilm = localStorage.getItem('watched');
     
     if (saveFilm) {
@@ -71,7 +72,8 @@ function onBtnWatched() {
                     createFilmCardsMarkUp([movieInfo]);
                 }).catch(error => console.log('error', error));
         }
-        refs.btnWatched.removeEventListener('click', onBtnWatched);
+
+        // refs.btnWatched.removeEventListener('click', onBtnWatched);
         refs.btnQueue.addEventListener('click', onBtnQueue);
         clearImagesContainer();
     }
@@ -91,38 +93,41 @@ function onLibraryClick(e) {
         refs.overlay.classList.add('library-open');
         refs.searchForm.classList.add('is-hidden');
         refs.btnsLibrary.classList.remove('is-hidden');
-
-     renderLibrary();
+    refs.btnQueue.classList.add('add');
+    onBtnQueue();
 }
 
-function renderLibrary() {
-    let saveFilmWatched = localStorage.getItem('watched');
-    let saveFilmQueue = localStorage.getItem('queue');
 
-    if (saveFilmWatched || saveFilmQueue) {
-        let parceFilmWatched = JSON.parse(saveFilmWatched);
-        console.log(parceFilmWatched);
-        let parceFilmQueue = JSON.parse(saveFilmQueue);
-        console.log(parceFilmQueue);
 
-        let parceLibraryObj = { ...parceFilmWatched, ...parceFilmQueue };
-        console.log(parceLibraryObj);
 
-        const parceLibraryArr = parceFilmWatched.MovieIDW.concat(parceFilmQueue.MovieIDQ);
-        console.log(parceLibraryArr);
+
+
+
+// function renderLibrary() {
+//     let saveFilmWatched = localStorage.getItem('watched');
+//     let saveFilmQueue = localStorage.getItem('queue');
+
+//     if (saveFilmWatched || saveFilmQueue) {
+//         let parceFilmWatched = JSON.parse(saveFilmWatched);
+//         console.log(parceFilmWatched);
+//         let parceFilmQueue = JSON.parse(saveFilmQueue);
+//         console.log(parceFilmQueue);
+
+//         const parceLibraryArr = parceFilmWatched.MovieIDW.concat(parceFilmQueue.MovieIDQ);
+//         console.log(parceLibraryArr);
        
-        for (let i = 0; i < parceLibraryArr.length; i += 1) {
-            // if (parceLibraryArr[0] === parceLibraryArr[i]) {
-            //     parceLibraryArr.shift();
-            // }
-             let id = parceLibraryArr[i];
-                console.log(id);
+//         for (let i = 0; i < parceLibraryArrFilter.length; i += 1) {
+//             // if (parceLibraryArr[0] === parceLibraryArr[i]) {
+//             //     parceLibraryArr.splice(i);
+//             // }
+//              let id = parceLibraryArrFilter[i];
+//                 console.log(id);
             
-            filmsApiService
-                .getFullMovieInfo(id)
-                .then(movieInfo => {
-                    createFilmCardsMarkUp([movieInfo]);
-                }).catch(error => console.log('error', error));
-        }
-    }
-}
+//             filmsApiService
+//                 .getFullMovieInfo(id)
+//                 .then(movieInfo => {
+//                     createFilmCardsMarkUp([movieInfo]);
+//                 }).catch(error => console.log('error', error));
+//         }
+//     }
+// }
