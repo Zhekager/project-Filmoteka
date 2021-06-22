@@ -72,7 +72,8 @@ function onBtnWatched() {
                     createFilmCardsMarkUp([movieInfo]);
                 }).catch(error => console.log('error', error));
         }
-        refs.btnWatched.removeEventListener('click', onBtnWatched);
+
+        // refs.btnWatched.removeEventListener('click', onBtnWatched);
         refs.btnQueue.addEventListener('click', onBtnQueue);
         clearImagesContainer();
     }

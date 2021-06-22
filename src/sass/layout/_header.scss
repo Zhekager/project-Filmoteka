@@ -557,7 +557,7 @@ line-height: 1.14;
 
     @include transit(background-color, border-color, box-shadow);
 
-  &:hover,
+  
   &:focus {
     background-color: $btn-accent-color;
     border-color: $btn-accent-color;
