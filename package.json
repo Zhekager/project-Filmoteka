@@ -27,6 +27,11 @@
     "sass": "^1.32.8"
   },
   "dependencies": {
+<<<<<<< Updated upstream
+=======
+    "basiclightbox": "^5.0.4",
+    "debounce": "^1.2.1",
+>>>>>>> Stashed changes
     "lodash.throttle": "^4.1.1",
     "toastify": "^2.0.1",
     "vanilla-back-to-top": "^7.2.1"

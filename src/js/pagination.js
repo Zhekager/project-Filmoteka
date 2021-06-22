@@ -20,7 +20,6 @@ export function renderPagination(totalPages, cards, fn, searchQuery) {
 
     function createPagination(items, wrapper, rowPages) {
         wrapper.innerHTML = '';
-
         pageTotal = totalPages;
         let maxLeftPage = currentPage - Math.floor(pagesSeach / 2);
         let maxRightPage = currentPage + Math.floor(pagesSeach / 2);
