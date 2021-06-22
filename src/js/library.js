@@ -21,7 +21,7 @@ const filmsApiService = new FilmApiService();
 
 // let STORAGE_MOVIE = ;
 
-export default function addToLibrary() {
+export default function addToLibrary(movieId) {
     const btnAddToWatched = document.querySelector('#add-to-watched');
     const btnAddToQueue = document.querySelector('#add-to-queue');
 
@@ -29,41 +29,18 @@ export default function addToLibrary() {
     btnAddToQueue.addEventListener('click', onBtnAddToQueue);
 
     function onBtnAddToWatched(e) {
-        console.log(e.target);
-
-        let movieId = e.target.dataset.act;
-        getMovie(movieId);
-
-        let movieIdStorage = {
-                    'Movie ID': movieId,
-        }
-
-        let listWatched = [];
-        listWatched.push(movieIdStorage);
-
-        localStorage.setItem('watched', JSON.stringify(movieIdStorage));
-        // e.target.textContent = 'remove from watched';
-        
+        filmsApiService.watchedLocalStorage(movieId)
+            console.log('movieId', movieId);
+            // e.target.disabled = true;  
+        e.target.textContent = 'remove from watched';
     }
     
 
     function onBtnAddToQueue(e) {
-        console.log(e.target);
-        let movieId = e.target.dataset.act;
-        getMovie(movieId);
-
-        let movieIdStorage = {
-                    'Movie ID': movieId,
-        }
-
-        let listQueue = [];
-        listQueue.push(movieIdStorage);
-        localStorage.setItem("queue", JSON.stringify(movieIdStorage));
-            
-        
-        // localStorage.setItem('queue', JSON.stringify(movieIdStorage));
-    // e.target.disabled = true;
-        // e.target.textContent = 'remove from queue';
+        filmsApiService.queueLocalStorage(movieId)
+            console.log('movieId', movieId);
+        // e.target.disabled = true;
+        e.target.textContent = 'remove from queue';
     }
 }
 
@@ -87,14 +64,14 @@ export default function addToLibrary() {
 //     };
 // }
 
-function getMovie(id) {
-    filmsApiService.getFullMovieInfo(id)
-        .then(movieInfo => {
-            const markup = markUpFilmCardTpl(movieInfo);
-        })
-        .catch(error => console.log('error', error));
+// function getMovie(id) {
+//     filmsApiService.getFullMovieInfo(id)
+//         .then(movieInfo => {
+//             const markup = markUpFilmCardTpl(movieInfo);
+//         })
+//         .catch(error => console.log('error', error));
    
-}
+// }
     
 
 refs.btnQueue.addEventListener('click', onBtnQueue);

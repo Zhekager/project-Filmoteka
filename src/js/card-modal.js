@@ -12,16 +12,7 @@ const filmsApiService = new FilmApiService();
 const cardFilm = document.querySelector('.gallery');
 cardFilm.addEventListener('click', openModal);
 
-
-    if (evt.target.nodeName !== 'li') {
-        getFullMovieInfo(id)
-    }
-
-    
-
-
  //функция получения фильма по ид
-
 
 function getFullMovieInfo(id) {
     filmsApiService.getFullMovieInfo(id)
@@ -30,15 +21,10 @@ function getFullMovieInfo(id) {
             const modal = basicLightbox.create(markup);
             modal.show();
 
-
-      
-      
-            addToLibrary();
-            cardFilm.removeEventListener('click');
-
-        
-      
-      
+            addToLibrary(id);
+           
+            // cardFilm.removeEventListener('click', openModal);
+            //  modalClose();
 
     const buttonCls = document.querySelector('.modal-button-close');
     buttonCls.addEventListener('click', closeModal);
@@ -47,56 +33,26 @@ function getFullMovieInfo(id) {
     //функция закрытия по escape
 function closeModalHandler(evt) {
     if (evt.code === 'Escape') {
-        modal.close();
+         modal.close();
+        // window.removeEventListener('click', closeModal);
         window.removeEventListener('keydown', closeModalHandler);
         }
     }
             
 function closeModal(evt) {
-        modal.close();
-        window.removeEventListener('keydown', closeModalHandler);
-    }
-
-    })
-
-
-//             addToLibrary();
-
-//         })
-
-
-        .catch(error => console.log('error', error));
-    
+         modal.close();
+    // window.removeEventListener('click', closeModal);
+    window.removeEventListener('keydown', closeModalHandler);
 }
-
-       
-
+        }).catch(error => console.log('error', error));
+}
 
 function openModal(evt) {
     evt.preventDefault();
     let id = evt.target.dataset.action;
     if (evt.target.nodeName !== 'IMG') {
-       return
+        return
     }
-     getFullMovieInfo(id)
-    
-
-
-
-  
-    
-    
-    
-     
+    getFullMovieInfo(id);
 }
-
-
-
-
-
-            
-
-
-//ryjgrf pfrhsnm
-
-
+    
