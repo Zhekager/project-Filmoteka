@@ -1,5 +1,3 @@
-// import MyLibraryBtns from './button.js';
-// import markUpFilmCardTpl from '../templates/films.hbs';
 import FilmApiService from './apiService.js';
 import { clearImagesContainer, createFilmCardsMarkUp } from './showTrendingMovies.js';
 import getRefs from './refs.js';
@@ -9,8 +7,6 @@ const refs = getRefs();
 const filmsApiService = new FilmApiService();
 
 export default function addToLibrary(movieId) {
-    // let saveFilmWatched = localStorage.getItem('watched');
-    // let saveFilmQueue = localStorage.getItem('queue');
     
     const btnAddToWatched = document.querySelector('#add-to-watched');
     const btnAddToQueue = document.querySelector('#add-to-queue');
@@ -20,37 +16,53 @@ export default function addToLibrary(movieId) {
 
     btnAddToWatched.addEventListener('click', onBtnAddToWatched);
     btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+    
+    if (saveFilmWatched.includes(movieId)) {
+        btnAddToWatched.textContent = 'added to watched';
+        btnAddToWatched.disabled = true;
+        btnAddToWatched.style.backgroundColor = '#ff6b01';
+        btnAddToWatched.style.color = '#ffffff';
+        btnAddToWatched.style.borderColor = '#ff6b01';
+        // return;
+        btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
+    }
+    
 
-        if (saveFilmWatched.includes(movieId)) {
-            btnAddToWatched.textContent = 'added to watched';
-            btnAddToWatched.disabled = true;
-            btnAddToWatched.style.backgroundColor = '#ff6b01';
-            btnAddToWatched.style.color = '#ffffff';
-            btnAddToWatched.style.borderColor = '#ff6b01';
-        }
-
-        if (saveFilmQueue.includes(movieId)) {
-            btnAddToQueue.textContent = 'added to queue';
-            btnAddToQueue.disabled = true;
-            btnAddToQueue.style.backgroundColor = '#ff6b01';
-            btnAddToQueue.style.color = '#ffffff';
-            btnAddToQueue.style.borderColor = '#ff6b01';
-        }
+    if (saveFilmQueue.includes(movieId)) {
+        btnAddToQueue.textContent = 'added to queue';
+        btnAddToQueue.disabled = true;
+        btnAddToQueue.style.backgroundColor = '#ff6b01';
+        btnAddToQueue.style.color = '#ffffff';
+        btnAddToQueue.style.borderColor = '#ff6b01';
+        // return;
+        // btnAddToWatched.removeEventListener('click', onBtnAddToQueue);
+    }
+    
 
 function onBtnAddToWatched(e) {
-        filmsApiService.watchedLocalStorage(movieId);
-
-            e.target.textContent = 'added to watched';
+    filmsApiService.watchedLocalStorage(movieId);
     
-        // btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
+    // styleSaveBtns('added to watched');
+
+    e.target.textContent = 'added to watched';
+    e.target.style.backgroundColor = '#ff6b01';
+    e.target.style.color = '#ffffff';
+    e.target.style.borderColor = '#ff6b01';
+    
+        btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
     }
 
     function onBtnAddToQueue(e) {
         filmsApiService.queueLocalStorage(movieId);
 
-        e.target.textContent = 'added to queue';
+        // styleSaveBtns('added to queue');
 
-        // btnAddToWatched.removeEventListener('click', onBtnAddToQueue);
+        e.target.textContent = 'added to queue';
+    e.target.style.backgroundColor = '#ff6b01';
+    e.target.style.color = '#ffffff';
+        e.target.style.borderColor = '#ff6b01';
+        
+        btnAddToWatched.removeEventListener('click', onBtnAddToQueue);
     }
     
 }
