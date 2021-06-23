@@ -1,26 +1,39 @@
- const cardFilm = document.querySelector('.js-card-film'),
+
+import FilmApiService from './apiService.js';
+import markUpFilmCardTpl from '../templates/films.hbs';
+import { renderTrendingMovies } from './showTrendingMovies.js';
+import { initialize } from './showTrendingMovies.js';
+import { createFilmCardsMarkUp } from './showTrendingMovies.js';
+
+
+const cardFilm = document.querySelector('.js-card-film'),
+
+ 
+
     arrowLeft = document.querySelector('.arrow-left'),
     arrowRight = document.querySelector('.arrow-right'),
     paginationEl = document.querySelector('#pagination');
 
 let currentPage = 1;
 let pages = 20;
-let pageTotal;
-let pagesSeach = 7;
+let pageCount;
+let pagesSeach = 5;
+
+const filmApiService = new FilmApiService();
 
 function resetCurrentPage() {
     currentPage = 1;
 }
 
-export function renderPagination(totalPages, cards, fn, searchQuery) {
+    function renderPagination(totalPages,  result, fn, searchQuery) {
     paginationEl.innerHTML = '';
     resetCurrentPage();
     arrowLeft.removeEventListener('click', onClickArrowLeft);
     arrowRight.removeEventListener('click', onClickArrowRight);
 
-    function createPagination(items, wrapper, rowPages) {
-        wrapper.innerHTML = '';
-        pageTotal = totalPages;
+    function createPagination(items, container, pages) {
+        container.innerHTML = '';
+        pageCount = totalPages;
         let maxLeftPage = currentPage - Math.floor(pagesSeach / 2);
         let maxRightPage = currentPage + Math.floor(pagesSeach / 2);
 
@@ -41,17 +54,17 @@ export function renderPagination(totalPages, cards, fn, searchQuery) {
         for (let i = 1; i <= totalPages; i++) {
             if (maxLeftPage !== 1 && i == 1) {
                 let btn = paginationButton(i, items);
-                wrapper.appendChild(btn);
+                container.appendChild(btn);
             }
 
             if (maxRightPage !== totalPages && i == totalPages) {
                 let btn = paginationButton(i, items);
-                wrapper.appendChild(btn);
+                container.appendChild(btn);
             }
 
             if (i >= maxLeftPage && i <= maxRightPage) {
                 let btn = paginationButton(i, items);
-                wrapper.appendChild(btn);
+                container.appendChild(btn);
             }
             if (
                 totalPages >= 6 &&
@@ -60,8 +73,8 @@ export function renderPagination(totalPages, cards, fn, searchQuery) {
                 currentPage !== 2 &&
                 currentPage !== 3
             ) {
-                const threeDotsEl = addDotsContainer();
-                wrapper.insertBefore(threeDotsEl, wrapper[wrapper.length - 2]);
+                const dotsEl = addDotsContainer();
+                container.insertBefore(dotsEl, container[container.length - 2]);
             }
 
             if (
@@ -71,8 +84,8 @@ export function renderPagination(totalPages, cards, fn, searchQuery) {
                 currentPage !== pageCount - 2 &&
                 currentPage !== pageCount - 1
             ) {
-                const threeDotsEl = addDotsContainer();
-                wrapper.insertBefore(threeDotsEl, wrapper[1]);
+                const dotsEl = addDotsContainer();
+                container.insertBefore(dotsEl, container[1]);
             }
         }
     }
@@ -92,54 +105,65 @@ export function renderPagination(totalPages, cards, fn, searchQuery) {
             button.classList.add('active');
         }
 
-        button.addEventListener('click', onClickButtonPgn)
+        button.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            currentPage = page;
+            //fn(cardFilm, currentPage, searchQuery);
+            //renderTrendingMovies();
 
+            let currentBtn = document.querySelector('.pages-numbers button.active');
+            currentBtn.classList.remove('active');
+
+            button.classList.add('active');
+            createPagination(result, paginationEl, pages);
+        });
         return button;
-    }
-
-    function onClickButtonPgn() {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-        currentPage = page;
-        fn(cardFilm, currentPage, searchQuery);
-
-        let currentBtn = document.querySelector('.pages-numbers button.active');
-        currentBtn.classList.remove('active');
-
-        button.classList.add('active');
-        createPagination(cardFilm, paginationEl, pages);
-        hideExtremeButtons(totalPages);
     }
 
     function onClickArrowLeft() {
         if (currentPage > 1) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            currentPage--;
-            createPagination(cardFilm, paginationEl, pages);
-            fn(cardFilm, currentPage, searchQuery);
+            currentPage-=1;
+            createPagination(result, paginationEl, pages);
+            //fn(cardFilm, currentPage, searchQuery);
+            //renderTrendingMovies();
         }
 
         disableArrowBtn(totalPages);
-        hideExtremeButtons(totalPages);
+        
     }
 
     function onClickArrowRight() {
         if (currentPage < totalPages) {
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            currentPage++;
-            createPagination(cardFilm, paginationEl, pages);
-            fn(cardFilm, currentPage, searchQuery);
+            currentPage+=1;
+            createPagination(result, paginationEl, pages);
+            //fn(cardFilm, currentPage, searchQuery);
+            //renderTrendingMovies();
         }
         disableArrowBtn(totalPages);
-        hideExtremeButtons(totalPages);
+        
     }
 
-    createPagination(cardFilm, paginationEl, pages);
+    createPagination(result, paginationEl, pages);
     arrowLeft.onclick = onClickArrowLeft;
     arrowRight.onclick = onClickArrowRight;
 
-    hideExtremeButtons(totalPages);
+        
     disableArrowBtn(totalPages);
 }
+
+paginationEl.addEventListener('click', disableArrowBtnAfterPageClick);
+
+function disableArrowBtnAfterPageClick(event) {
+    if (event.target.tagName != 'BUTTON') {
+        return;
+    } else {
+        disableArrowBtn(pageCount);
+    }
+}
+    
+// неактивні стрілки на першій і останній сторінці
 
 function disableArrowBtn(totalPages) {
     if (currentPage === 1) {
@@ -154,3 +178,22 @@ function disableArrowBtn(totalPages) {
         arrowRight.classList.remove('disabled-arrow');
     }
 }
+
+renderPaginationPopulerFilms();
+
+function renderPaginationPopulerFilms() {
+    filmApiService
+        .fetchTrendingMovies()
+        .then(results => {
+        renderPagination(results.total_pages, results.results);
+            
+        })
+        .catch(error => console.log(error));
+}
+
+//function createListPage(container, page) {
+    //container.innerHTML = '';
+    //createPopularFilmsByPage(page)
+        //.then(markUpFilmCardTpl)
+        //.catch(error => console.log(error));
+//}
