@@ -10,29 +10,86 @@ export default class FilmApiService {
     this.movieQueueIdList = [];
   }
 
-  getFullMovieInfo(movie_id) {
-    return fetch(`${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}&language=en-US`)
-      .then(res => res.json())
-      .catch(error => console.log('error', error));
-  }
-
   fetchTrendingMovies() {
-    // версия для популярных фильмов
-    //  return fetch`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.page}`;
     return fetch(
       `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US&page=${this.page}`,
     )
-      .then(res => res.json())
-      .catch(error => console.log(error));
+      .then(response => response.json())
+      .then(({ results }) => {
+        return this.fetchFilmGenre().then(genres => {
+          return results.map(result => ({
+            ...result,
+            release_date: result.release_date
+              ? result.release_date.slice(0, 4)
+              : result.release_date,
+            genres: this.filterGenres(genres, result),
+          }));
+        });
+      });
   }
 
   fetchSearch() {
-    return fetch(
-      `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`,
-    ).then(res => {
-      this.incrementPage();
-      return res.json();
-    });
+    const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(({ results }) => {
+        return this.fetchFilmGenre().then(genres => {
+          return results.map(result => ({
+            ...result,
+            release_date: result.release_date
+              ? result.release_date.slice(0, 4)
+              : result.release_date,
+            genres: this.filterGenres(genres, result),
+          }));
+        });
+      });
+  }
+
+  getFullMovieInfo(movie_id) {
+    const url = `${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(result => ({
+        ...result,
+        release_date: result.release_date ? result.release_date.slice(0, 4) : result.release_date,
+        genres: this.filterGenresLibrary(result),
+      }));
+  }
+
+  fetchFilmGenre() {
+    const url = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(({ genres }) => {
+        return genres;
+      });
+  }
+
+  filterGenres(genres, result) {
+    let genreList = result.genre_ids
+      .map(id => genres.filter(genre => genre.id === id).map(genre => genre.name))
+      .flat();
+
+    if (genreList.length === 1) {
+      return (genreList = [`${genreList[0]}`]);
+    }
+    if (genreList.length === 2) {
+      return (genreList = [`${genreList[0]}, ${genreList[1]}`]);
+    } else if (genreList.length > 2) {
+      return (genreList = `${genreList[0]}, ${genreList[1]}, Other`);
+    }
+  }
+
+  filterGenresLibrary(result) {
+    let genreList = result.genres.map(genre => genre.name).flat();
+    if (genreList.length === 1) {
+      return (genreList = [`${genreList[0]}`]);
+    }
+    if (genreList.length === 2) {
+      return (genreList = [`${genreList[0]}, ${genreList[1]}`]);
+    } else if (genreList.length > 2) {
+      return (genreList = `${genreList[0]}, ${genreList[1]}, Other`);
+    }
   }
 
   incrementPage() {
@@ -57,11 +114,10 @@ export default class FilmApiService {
     }
 
     let movieIdStorageW = {
-      'MovieIDW': this.movieWatchedIdList,
-    }
+      MovieIDW: this.movieWatchedIdList,
+    };
 
     localStorage.setItem('watched', JSON.stringify(movieIdStorageW));
-
   }
 
   queueLocalStorage(id) {
@@ -70,11 +126,9 @@ export default class FilmApiService {
     }
 
     let movieIdStorageQ = {
-      'MovieIDQ': this.movieQueueIdList,
-    }
+      MovieIDQ: this.movieQueueIdList,
+    };
 
     localStorage.setItem('queue', JSON.stringify(movieIdStorageQ));
   }
-  
 }
-

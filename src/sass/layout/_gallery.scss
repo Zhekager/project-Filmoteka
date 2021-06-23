@@ -52,6 +52,11 @@
   }
 }
 
+.list-item:hover {
+  //видалити?
+  transform: scale(1.05);
+}
+
 .film-image {
   position: relative;
   margin-bottom: 10px;
