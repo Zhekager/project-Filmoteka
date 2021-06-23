@@ -54,15 +54,15 @@ function clearImagesContainer() {
 refs.logo.addEventListener('click', onLogo);
 refs.home.addEventListener('click', onHome);
 
-function onLogo(e) {
+function onLogo() {
   e.preventDefault();
-  clearImagesContainer();
+  // clearImagesContainer();
   toggleHomeLogo();
 }
 
-function onHome(e) {
+function onHome() {
   e.preventDefault();
-  clearImagesContainer();
+  // clearImagesContainer();
   toggleHomeLogo();
 }
 

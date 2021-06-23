@@ -1,4 +1,4 @@
-import filmTpl from '../templates/film.hbs';
+import filmTpl from '../templates/filmModal.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import getRefs from '../js/refs';
@@ -54,3 +54,6 @@ function openModal(evt) {
     }
     getFullMovieInfo(id);
 }
+
+
+

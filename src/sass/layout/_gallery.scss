@@ -36,7 +36,7 @@
 
   cursor: pointer;
   border-radius: 5px;
-  // box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); //удалить
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); //удалить
 
   @media screen and (min-width: $tablet) {
     margin-bottom: 31px;
@@ -63,6 +63,7 @@
   width: 280px;
   height: 398px;
   overflow: hidden;
+  border-radius: 5px;
   @media screen and (min-width: $tablet) {
     width: 294px;
   }
@@ -101,9 +102,11 @@
 .film-vote-background {
   display: flex;
   justify-content: center;
+  padding: 1px 10px;
   width: 36px;
   height: 16px;
-  background: #ff6b01;
+
+  background: $btn-accent-color;
   border-radius: 5px;
   color: $white-color;
 }
@@ -111,4 +114,8 @@
 .is-hidden {
   visibility: hidden;
   opacity: 0;
+}
+
+.card-content {
+  padding: 0 5px 5px 5px;
 }

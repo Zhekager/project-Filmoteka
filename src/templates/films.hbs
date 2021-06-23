@@ -1,7 +1,8 @@
 {{#each this}}
 <li class="list-item"  >
 <article class="main-films" >
-    <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}"  alt="{{title}} {{name}}" class="film-image" data-action= '{{id}}' onerror="this.onerror=null;this.src=https://megogo.uzor.su/uploads/no-poster.webp';" />
+    <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}"  alt="{{title}} {{name}}" class="film-image" data-action= '{{id}}' onerror="this.onerror=null;this.src='https://megogo.uzor.su/uploads/no-poster.webp';" />
+  <div class="card-content">
     <h2 class="film-title">{{original_title}} {{name}}</h2>
     <div class="film-content">
     <p class="film-genre">{{genres}}</p>
@@ -13,6 +14,7 @@
         <span class="delimiter">&#448;</span>
         <p class="film-date">{{release_date}}</p>
         <span class="film-vote-background visually-hidden"><p class="film-vote">{{vote_average}}</p></span>
+    </div>
     </div>
 </article>
 </li>
