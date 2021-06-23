@@ -21,6 +21,7 @@ function renderTrendingMovies() {
       let result = movieData.results;
       // createFilmCardsMarkUp(result);
       initialize(result);
+      
     })
     .catch(error => console.log('error', error));
 }
@@ -114,3 +115,6 @@ function toggleHomeLogo() {
 }
 
 export { clearImagesContainer };
+export { renderTrendingMovies };
+export { initialize };
+export { createFilmCardsMarkUp };

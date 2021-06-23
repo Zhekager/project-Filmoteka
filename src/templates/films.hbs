@@ -1,8 +1,13 @@
 {{#each this}}
 <li class="list-item"  >
 <article class="main-films" >
-    <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}"  alt="{{title}}" class="film-image" data-action='{{id}}' />
+    <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}"  alt="{{title}} {{name}}" class="film-image" data-action= '{{id}}' onerror="this.onerror=null;this.src=https://megogo.uzor.su/uploads/no-poster.webp';" />
+    {{#if found}}
     <h2 class="film-title">{{original_title}}</h2>
+    {{/if}}
+    {{#unless found}}
+    <h2 class="film-title">{{name}}</h2>
+    {{/unless}}
     <div class="film-content">
         <ul class="genres-list">
             {{#each genres}}

@@ -2,7 +2,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-bottom: 40px;
 }
+
+@media screen and (min-width: 769px) {
+  .pagination {
+    padding-bottom: 60px;
+  }
+}
+
 .pagination-pages {
   display: flex;
   flex-wrap: wrap;
@@ -14,7 +22,8 @@
   height: 40px;
   margin: 5px;
   background-position: center;
-  background-color: $footer-background-color;
+  border: none;
+  border-radius: 5px;
 
   &:hover {
     background-color: $line-orange-color;
@@ -45,15 +54,24 @@
   width: 40px;
   height: 40px;
   margin: 5px;
+  border: none;
 
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  background-color: $white-color;
 }
+
+.pages-numbers button:hover,
+.pages-numbers button.active {
+  background-color: $line-orange-color;
+  color: $white-color;
+  border-radius: 5px;
+}
+
 .dots {
   width: 40px;
   height: 40px;
-  margin: 5px;
   display: inline-block;
   text-align: center;
   padding: 10px 5px 1px 5px;
@@ -77,5 +95,5 @@
 
 .disabled-arrow {
   pointer-events: none;
-  background-color: #c4c0c0;
+  background-color: $footer-background-color;
 }
