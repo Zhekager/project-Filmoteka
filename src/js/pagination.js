@@ -1,3 +1,4 @@
+
 import FilmApiService from './apiService.js';
 import markUpFilmCardTpl from '../templates/films.hbs';
 import { renderTrendingMovies } from './showTrendingMovies.js';
@@ -6,6 +7,9 @@ import { createFilmCardsMarkUp } from './showTrendingMovies.js';
 
 
 const cardFilm = document.querySelector('.js-card-film'),
+
+ 
+
     arrowLeft = document.querySelector('.arrow-left'),
     arrowRight = document.querySelector('.arrow-right'),
     paginationEl = document.querySelector('#pagination');

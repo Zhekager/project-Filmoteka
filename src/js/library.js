@@ -1,27 +1,14 @@
 // import MyLibraryBtns from './button.js';
 import markUpFilmCardTpl from '../templates/films.hbs';
 import FilmApiService from './apiService.js';
-import { clearImagesContainer } from './showTrendingMovies.js';
+import { clearImagesContainer, createFilmCardsMarkUp } from './showTrendingMovies.js';
 import getRefs from './refs.js';
 
 const refs = getRefs();
 
 const filmsApiService = new FilmApiService();
 
-
-// добавление в библиотеку при клике на кнопки в модальной карточке фильма
-// const Library = {
-//   QUEUE: 'queue-library',
-//   WATCHED: 'watched-library',
-// };
-
-// const QUEUE_KEY = "queue";
-// const WATCHED_KEY = "watched";
-
-
-// let STORAGE_MOVIE = ;
-
-export default function addToLibrary() {
+export default function addToLibrary(movieId) {
     const btnAddToWatched = document.querySelector('#add-to-watched');
     const btnAddToQueue = document.querySelector('#add-to-queue');
 
@@ -29,91 +16,76 @@ export default function addToLibrary() {
     btnAddToQueue.addEventListener('click', onBtnAddToQueue);
 
     function onBtnAddToWatched(e) {
-        console.log(e.target);
-
-        let movieId = e.target.dataset.act;
-        getMovie(movieId);
-
-        let movieIdStorage = {
-                    'Movie ID': movieId,
-        }
-
-        let listWatched = [];
-        listWatched.push(movieIdStorage);
-
-        localStorage.setItem('watched', JSON.stringify(movieIdStorage));
-        // e.target.textContent = 'remove from watched';
-        
+        filmsApiService.watchedLocalStorage(movieId)
+            console.log('movieId', movieId);
+            // e.target.disabled = true;  
+        e.target.textContent = 'remove from watched';
+        // btnAddToWatched.removeEventListener('click', nBtnAddToWatched);
     }
     
 
     function onBtnAddToQueue(e) {
-        console.log(e.target);
-        let movieId = e.target.dataset.act;
-        getMovie(movieId);
-
-        let movieIdStorage = {
-                    'Movie ID': movieId,
-        }
-
-        let listQueue = [];
-        listQueue.push(movieIdStorage);
-        localStorage.setItem("queue", JSON.stringify(movieIdStorage));
-            
-        
-        // localStorage.setItem('queue', JSON.stringify(movieIdStorage));
-    // e.target.disabled = true;
-        // e.target.textContent = 'remove from queue';
+        filmsApiService.queueLocalStorage(movieId)
+            console.log('movieId', movieId);
+        // e.target.disabled = true;
+        e.target.textContent = 'remove from queue';
     }
 }
-
-// export default function addToLibrary() {
-//     let btnAddToLibrary = document.querySelector('#add-to-library');
-//     btnAddToLibrary.addEventListener('click', onBtnAddToLibrary);
-
-//     function onBtnAddToLibrary(e) {
-//         e.target.disabled = true;
-//         console.log(e.target);
-//         let movieId = e.target.dataset.act;
-
-//         getMovie(movieId);
-
-//         let movieIdStorage = {
-//                     'Movie ID': movieId,
-//         }
-        
-//         localStorage.setItem(STORAGE_MOVIE, JSON.stringify(movieIdStorage));
-// e.target.disabled = true;
-//     };
-// }
-
-function getMovie(id) {
-    filmsApiService.getFullMovieInfo(id)
-        .then(movieInfo => {
-            const markup = markUpFilmCardTpl(movieInfo);
-        })
-        .catch(error => console.log('error', error));
-   
-}
-    
 
 refs.btnQueue.addEventListener('click', onBtnQueue);
 refs.btnWatched.addEventListener('click', onBtnWatched);
 
-    function onBtnQueue() {
-        savedData('queue');
-    }
+function onBtnQueue() {
+    let saveFilm = localStorage.getItem('queue');
 
-    function onBtnWatched() {
-        savedData('watched');
-}
+    if (saveFilm) {
+        const parceFilm = JSON.parse(saveFilm);
+
+        for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
+            let id = parceFilm.MovieIDQ[i];
     
+            filmsApiService
+                .getFullMovieInfo(id)
+                .then(movieInfo => {
+                    createFilmCardsMarkUp([movieInfo]);
+                }).catch(error => console.log('error', error));
+        }
+        refs.btnQueue.removeEventListener('click', onBtnQueue);
+        refs.btnWatched.addEventListener('click', onBtnWatched);
+        clearImagesContainer();
+    }
+}
+
+function onBtnWatched() {
+    refs.btnQueue.classList.remove('add');
+    let saveFilm = localStorage.getItem('watched');
+    
+    if (saveFilm) {
+        const parceFilm = JSON.parse(saveFilm);
+
+        for (let i = 0; i < parceFilm.MovieIDW.length; i += 1) {
+            let id = parceFilm.MovieIDW[i];
+    
+            filmsApiService
+                .getFullMovieInfo(id)
+                .then(movieInfo => {
+                    createFilmCardsMarkUp([movieInfo]);
+                }).catch(error => console.log('error', error));
+        }
+
+        // refs.btnWatched.removeEventListener('click', onBtnWatched);
+        refs.btnQueue.addEventListener('click', onBtnQueue);
+        clearImagesContainer();
+    }
+}
 
 // Изменение стилей, очистка контейнера и рендеринг из localStories при клике на My Library
 refs.library.addEventListener('click', onLibraryClick);
 
 function onLibraryClick(e) {
     e.preventDefault();
+    // renderTrendingMovies();
+    
     clearImagesContainer()
     
         refs.library.classList.add('nav-link-current');
@@ -121,30 +93,41 @@ function onLibraryClick(e) {
         refs.overlay.classList.add('library-open');
         refs.searchForm.classList.add('is-hidden');
         refs.btnsLibrary.classList.remove('is-hidden');
-    
-        // localStorage.getItem(queue);
-        // localStorage.getItem(watched);
-
+    refs.btnQueue.classList.add('add');
+    onBtnQueue();
 }
 
 
-    function savedData(key) {
-        const saveFilm = localStorage.getItem(key);
-
-        if (saveFilm) {
-            const parceFilm = JSON.parse(saveFilm);
-            createFilmCardsMarkUp(saveFilm);
-        // return parceFilm;
-        }
-}
-    
 
 
-    // let libraryLocal = [];
 
-    // function onBtnLibrary(e) {
-    //     myLibraryBtnsShown.disable();
-    //     const saveFilm = localStorage.getItem('queue');
-    //     const parceFilm = JSON.stringify(saveFilm);
-    //     return parceFilm;
-    // }
+
+
+// function renderLibrary() {
+//     let saveFilmWatched = localStorage.getItem('watched');
+//     let saveFilmQueue = localStorage.getItem('queue');
+
+//     if (saveFilmWatched || saveFilmQueue) {
+//         let parceFilmWatched = JSON.parse(saveFilmWatched);
+//         console.log(parceFilmWatched);
+//         let parceFilmQueue = JSON.parse(saveFilmQueue);
+//         console.log(parceFilmQueue);
+
+//         const parceLibraryArr = parceFilmWatched.MovieIDW.concat(parceFilmQueue.MovieIDQ);
+//         console.log(parceLibraryArr);
+       
+//         for (let i = 0; i < parceLibraryArrFilter.length; i += 1) {
+//             // if (parceLibraryArr[0] === parceLibraryArr[i]) {
+//             //     parceLibraryArr.splice(i);
+//             // }
+//              let id = parceLibraryArrFilter[i];
+//                 console.log(id);
+            
+//             filmsApiService
+//                 .getFullMovieInfo(id)
+//                 .then(movieInfo => {
+//                     createFilmCardsMarkUp([movieInfo]);
+//                 }).catch(error => console.log('error', error));
+//         }
+//     }
+// }

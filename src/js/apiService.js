@@ -5,6 +5,9 @@ export default class FilmApiService {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
+    this.id = '';
+    this.movieWatchedIdList = [];
+    this.movieQueueIdList = [];
   }
 
   getFullMovieInfo(movie_id) {
@@ -47,4 +50,31 @@ export default class FilmApiService {
   set query(newQuery) {
     this.searchQuery = newQuery;
   }
+
+  watchedLocalStorage(id) {
+    if (this.movieWatchedIdList === [] || !this.movieWatchedIdList.includes(id)) {
+      this.movieWatchedIdList.push(id);
+    }
+
+    let movieIdStorageW = {
+      'MovieIDW': this.movieWatchedIdList,
+    }
+
+    localStorage.setItem('watched', JSON.stringify(movieIdStorageW));
+
+  }
+
+  queueLocalStorage(id) {
+    if (this.movieQueueIdList === [] || !this.movieQueueIdList.includes(id)) {
+      this.movieQueueIdList.push(id);
+    }
+
+    let movieIdStorageQ = {
+      'MovieIDQ': this.movieQueueIdList,
+    }
+
+    localStorage.setItem('queue', JSON.stringify(movieIdStorageQ));
+  }
+  
 }
+
