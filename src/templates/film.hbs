@@ -1,4 +1,3 @@
-
 <article class="card-film">
 
 
@@ -31,10 +30,11 @@
         <li class="card-description-list-details-item">
             <span class="original-title">{{this.original_title}}</span>
         </li>
-        <li class="card-description-list-details-item">
+        {{!-- <li class="card-description-list-details-item">
             {{#each this.genres}}
             {{name}}&nbsp;&nbsp;
-            {{/each}}
+            {{/each}} --}}
+            <span class="film-genre">{{genres}}</span>
         </li>
     </ul>
 </div>

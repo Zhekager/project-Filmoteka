@@ -4,14 +4,15 @@
     <img src="https://image.tmdb.org/t/p/w300/{{poster_path}}"  alt="{{title}} {{name}}" class="film-image" data-action= '{{id}}' onerror="this.onerror=null;this.src=https://megogo.uzor.su/uploads/no-poster.webp';" />
     <h2 class="film-title">{{original_title}} {{name}}</h2>
     <div class="film-content">
-        <ul class="genres-list">
+    <p class="film-genre">{{genres}}</p>
+        {{!-- <ul class="genres-list">
             {{#each genres}}
             <li class="film-genre">{{this.name}}</li>
             {{/each}}
-        </ul>
+        </ul> --}}
         <span class="delimiter">&#448;</span>
         <p class="film-date">{{release_date}}</p>
-        <span class="film-vote-background is-hidden"><p class="film-vote">{{vote_average}}</p></span>
+        <span class="film-vote-background"><p class="film-vote">{{vote_average}}</p></span>
     </div>
 </article>
 </li>
