@@ -1,4 +1,4 @@
-const cardFilm = document.querySelector('.js-card-film'),
+ const cardFilm = document.querySelector('.js-card-film'),
     arrowLeft = document.querySelector('.arrow-left'),
     arrowRight = document.querySelector('.arrow-right'),
     paginationEl = document.querySelector('#pagination');
