@@ -28,38 +28,13 @@
     background-color: $white-color;
     overflow-y: scroll;
   }
-  // .team-modal-close-button {
-  //   position: absolute;
-  //   cursor: pointer;
-  //   top: 5%;
-  //   right: 4%;
-  //   width: 30px;
-  //   height: 30px;
-  //   border: 1px solid;
-  //   border-color: $white-color;
-  //   border-radius: 10px;
-  //   background-color: $btn-accent-color;
-  //   transition: 1s;
-  //   transform: scale(1);
-  //   z-index: 100;
-  //   @media screen and (max-width: 480px) {
-  //   top: 3%;
-  //   right: 3%;
-  // }
-  // }
-  // .team-modal-close-button:hover {
-  //   border-color: $white-color;
-  //   background-color: $red-text-color;
-  // }
-
-  
+ 
   .team-modal-close-button{
     font-size: 18px;
     position: absolute;
     top: 5%;
     right: 5%;
-    // background-color: rgba(0, 0, 0, 0.5);
-    background-color: #ffffff;
+    background-color: $white-color;
     border: 1px solid transparent;
     border-radius: 50%;
     width: 25px;
@@ -70,10 +45,10 @@
     z-index: 100;
     transition: 1s;
     transform: scale(1);
-    &:hover,
-    &:focus {
-      box-shadow: 0 0 15px $line-orange-color;
-    }
+      &:hover,
+      &:focus {
+         box-shadow: 0 0 15px $line-orange-color;
+      }
     @media screen and (max-width: 480px) {
         top: 3%;
         right: 3%;
@@ -103,7 +78,6 @@
     }
     
     &-item {
-      // background-color: rgb(225, 225, 233);
       transition: 1s;
       transform: scale(1);
       border-radius: 25px;
@@ -111,18 +85,16 @@
         0px 1px 3px rgba(0, 0, 0, 0.12);
       height: 100%;
       padding-bottom: 30px;
-      // transition: 0.8s;
-  
-      &:hover {
-        box-shadow: 0 0 20px  $line-orange-color;
-        // transform: scale(1.03);
+        &:hover {
+          box-shadow: 0 0 20px  $line-orange-color;
+      
       }
     }
-    &-img {
-      padding: 15px;
-      margin: 0 auto;
-      margin-bottom: 20px;
-      border-radius: 20%;
+      &-img {
+        padding: 15px;
+        margin: 0 auto;
+        margin-bottom: 20px;
+        border-radius: 20%;
     }
   }
   .team-discription {
@@ -230,4 +202,19 @@
     }
   }
 
-  // scrollbar
+  // mail
+  .mail,.git-mail{
+    fill: $film-details;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+    padding-left: 4px;
+    transition: 1s;
+    transform: scale(1);
+     &:hover,
+      &:focus {
+      fill: $white-color;
+      background-color: $film-details;
+    }
+  }
+

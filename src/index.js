@@ -6,4 +6,4 @@ import './js/upScrol';
 import './js/library';
 import './js/modalTeam';
 import './js/card-modal';
-
+import './js/slider';
