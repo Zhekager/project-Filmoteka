@@ -13,9 +13,10 @@ export default function getRefs() {
       btnWatched: document.querySelector('[data-action="btn-watched"]'),
       // btnAddToQueue: document.querySelector('#add-to-queue'),
       // btnAddToWatched: document.querySelector('#add-to-watched'),
-      loaderRef: document.querySelector('.loader'),
+      
      navigation: document.querySelector('.navigation'),
       btnModalClose: document.querySelector('[data-modal-close]'),
+
   };
 }
 
