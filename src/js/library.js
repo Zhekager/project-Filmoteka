@@ -1,5 +1,5 @@
 // import MyLibraryBtns from './button.js';
-import markUpFilmCardTpl from '../templates/films.hbs';
+// import markUpFilmCardTpl from '../templates/films.hbs';
 import FilmApiService from './apiService.js';
 import { clearImagesContainer, createFilmCardsMarkUp } from './showTrendingMovies.js';
 import getRefs from './refs.js';
@@ -9,27 +9,50 @@ const refs = getRefs();
 const filmsApiService = new FilmApiService();
 
 export default function addToLibrary(movieId) {
+    // let saveFilmWatched = localStorage.getItem('watched');
+    // let saveFilmQueue = localStorage.getItem('queue');
+    
     const btnAddToWatched = document.querySelector('#add-to-watched');
     const btnAddToQueue = document.querySelector('#add-to-queue');
+
+    let saveFilmWatched = localStorage.getItem('watched');
+    let saveFilmQueue = localStorage.getItem('queue');
 
     btnAddToWatched.addEventListener('click', onBtnAddToWatched);
     btnAddToQueue.addEventListener('click', onBtnAddToQueue);
 
-    function onBtnAddToWatched(e) {
-        filmsApiService.watchedLocalStorage(movieId)
-            console.log('movieId', movieId);
-            // e.target.disabled = true;  
-        e.target.textContent = 'remove from watched';
-        // btnAddToWatched.removeEventListener('click', nBtnAddToWatched);
-    }
+        if (saveFilmWatched.includes(movieId)) {
+            btnAddToWatched.textContent = 'added to watched';
+            btnAddToWatched.disabled = true;
+            btnAddToWatched.style.backgroundColor = '#ff6b01';
+            btnAddToWatched.style.color = '#ffffff';
+            btnAddToWatched.style.borderColor = '#ff6b01';
+        }
+
+        if (saveFilmQueue.includes(movieId)) {
+            btnAddToQueue.textContent = 'added to queue';
+            btnAddToQueue.disabled = true;
+            btnAddToQueue.style.backgroundColor = '#ff6b01';
+            btnAddToQueue.style.color = '#ffffff';
+            btnAddToQueue.style.borderColor = '#ff6b01';
+        }
+
+function onBtnAddToWatched(e) {
+        filmsApiService.watchedLocalStorage(movieId);
+
+            e.target.textContent = 'added to watched';
     
+        // btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
+    }
 
     function onBtnAddToQueue(e) {
-        filmsApiService.queueLocalStorage(movieId)
-            console.log('movieId', movieId);
-        // e.target.disabled = true;
-        e.target.textContent = 'remove from queue';
+        filmsApiService.queueLocalStorage(movieId);
+
+        e.target.textContent = 'added to queue';
+
+        // btnAddToWatched.removeEventListener('click', onBtnAddToQueue);
     }
+    
 }
 
 refs.btnQueue.addEventListener('click', onBtnQueue);
@@ -64,7 +87,7 @@ function onBtnWatched() {
         const parceFilm = JSON.parse(saveFilm);
 
         for (let i = 0; i < parceFilm.MovieIDW.length; i += 1) {
-            let id = parceFilm.MovieIDW[i];
+            let id = parceFilm.MovieIDW[i];  
     
             filmsApiService
                 .getFullMovieInfo(id)
