@@ -37,7 +37,6 @@
   //   cursor: not-allowed;
   //   border-color: transparent;
   //   color: #545454;
-    
 
   //    &:hover,
   //    &:focus {
@@ -77,4 +76,26 @@
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
+}
+
+%button-modal {
+  width: 136px;
+  height: 44px;
+  background-color: $white-color;
+  border-radius: 5px;
+  border: 1px solid $black-color;
+  box-sizing: border-box;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: $black-color;
+  text-transform: uppercase;
+  outline: none;
+  &:hover,
+  &:focus {
+    background-color: $btn-accent-color;
+    color: $white-color;
+    border: 1px solid $btn-accent-color;
+  }
 }
