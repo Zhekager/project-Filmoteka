@@ -91,7 +91,7 @@ function onBtnAddToQueue(e) {
 
     function onBtnRemoveFromQueue(e) {
             filmsApiService.queueLocalStorage(movieId);
-        e.target.textContent = 'add to watched';
+        e.target.textContent = 'add to queue';
         
         e.target.style.backgroundColor = '#ff6b01';
         e.target.style.color = '#ffffff';
@@ -102,8 +102,6 @@ function onBtnAddToQueue(e) {
 
 }
     
-
-
 // Реализация кнопок Watched и Queue в разделе My library
 
 refs.btnQueue.addEventListener('click', onBtnQueue);
