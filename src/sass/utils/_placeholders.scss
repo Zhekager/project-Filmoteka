@@ -37,7 +37,6 @@
   //   cursor: not-allowed;
   //   border-color: transparent;
   //   color: #545454;
-    
 
   //    &:hover,
   //    &:focus {
@@ -77,4 +76,13 @@
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
+}
+
+%font-nav {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: $white-color;
+  cursor: pointer;
 }

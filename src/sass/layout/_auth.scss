@@ -1,0 +1,22 @@
+.auth {
+  margin-left: 40px;
+}
+.auth-item {
+  @extend %font-nav;
+  padding: 5px;
+  border-radius: 5px;
+  display: block;
+
+  background-color: transparent;
+  border: none;
+
+  &:hover,
+  &:focus {
+    background-color: $line-orange-color;
+    transition: $primary-duration $timing-function;
+  }
+}
+
+.auth-hidden {
+  @extend %is-hidden;
+}

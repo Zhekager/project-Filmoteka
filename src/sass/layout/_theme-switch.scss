@@ -1,0 +1,93 @@
+/* Theme-switch */
+.light-theme {
+  background-color: $white-color;
+  color: $black-color;
+}
+
+.dark-theme {
+  background-color: #212121;
+  color: $white-color;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: flex-end;
+  padding: 16px 24px;
+}
+
+.theme-switch {
+  display: flex;
+  z-index: 0;
+  position: absolute;
+}
+
+.theme-switch-icon {
+  color: currentColor;
+  height: 20px;
+  width: 20px;
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.theme-switch-control {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  position: relative;
+  width: 60px;
+  height: 20px;
+  border-radius: 50em;
+  padding: 3px 0;
+}
+
+.theme-switch-toggle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  height: 0;
+  width: 0;
+  pointer-events: none;
+}
+
+.theme-switch-track {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  color: transparent;
+  user-select: none;
+  background-color: #333;
+  border-radius: inherit;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.theme-switch-marker {
+  position: relative;
+  background-color: $white-color;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  z-index: 2;
+  pointer-events: none;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.25);
+  transform: translateX(3px);
+  transition: $primary-duration $timing-function;
+}
+
+.theme-switch-toggle:checked + .theme-switch-track {
+  background-color: #d3d3d4;
+}
+
+.theme-switch-toggle:checked ~ .theme-switch-marker {
+  transform: translateX(35px);
+}
+
+.theme-switch-toggle:focus + .theme-switch-track,
+.theme-switch-toggle:active + .theme-switch-track {
+  box-shadow: 0 0 0 3px $btn-accent-color;
+}
