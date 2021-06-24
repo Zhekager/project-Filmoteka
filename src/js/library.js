@@ -11,61 +11,98 @@ export default function addToLibrary(movieId) {
     const btnAddToWatched = document.querySelector('#add-to-watched');
     const btnAddToQueue = document.querySelector('#add-to-queue');
 
-    let saveFilmWatched = localStorage.getItem('watched');
-    let saveFilmQueue = localStorage.getItem('queue');
+    // Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
+    
+    let saveFilmWatched = JSON.parse(localStorage.getItem('watched'));
 
     btnAddToWatched.addEventListener('click', onBtnAddToWatched);
-    btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+    btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
     
-    if (saveFilmWatched.includes(movieId)) {
-        btnAddToWatched.textContent = 'added to watched';
-        btnAddToWatched.disabled = true;
+    if (saveFilmWatched && saveFilmWatched.MovieIDW.includes(movieId)) {
+
+        btnAddToWatched.textContent = 'remove from watched';
         btnAddToWatched.style.backgroundColor = '#ff6b01';
         btnAddToWatched.style.color = '#ffffff';
         btnAddToWatched.style.borderColor = '#ff6b01';
-        // return;
+    }
+   
+    if (btnAddToWatched.textContent === 'add to watched') {
+        btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched);
+        
+    } else if (btnAddToWatched.textContent === 'remove from watched') {
         btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
     }
     
+    function onBtnAddToWatched(e) {
+        filmsApiService.watchedLocalStorage(movieId);
+        e.target.textContent = 'remove from watched';
 
-    if (saveFilmQueue.includes(movieId)) {
-        btnAddToQueue.textContent = 'added to queue';
-        btnAddToQueue.disabled = true;
+        e.target.style.backgroundColor = '$white-color';
+        e.target.style.color = '$black-color';
+        e.target.style.borderColor = '$black-color';
+        btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
+        btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
+    }
+    
+    function onBtnRemoveFromWatched(e) {
+        filmsApiService.watchedLocalStorage(movieId);
+        e.target.textContent = 'add to watched';
+        
+        e.target.style.backgroundColor = '#ff6b01';
+        e.target.style.color = '#ffffff';
+        e.target.style.borderColor = '#ff6b01';
+        btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched);
+        btnAddToWatched.addEventListener('click', onBtnAddToWatched);
+    }
+
+    
+// Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
+    let saveFilmQueue = JSON.parse(localStorage.getItem('queue'));
+
+    btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+    btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
+
+if (saveFilmQueue && saveFilmQueue.MovieIDQ.includes(movieId)) {
+
+        btnAddToQueue.textContent = 'remove from queue';
         btnAddToQueue.style.backgroundColor = '#ff6b01';
         btnAddToQueue.style.color = '#ffffff';
         btnAddToQueue.style.borderColor = '#ff6b01';
-        // return;
-        // btnAddToWatched.removeEventListener('click', onBtnAddToQueue);
-    }
-    
-
-function onBtnAddToWatched(e) {
-    filmsApiService.watchedLocalStorage(movieId);
-    
-    // styleSaveBtns('added to watched');
-
-    e.target.textContent = 'added to watched';
-    e.target.style.backgroundColor = '#ff6b01';
-    e.target.style.color = '#ffffff';
-    e.target.style.borderColor = '#ff6b01';
-    
-        btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
     }
 
-    function onBtnAddToQueue(e) {
-        filmsApiService.queueLocalStorage(movieId);
-
-        // styleSaveBtns('added to queue');
-
-        e.target.textContent = 'added to queue';
-    e.target.style.backgroundColor = '#ff6b01';
-    e.target.style.color = '#ffffff';
-        e.target.style.borderColor = '#ff6b01';
+    if (btnAddToQueue.textContent === 'add to queue') {
+        btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
         
-        btnAddToWatched.removeEventListener('click', onBtnAddToQueue);
+    } else if (btnAddToQueue.textContent === 'remove from queue') {
+        btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
     }
-    
+
+function onBtnAddToQueue(e) {
+        filmsApiService.queueLocalStorage(movieId);
+        e.target.textContent = 'remove from queue';
+
+            e.target.style.backgroundColor = '$white-color';
+            e.target.style.color = '$black-color';
+        e.target.style.borderColor = '$black-color';
+        btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
+    btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
+    }
+
+    function onBtnRemoveFromQueue(e) {
+            filmsApiService.queueLocalStorage(movieId);
+        e.target.textContent = 'add to watched';
+        
+        e.target.style.backgroundColor = '#ff6b01';
+        e.target.style.color = '#ffffff';
+        e.target.style.borderColor = '#ff6b01';
+        btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
+    btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+    }   
 }
+    
+
+
+// Реализация кнопок Watched и Queue в разделе My library
 
 refs.btnQueue.addEventListener('click', onBtnQueue);
 refs.btnWatched.addEventListener('click', onBtnWatched);
