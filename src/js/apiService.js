@@ -111,6 +111,8 @@ export default class FilmApiService {
   watchedLocalStorage(id) {
     if (this.movieWatchedIdList === [] || !this.movieWatchedIdList.includes(id)) {
       this.movieWatchedIdList.push(id);
+    } else if (this.movieWatchedIdList.includes(id)) {
+      this.movieWatchedIdList = this.movieWatchedIdList.filter(el => el !== id);
     }
 
     let movieIdStorageW = {
@@ -123,6 +125,8 @@ export default class FilmApiService {
   queueLocalStorage(id) {
     if (this.movieQueueIdList === [] || !this.movieQueueIdList.includes(id)) {
       this.movieQueueIdList.push(id);
+    } else if (this.movieQueueIdList.includes(id)) {
+      this.movieQueueIdList = this.movieQueueIdList.filter(el => el !== id);
     }
 
     let movieIdStorageQ = {

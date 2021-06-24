@@ -7,162 +7,177 @@ const refs = getRefs();
 const filmsApiService = new FilmApiService();
 
 export default function addToLibrary(movieId) {
+
     
     const btnAddToWatched = document.querySelector('#add-to-watched');
     const btnAddToQueue = document.querySelector('#add-to-queue');
 
-    let saveFilmWatched = localStorage.getItem('watched');
-    let saveFilmQueue = localStorage.getItem('queue');
+    // Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
+    
+    let saveFilmWatched = JSON.parse(localStorage.getItem('watched'));
 
     btnAddToWatched.addEventListener('click', onBtnAddToWatched);
-    btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+    btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
     
-    if (saveFilmWatched.includes(movieId)) {
-        btnAddToWatched.textContent = 'added to watched';
-        btnAddToWatched.disabled = true;
+    if (saveFilmWatched && saveFilmWatched.MovieIDW.includes(movieId)) {
+
+        btnAddToWatched.textContent = 'remove from watched';
         btnAddToWatched.style.backgroundColor = '#ff6b01';
         btnAddToWatched.style.color = '#ffffff';
         btnAddToWatched.style.borderColor = '#ff6b01';
-        // return;
+    }
+   
+    if (btnAddToWatched.textContent === 'add to watched') {
+        btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched);
+        
+    } else if (btnAddToWatched.textContent === 'remove from watched') {
         btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
     }
     
+    function onBtnAddToWatched(e) {
+        filmsApiService.watchedLocalStorage(movieId);
+        e.target.textContent = 'remove from watched';
 
-    if (saveFilmQueue.includes(movieId)) {
-        btnAddToQueue.textContent = 'added to queue';
-        btnAddToQueue.disabled = true;
+        e.target.style.backgroundColor = '$white-color';
+        e.target.style.color = '$black-color';
+        e.target.style.borderColor = '$black-color';
+        btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
+        btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
+    }
+    
+    function onBtnRemoveFromWatched(e) {
+        filmsApiService.watchedLocalStorage(movieId);
+        e.target.textContent = 'add to watched';
+        
+        e.target.style.backgroundColor = '#ff6b01';
+        e.target.style.color = '#ffffff';
+        e.target.style.borderColor = '#ff6b01';
+        btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched);
+        btnAddToWatched.addEventListener('click', onBtnAddToWatched);
+    }
+
+    
+// Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
+    let saveFilmQueue = JSON.parse(localStorage.getItem('queue'));
+
+    btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+    btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
+
+if (saveFilmQueue && saveFilmQueue.MovieIDQ.includes(movieId)) {
+
+        btnAddToQueue.textContent = 'remove from queue';
         btnAddToQueue.style.backgroundColor = '#ff6b01';
         btnAddToQueue.style.color = '#ffffff';
         btnAddToQueue.style.borderColor = '#ff6b01';
-        // return;
-        // btnAddToWatched.removeEventListener('click', onBtnAddToQueue);
-    }
-    
-
-function onBtnAddToWatched(e) {
-    filmsApiService.watchedLocalStorage(movieId);
-    
-    // styleSaveBtns('added to watched');
-
-    e.target.textContent = 'added to watched';
-    e.target.style.backgroundColor = '#ff6b01';
-    e.target.style.color = '#ffffff';
-    e.target.style.borderColor = '#ff6b01';
-    
-        btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
     }
 
-    function onBtnAddToQueue(e) {
-        filmsApiService.queueLocalStorage(movieId);
-
-        // styleSaveBtns('added to queue');
-
-        e.target.textContent = 'added to queue';
-    e.target.style.backgroundColor = '#ff6b01';
-    e.target.style.color = '#ffffff';
-        e.target.style.borderColor = '#ff6b01';
+    if (btnAddToQueue.textContent === 'add to queue') {
+        btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
         
-        btnAddToWatched.removeEventListener('click', onBtnAddToQueue);
+    } else if (btnAddToQueue.textContent === 'remove from queue') {
+        btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
     }
-    
+
+function onBtnAddToQueue(e) {
+        filmsApiService.queueLocalStorage(movieId);
+        e.target.textContent = 'remove from queue';
+
+            e.target.style.backgroundColor = '$white-color';
+            e.target.style.color = '$black-color';
+        e.target.style.borderColor = '$black-color';
+        btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
+    btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
+    }
+
+    function onBtnRemoveFromQueue(e) {
+            filmsApiService.queueLocalStorage(movieId);
+        e.target.textContent = 'add to watched';
+        
+        e.target.style.backgroundColor = '#ff6b01';
+        e.target.style.color = '#ffffff';
+        e.target.style.borderColor = '#ff6b01';
+        btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
+    btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+    }   
+
 }
+    
+
+
+// Реализация кнопок Watched и Queue в разделе My library
 
 refs.btnQueue.addEventListener('click', onBtnQueue);
 refs.btnWatched.addEventListener('click', onBtnWatched);
 
 function onBtnQueue() {
-    let saveFilm = localStorage.getItem('queue');
+  let saveFilm = localStorage.getItem('queue');
 
-    if (saveFilm) {
-        const parceFilm = JSON.parse(saveFilm);
+  if (saveFilm) {
+    const parceFilm = JSON.parse(saveFilm);
 
-        for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
-            let id = parceFilm.MovieIDQ[i];
-    
-            filmsApiService
-                .getFullMovieInfo(id)
-                .then(movieInfo => {
-                    createFilmCardsMarkUp([movieInfo]);
-                }).catch(error => console.log('error', error));
-        }
-        refs.btnQueue.removeEventListener('click', onBtnQueue);
-        refs.btnWatched.addEventListener('click', onBtnWatched);
-        clearImagesContainer();
+    for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
+      let id = parceFilm.MovieIDQ[i];
+
+      filmsApiService
+        .getFullMovieInfo(id)
+        .then(movieInfo => {
+          createFilmCardsMarkUp([movieInfo]);
+          removeHiddenVoteAverage();
+        })
+        .catch(error => console.log('error', error));
     }
+    refs.btnQueue.removeEventListener('click', onBtnQueue);
+    refs.btnWatched.addEventListener('click', onBtnWatched);
+    clearImagesContainer();
+  }
 }
 
 function onBtnWatched() {
-    refs.btnQueue.classList.remove('add');
-    let saveFilm = localStorage.getItem('watched');
-    
-    if (saveFilm) {
-        const parceFilm = JSON.parse(saveFilm);
+  refs.btnQueue.classList.remove('add');
+  let saveFilm = localStorage.getItem('watched');
 
-        for (let i = 0; i < parceFilm.MovieIDW.length; i += 1) {
-            let id = parceFilm.MovieIDW[i];  
-    
-            filmsApiService
-                .getFullMovieInfo(id)
-                .then(movieInfo => {
-                    createFilmCardsMarkUp([movieInfo]);
-                }).catch(error => console.log('error', error));
-        }
+  if (saveFilm) {
+    const parceFilm = JSON.parse(saveFilm);
 
-        // refs.btnWatched.removeEventListener('click', onBtnWatched);
-        refs.btnQueue.addEventListener('click', onBtnQueue);
-        clearImagesContainer();
+    for (let i = 0; i < parceFilm.MovieIDW.length; i += 1) {
+      let id = parceFilm.MovieIDW[i];
+
+      filmsApiService
+        .getFullMovieInfo(id)
+        .then(movieInfo => {
+          createFilmCardsMarkUp([movieInfo]);
+          removeHiddenVoteAverage();
+        })
+        .catch(error => console.log('error', error));
     }
+
+    // refs.btnWatched.removeEventListener('click', onBtnWatched);
+    refs.btnQueue.addEventListener('click', onBtnQueue);
+    clearImagesContainer();
+  }
 }
 
 // Изменение стилей, очистка контейнера и рендеринг из localStories при клике на My Library
 refs.library.addEventListener('click', onLibraryClick);
 
 function onLibraryClick(e) {
-    e.preventDefault();
-    // renderTrendingMovies();
-    
-    clearImagesContainer()
-    
-        refs.library.classList.add('nav-link-current');
-        refs.home.classList.remove('nav-link-current');
-        refs.overlay.classList.add('library-open');
-        refs.searchForm.classList.add('is-hidden');
-        refs.btnsLibrary.classList.remove('is-hidden');
-    refs.btnQueue.classList.add('add');
-    onBtnQueue();
+  e.preventDefault();
+  // renderTrendingMovies();
+
+  clearImagesContainer();
+
+  refs.library.classList.add('nav-link-current');
+  refs.home.classList.remove('nav-link-current');
+  refs.overlay.classList.add('library-open');
+  refs.searchForm.classList.add('is-hidden');
+  refs.btnsLibrary.classList.remove('is-hidden');
+  refs.btnQueue.classList.add('add');
+  onBtnQueue();
 }
 
-
-
-
-
-
-
-// function renderLibrary() {
-//     let saveFilmWatched = localStorage.getItem('watched');
-//     let saveFilmQueue = localStorage.getItem('queue');
-
-//     if (saveFilmWatched || saveFilmQueue) {
-//         let parceFilmWatched = JSON.parse(saveFilmWatched);
-//         console.log(parceFilmWatched);
-//         let parceFilmQueue = JSON.parse(saveFilmQueue);
-//         console.log(parceFilmQueue);
-
-//         const parceLibraryArr = parceFilmWatched.MovieIDW.concat(parceFilmQueue.MovieIDQ);
-//         console.log(parceLibraryArr);
-       
-//         for (let i = 0; i < parceLibraryArrFilter.length; i += 1) {
-//             // if (parceLibraryArr[0] === parceLibraryArr[i]) {
-//             //     parceLibraryArr.splice(i);
-//             // }
-//              let id = parceLibraryArrFilter[i];
-//                 console.log(id);
-            
-//             filmsApiService
-//                 .getFullMovieInfo(id)
-//                 .then(movieInfo => {
-//                     createFilmCardsMarkUp([movieInfo]);
-//                 }).catch(error => console.log('error', error));
-//         }
-//     }
-// }
+//додає рейтинг в бібліотеку
+function removeHiddenVoteAverage() {
+  document
+    .querySelectorAll('.film-vote-background')
+    .forEach(el => el.classList.remove('visually-hidden'));
+}
