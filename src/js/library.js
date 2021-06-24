@@ -180,5 +180,7 @@ function removeHiddenVoteAverage() {
   document
     .querySelectorAll('.film-vote-background')
     .forEach(el => el.classList.remove('visually-hidden'));
+
 }
+
 

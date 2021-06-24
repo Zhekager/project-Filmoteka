@@ -54,6 +54,3 @@ function openModal(evt) {
     }
     getFullMovieInfo(id);
 }
-
-
-

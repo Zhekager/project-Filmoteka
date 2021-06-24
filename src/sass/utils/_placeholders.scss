@@ -53,6 +53,10 @@
   align-items: center;
 }
 
+%is-none{
+  display: none;
+}
+
 %is-hidden {
   position: absolute;
   width: 1px;
