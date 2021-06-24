@@ -110,13 +110,26 @@ refs.btnQueue.addEventListener('click', onBtnQueue);
 refs.btnWatched.addEventListener('click', onBtnWatched);
 
 function onBtnQueue() {
-  let saveFilm = localStorage.getItem('queue');
+  // let saveFilm = JSON.parse(localStorage.getItem('queue'));
+  // let filmsArr;
 
-  if (saveFilm) {
-    const parceFilm = JSON.parse(saveFilm);
+  // console.log(filmsArr);
+  // if (saveFilm) {
+  //   filmsArr = saveFilm.MovieIDQ;
+  
+  //   for (let i = 0; i < filmsArr.length; i += 1) {
+  //     let id = filmsArr[i];
+  //     // console.log(id);
 
-    for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
-      let id = parceFilm.MovieIDQ[i];
+      let saveFilm = localStorage.getItem('queue');
+
+      if (saveFilm) {
+        const parceFilm = JSON.parse(saveFilm);
+
+        for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
+          let id = parceFilm.MovieIDQ[i];
+
+          console.log(id);
 
       filmsApiService
         .getFullMovieInfo(id)
@@ -131,6 +144,7 @@ function onBtnQueue() {
     clearImagesContainer();
   }
 }
+
 
 function onBtnWatched() {
   refs.btnQueue.classList.remove('add');
