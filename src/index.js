@@ -7,6 +7,13 @@ import './js/library';
 import './js/modalTeam';
 import './js/card-modal';
 
+
 import './js/slider';
 import './js/loading';
+
+import './js/theme-switch';
+import './js/login';
+import './js/authFireBase';
+
+
 
