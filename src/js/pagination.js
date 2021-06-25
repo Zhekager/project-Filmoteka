@@ -212,4 +212,4 @@ function createFilmCardsMarkUp(movieInfo) {
   galleryRef.insertAdjacentHTML('beforeend', markUpFilmCardTpl(movieInfo));
 }
 
-n
+
