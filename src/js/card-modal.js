@@ -1,9 +1,11 @@
-import filmTpl from '../templates/film.hbs';
+import filmTpl from '../templates/filmModal.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
 import getRefs from '../js/refs';
 import FilmApiService from './apiService.js';
 import addToLibrary from './library.js';
+import {addBackToTop} from 'vanilla-back-to-top';
+ 
 const refs = getRefs();
 
 const filmsApiService = new FilmApiService();
@@ -29,6 +31,8 @@ function getFullMovieInfo(id) {
     buttonCls.addEventListener('click', closeModal);
     window.addEventListener('keydown', closeModalHandler);
 
+          
+            
     //функция закрытия по escape
 function closeModalHandler(evt) {
     if (evt.code === 'Escape') {
@@ -39,18 +43,24 @@ function closeModalHandler(evt) {
     }
             
 function closeModal() {
-         modal.close();
+    modal.close();
+    
     // window.removeEventListener('click', closeModal);
     window.removeEventListener('keydown', closeModalHandler);
 }
         }).catch(error => console.log('error', error));
+    
+    
 }
 
 function openModal(evt) {
     evt.preventDefault();
+   
     let id = evt.target.dataset.action;
     if (evt.target.nodeName !== 'IMG') {
         return
     }
     getFullMovieInfo(id);
+   
 }
+

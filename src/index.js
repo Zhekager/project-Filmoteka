@@ -6,6 +6,12 @@ import './js/upScrol';
 import './js/library';
 import './js/modalTeam';
 import './js/card-modal';
+
 import './js/theme-switch';
 import './js/login';
 import './js/authFireBase';
+
+
+// import './js/slider';
+// import './js/loading';
+

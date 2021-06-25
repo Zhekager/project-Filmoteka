@@ -109,26 +109,47 @@ export default class FilmApiService {
   }
 
   watchedLocalStorage(id) {
-    if (this.movieWatchedIdList === [] || !this.movieWatchedIdList.includes(id)) {
-      this.movieWatchedIdList.push(id);
+    const savedItems = JSON.parse(localStorage.getItem('watched'));
+    let filmsArray;
+    if (savedItems) {
+      filmsArray = savedItems.MovieIDW;
     }
-
+    
+    if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
+      filmsArray.push(id);
+    } else if (filmsArray && filmsArray.length && filmsArray.includes(id)) {
+      filmsArray = filmsArray.filter(el => el !== id);
+    } else {
+      filmsArray = [];
+      filmsArray.push(id);
+    }
+      
     let movieIdStorageW = {
-      MovieIDW: this.movieWatchedIdList,
+      MovieIDW: filmsArray,
     };
-
+      
     localStorage.setItem('watched', JSON.stringify(movieIdStorageW));
   }
 
   queueLocalStorage(id) {
-    if (this.movieQueueIdList === [] || !this.movieQueueIdList.includes(id)) {
-      this.movieQueueIdList.push(id);
+    const savedItems = JSON.parse(localStorage.getItem('queue'));
+    let filmsArray;
+    if (savedItems) {
+      filmsArray = savedItems.MovieIDQ;
     }
-
+    if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
+      filmsArray.push(id);
+    } else if (filmsArray && filmsArray.length && filmsArray.includes(id)) {
+      filmsArray = filmsArray.filter(el => el !== id);
+    } else {
+      filmsArray = [];
+      filmsArray.push(id);
+    }
+      
     let movieIdStorageQ = {
-      MovieIDQ: this.movieQueueIdList,
+      MovieIDQ: filmsArray,
     };
-
+      
     localStorage.setItem('queue', JSON.stringify(movieIdStorageQ));
   }
 }
