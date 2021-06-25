@@ -1,6 +1,29 @@
 <header class="header">
     <div class="overlay js-overlay">
+        
+        <!-- Theme-switch -->
+      <div class="toolbar">
+        <div class="theme-switch">
+            <svg class="theme-switch-icon" role="img" aria-label="Иконка солнца">
+                <use href="./images/sprite.svg#sun"></use>
+            </svg>
+        
+            <div class="theme-switch-control">
+                <input class="theme-switch-toggle" type="checkbox" name="theme" id="theme-switch-toggle"
+                    aria-label="Переключить между тёмной и светлой темой" />
+                <label aria-hidden="true" class="theme-switch-track" for="theme-switch-toggle">
+                </label>
+                <div aria-hidden="true" class="theme-switch-marker"></div>
+            </div>
+        
+            <svg class="theme-switch-icon" aria-label="Иконка луны">
+                <use href="./images/sprite.svg#moon"></use>
+            </svg>
+        </div>
+      </div>
+      
     <div class="container container-header" id="home">
+        
         <nav class="main-nav">
             <div class="logo">
                 <a href="./index.html" class="logo-link js-logo">
@@ -10,15 +33,22 @@
                     <span class="logo-header">Filmoteka</span>
                 </a>
             </div>
-            
+                     
             <div class="navigation js-navigation">
             <ul class="nav-list js-nav">
                 <li class="nav-item"><a href="./index.html" class="nav-link js-nav-home nav-link-current">Home</a></li>
                 <li class="nav-item"><a href="./index.html" class="nav-link js-nav-library">My library</a></li>
             </ul>
-            </div>
+            
+            <!-- Authorization -->
+            <ul class="nav-list auth">
+                <li><button data-action="open-modal" class="auth-item" id="sign_in" type="button">Sign in</button></li>
+                <li><button class="auth-item auth-hidden" id="sign_out" type="button">Sign Out</button></li>
+            </ul>
+            </div>             
         </nav>
-
+       
+       
         <form class="search-form" id="search-form">
             <div class="form-group">
                <label class="form-label-film">
