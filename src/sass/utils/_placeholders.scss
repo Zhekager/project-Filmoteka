@@ -82,6 +82,18 @@
   font-size: 12px;
 }
 
+
+%font-nav {
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 14px;
+  color: $white-color;
+  cursor: pointer;
+
+  
+  
+  
 %button-modal {
   width: 136px;
   height: 44px;
@@ -102,4 +114,8 @@
     color: $white-color;
     border: 1px solid $btn-accent-color;
   }
+
+  
+  
+  
 }
