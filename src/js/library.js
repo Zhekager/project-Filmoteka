@@ -155,7 +155,7 @@ function onLibraryClick(e) {
 
   clearImagesContainer();
 
-  refs.library.classList.add('nav-link-current');
+  e.target.classList.add('nav-link-current');
   refs.home.classList.remove('nav-link-current');
   refs.overlay.classList.add('library-open');
   refs.searchForm.classList.add('is-hidden');
