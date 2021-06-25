@@ -109,72 +109,47 @@ export default class FilmApiService {
   }
 
   watchedLocalStorage(id) {
-        const savedItems = JSON.parse(localStorage.getItem('watched'));
+    const savedItems = JSON.parse(localStorage.getItem('watched'));
     let filmsArray;
     if (savedItems) {
       filmsArray = savedItems.MovieIDW;
-
-      if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
+    }
+    
+    if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
       filmsArray.push(id);
     } else if (filmsArray && filmsArray.length && filmsArray.includes(id)) {
       filmsArray = filmsArray.filter(el => el !== id);
     } else {
       filmsArray = [];
       filmsArray.push(id);
-      }
+    }
       
     let movieIdStorageW = {
       MovieIDW: filmsArray,
-      };
+    };
       
     localStorage.setItem('watched', JSON.stringify(movieIdStorageW));
-    }
-
-    // if (this.movieWatchedIdList === [] || !this.movieWatchedIdList.includes(id)) {
-    //   this.movieWatchedIdList.push(id);
-    // } else if (this.movieWatchedIdList.includes(id)) {
-    //   this.movieWatchedIdList = this.movieWatchedIdList.filter(el => el !== id);
-    // }
-
-    // let movieIdStorageW = {
-    //   MovieIDW: this.movieWatchedIdList,
-    // };
-
-    // localStorage.setItem('watched', JSON.stringify(movieIdStorageW));
   }
 
   queueLocalStorage(id) {
-const savedItems = JSON.parse(localStorage.getItem('queue'));
+    const savedItems = JSON.parse(localStorage.getItem('queue'));
     let filmsArray;
     if (savedItems) {
-      filmsArray = savedItems.MovieIDW;
-
-      if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
+      filmsArray = savedItems.MovieIDQ;
+    }
+    if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
       filmsArray.push(id);
     } else if (filmsArray && filmsArray.length && filmsArray.includes(id)) {
       filmsArray = filmsArray.filter(el => el !== id);
     } else {
       filmsArray = [];
       filmsArray.push(id);
-      }
+    }
       
     let movieIdStorageQ = {
-      MovieIDW: filmsArray,
-      };
+      MovieIDQ: filmsArray,
+    };
       
     localStorage.setItem('queue', JSON.stringify(movieIdStorageQ));
-    }
-
-    // if (this.movieQueueIdList === [] || !this.movieQueueIdList.includes(id)) {
-    //   this.movieQueueIdList.push(id);
-    // } else if (this.movieQueueIdList.includes(id)) {
-    //   this.movieQueueIdList = this.movieQueueIdList.filter(el => el !== id);
-    // }
-
-    // let movieIdStorageQ = {
-    //   MovieIDQ: this.movieQueueIdList,
-    // };
-
-    // localStorage.setItem('queue', JSON.stringify(movieIdStorageQ));
   }
 }
