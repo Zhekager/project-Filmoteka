@@ -4,27 +4,47 @@ const Theme = {
   DARK: 'dark-theme',
 };
 
-const toggleSwitch = document.querySelector('#theme-switch-toggle');
-const modalCardFilmSwitch = document.querySelector('.card-film');
-const bodyStyle = document.body.classList;
+const bodyRef = document.querySelector('body');
+const themeSwitcherRef = document.querySelector('#theme-switch-toggle');
+const modalContentRef = document.querySelector('.card-film');
+const sliderWrapperRef = document.querySelector('.slider-wrapper');
+const sliderWrappeBtnLeftRef = document.querySelector('.glide__arrow--left');
+const sliderWrappeBtnRightRef = document.querySelector('.glide__arrow--right');
+const footerRef = document.querySelector('.footer');
 
-setDarkTheme();
-toggleSwitch.addEventListener('change', onToggleTheme);
-bodyStyle.add(Theme.LIGHT);
+// console.log(sliderWrappeBtnLeftRef);
 
-function onToggleTheme(e) {
-  e.currentTarget.checked
-    ? bodyStyle.add(Theme.DARK) & bodyStyle.remove(Theme.LIGHT)
-    : bodyStyle.add(Theme.LIGHT) & bodyStyle.remove(Theme.DARK);
-  localStorage.setItem('theme', bodyStyle.value);
+const delClassElem = () => {
+  bodyRef.classList.remove(Theme.LIGHT, Theme.DARK);
+  sliderWrapperRef.classList.remove(Theme.LIGHT, Theme.DARK);
+  sliderWrappeBtnLeftRef.classList.remove(Theme.LIGHT, Theme.DARK);
+  sliderWrappeBtnRightRef.classList.remove(Theme.LIGHT, Theme.DARK);
+    // footerRef.classList.remove(Theme.LIGHT, Theme.DARK);
 }
-
-function setDarkTheme() {
-  const savedTheme = localStorage.getItem('theme');
-  if (savedTheme) {
-    bodyStyle.add(savedTheme);
-  }
-  if (bodyStyle.value === Theme.DARK) {
-    toggleSwitch.checked = true;
-  }
-}
+  
+themeSwitcherRef.addEventListener('change', () => {
+  delClassElem();
+  if (themeSwitcherRef.checked) {
+    localStorage.setItem('Theme','darkTheme');
+    bodyRef.classList.add(Theme.DARK);
+    sliderWrapperRef.classList.add(Theme.DARK);
+    sliderWrappeBtnLeftRef.classList.add(Theme.DARK);
+    sliderWrappeBtnRightRef.classList.add(Theme.DARK);
+        // footerRef.classList.add(Theme.DARK);
+       } else {
+    localStorage.setItem('Theme','lightTheme');
+    bodyRef.classList.add(Theme.LIGHT);
+    sliderWrapperRef.classList.add(Theme.LIGHT);
+    sliderWrappeBtnLeftRef.classList.add(Theme.LIGHT);
+    sliderWrappeBtnRightRef.classList.add(Theme.LIGHT);
+       // footerRef.classList.add(Theme.LIGHT);
+      }
+});
+    if(localStorage.getItem('Theme') === 'darkTheme'){
+      themeSwitcherRef.setAttribute('checked', true);
+      bodyRef.classList.add(Theme.DARK);
+      sliderWrapperRef.classList.add(Theme.DARK);
+      sliderWrappeBtnLeftRef.classList.add(Theme.DARK);
+      sliderWrappeBtnRightRef.classList.add(Theme.DARK);
+    // footerRef.classList.add(Theme.DARK);
+   }
