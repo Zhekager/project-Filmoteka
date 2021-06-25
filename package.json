@@ -31,6 +31,7 @@
     "basiclightbox": "^5.0.4",
     "debounce": "^1.2.1",
     "lodash.throttle": "^4.1.1",
+    "movie-trailer": "^2.1.0",
     "spin.js": "^4.1.0",
     "toastify": "^2.0.1",
     "vanilla-back-to-top": "^7.2.1"
