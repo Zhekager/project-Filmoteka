@@ -183,3 +183,8 @@ function removeHiddenVoteAverage() {
 }
 
 
+function renderMarkup(moviesArray) {
+  refs.cardLibrary.innerHTML = cardFilmsTpl(moviesArray);
+  trailer.createTrailerLink(document.querySelectorAll('.btn-youtube'));
+}
+

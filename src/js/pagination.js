@@ -1,6 +1,7 @@
 import FilmApiService from './apiService.js';
 import markUpFilmCardTpl from '../templates/films.hbs';
 
+
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '92ffb34e08e714eb390805a25b0a06d3';
 const cardFilm = document.querySelector('.js-card-film'),
