@@ -1,6 +1,6 @@
 const BASE_URL = 'https://api.themoviedb.org/3';
 const API_KEY = '92ffb34e08e714eb390805a25b0a06d3';
-
+let currentPage = 1;
 export default class FilmApiService {
   constructor() {
     this.searchQuery = '';
@@ -9,7 +9,6 @@ export default class FilmApiService {
     this.movieWatchedIdList = [];
     this.movieQueueIdList = [];
   }
-
   fetchTrendingMovies() {
     return fetch(
       `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US&page=${this.page}`,
@@ -27,7 +26,6 @@ export default class FilmApiService {
         });
       });
   }
-
   fetchSearch() {
     const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`;
     return fetch(url)
@@ -44,7 +42,47 @@ export default class FilmApiService {
         });
       });
   }
+  fetchPagination(currentPage) {
+    return fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US&page=${this.page}`)
+      .then(response => response.json())
+      .then( results  => {
+        return results;
+      })
+      .catch(error => console.log(error));
+  }
+      
+  
 
+  fetchPopularArticles() {
+    const url = `${BASE_URL}/movie/popular?api_key=${KEY}&language=en-US&page=${this.page}`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(({ results }) => {
+        return results;
+      });
+  }
+
+  fetchGenres() {
+    const url = `${BASE_URL}/genre/movie/list?api_key=${KEY}`;
+    return fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        return data.genres;
+      });
+  }
+  insertGenresToMovieObj() {
+    return this.fetchPopularArticles().then(data => {
+      return this.fetchGenres().then(genresList => {
+        return data.map(movie => ({
+          ...movie,
+          release_date: movie.release_date.split('-')[0],
+          genres: movie.genre_ids
+            .map(id => genresList.filter(el => el.id === id))
+            .flat(),
+        }));
+      });
+    });
+  }
   getFullMovieInfo(movie_id) {
     const url = `${BASE_URL}/movie/${movie_id}?api_key=${API_KEY}&language=en-US`;
     return fetch(url)
@@ -55,7 +93,6 @@ export default class FilmApiService {
         genres: this.filterGenresLibrary(result),
       }));
   }
-
   fetchFilmGenre() {
     const url = `${BASE_URL}/genre/movie/list?api_key=${API_KEY}&language=en-US`;
     return fetch(url)
@@ -64,12 +101,10 @@ export default class FilmApiService {
         return genres;
       });
   }
-
   filterGenres(genres, result) {
     let genreList = result.genre_ids
       .map(id => genres.filter(genre => genre.id === id).map(genre => genre.name))
       .flat();
-
     if (genreList.length === 1) {
       return (genreList = [`${genreList[0]}`]);
     }
@@ -79,7 +114,6 @@ export default class FilmApiService {
       return (genreList = `${genreList[0]}, ${genreList[1]}, Other`);
     }
   }
-
   filterGenresLibrary(result) {
     let genreList = result.genres.map(genre => genre.name).flat();
     if (genreList.length === 1) {
@@ -91,48 +125,44 @@ export default class FilmApiService {
       return (genreList = `${genreList[0]}, ${genreList[1]}, Other`);
     }
   }
-
   incrementPage() {
     this.page += 1;
   }
-
   resetPage() {
     this.page = 1;
   }
-
   get query() {
     return this.searchQuery;
   }
-
   set query(newQuery) {
     this.searchQuery = newQuery;
   }
-
+  get pageNum() {
+    return this.page;
+  }
+  set pageNum(newPage) {
+    this.page = newPage;
+  }
   watchedLocalStorage(id) {
     if (this.movieWatchedIdList === [] || !this.movieWatchedIdList.includes(id)) {
       this.movieWatchedIdList.push(id);
     } else if (this.movieWatchedIdList.includes(id)) {
       this.movieWatchedIdList = this.movieWatchedIdList.filter(el => el !== id);
     }
-
     let movieIdStorageW = {
       MovieIDW: this.movieWatchedIdList,
     };
-
     localStorage.setItem('watched', JSON.stringify(movieIdStorageW));
   }
-
   queueLocalStorage(id) {
     if (this.movieQueueIdList === [] || !this.movieQueueIdList.includes(id)) {
       this.movieQueueIdList.push(id);
     } else if (this.movieQueueIdList.includes(id)) {
       this.movieQueueIdList = this.movieQueueIdList.filter(el => el !== id);
     }
-
     let movieIdStorageQ = {
       MovieIDQ: this.movieQueueIdList,
     };
-
     localStorage.setItem('queue', JSON.stringify(movieIdStorageQ));
   }
 }
