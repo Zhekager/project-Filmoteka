@@ -91,7 +91,7 @@ function onBtnAddToQueue(e) {
 
     function onBtnRemoveFromQueue(e) {
             filmsApiService.queueLocalStorage(movieId);
-        e.target.textContent = 'add to watched';
+        e.target.textContent = 'add to queue';
         
         e.target.style.backgroundColor = '#ff6b01';
         e.target.style.color = '#ffffff';
@@ -102,21 +102,19 @@ function onBtnAddToQueue(e) {
 
 }
     
-
-
 // Реализация кнопок Watched и Queue в разделе My library
 
 refs.btnQueue.addEventListener('click', onBtnQueue);
 refs.btnWatched.addEventListener('click', onBtnWatched);
 
 function onBtnQueue() {
-  let saveFilm = localStorage.getItem('queue');
+        let saveFilm = localStorage.getItem('queue');
 
-  if (saveFilm) {
-    const parceFilm = JSON.parse(saveFilm);
+      if (saveFilm) {
+        const parceFilm = JSON.parse(saveFilm);
 
-    for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
-      let id = parceFilm.MovieIDQ[i];
+        for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
+          let id = parceFilm.MovieIDQ[i];
 
       filmsApiService
         .getFullMovieInfo(id)
@@ -126,11 +124,12 @@ function onBtnQueue() {
         })
         .catch(error => console.log('error', error));
     }
-    refs.btnQueue.removeEventListener('click', onBtnQueue);
+    // refs.btnQueue.removeEventListener('click', onBtnQueue);
     refs.btnWatched.addEventListener('click', onBtnWatched);
     clearImagesContainer();
   }
 }
+
 
 function onBtnWatched() {
   refs.btnQueue.classList.remove('add');
@@ -180,5 +179,7 @@ function removeHiddenVoteAverage() {
   document
     .querySelectorAll('.film-vote-background')
     .forEach(el => el.classList.remove('visually-hidden'));
+
 }
+
 

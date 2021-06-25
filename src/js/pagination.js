@@ -170,6 +170,7 @@ function renderPaginationPopulerFilms() {
     .catch(error => console.log(error));
 }
 
+
 function createListPage(currentPage) {
   let input = document.querySelector('.input-film')
   
@@ -211,3 +212,4 @@ function createFilmCardsMarkUp(movieInfo) {
   galleryRef.insertAdjacentHTML('beforeend', markUpFilmCardTpl(movieInfo));
 }
 
+n

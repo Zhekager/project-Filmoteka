@@ -50,4 +50,5 @@ function createTrailerLink(elementRef) {
   }
 }
 
+
 export default { createTrailerLink };

@@ -39,22 +39,16 @@
    height: 100px;
 }
 .glide__arrow {
-    box-shadow: 1 3 50px $film-details;
+    box-shadow: 0 0 15px $film-details;
     background-color: $white-color;
-    transition: 1s;
-  &:hover,
-    &:focus
-     {
-      color: $btn-accent-color;
-      box-shadow: 0 0 15px $line-orange-color;
-    }
+  
 }
 .glide__arrow--right{
-  right: -10em;
+  right: -5em;
   border-radius: 10px;
 };
 .glide__arrow--left{
-  left: -10em;
+  left: -5em;
   border-radius: 10px;
 }
 
