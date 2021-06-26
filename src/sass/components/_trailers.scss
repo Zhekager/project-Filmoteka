@@ -1,9 +1,11 @@
-.btn-youtube,
+
+  .btn-youtube,
 .btn-youtube-slider {
+  
   position: absolute;
   z-index: 1;
 
-  width: 103px;
+  width: 100px;
   height: 154px;
   margin: auto;
   background-repeat: no-repeat;
@@ -12,6 +14,7 @@
   border: 0;
   outline: none;
   background-color: transparent;
+ 
 }
 
 .btn-youtube-text {
