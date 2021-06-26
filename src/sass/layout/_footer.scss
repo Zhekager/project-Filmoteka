@@ -13,8 +13,8 @@
   line-height: 1.14;
 
   @media screen and (min-width: 768px) {
-font-size: 16px;
-  line-height: 1.18;
+    font-size: 16px;
+    line-height: 1.18;
   }
 }
 
@@ -22,7 +22,7 @@ font-size: 16px;
   margin: 0 0 10px 0;
 
   @media screen and (min-width: 768px) {
-     margin: 0 3px 0 0;
+    margin: 0 3px 0 0;
   }
 }
 
@@ -37,11 +37,10 @@ font-size: 16px;
   color: $footer-text-color;
   cursor: pointer;
   transition: 0.8s;
-   &:hover {
+  &:hover {
     text-decoration: none;
     transform: scale(1.03);
     color: $red-text-color;
-  
   }
 }
 
