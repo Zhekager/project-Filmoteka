@@ -34,6 +34,7 @@
     "movie-trailer": "^2.1.0",
     "spin.js": "^4.1.0",
     "toastify": "^2.0.1",
+    "toastify-js": "^1.11.0",
     "vanilla-back-to-top": "^7.2.1"
   }
 }

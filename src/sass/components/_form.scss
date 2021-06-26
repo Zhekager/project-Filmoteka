@@ -28,7 +28,7 @@
   margin-bottom: 40px;
   @media screen and (min-width: 768px) {
     width: 50%;
-    margin-right: 0px;
+    margin-right: 10px;
   }
   @media screen and (min-width: 1024px) {
     margin-left: 20px;
@@ -40,7 +40,7 @@
   border-radius: 5px;
 
   @media screen and (min-width: 1024px) {
-    width: 100%;
+    width: 90%;
     height: 100%;
     //object-fit: contain;
   }
@@ -50,7 +50,9 @@
   margin: 0px 20px;
   @media screen and (min-width: 768px) {
     width: 50%;
+    //margin-right: 20px;
   }
+
   &-title {
     font-size: 20px;
     line-height: 1.17;
