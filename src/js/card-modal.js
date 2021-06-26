@@ -4,7 +4,7 @@ import 'basiclightbox/dist/basicLightbox.min.css';
 import getRefs from '../js/refs';
 import FilmApiService from './apiService.js';
 import addToLibrary from './library.js';
-import {addBackToTop} from 'vanilla-back-to-top';
+
  
 const refs = getRefs();
 
@@ -49,13 +49,12 @@ function closeModal() {
     window.removeEventListener('keydown', closeModalHandler);
 }
         }).catch(error => console.log('error', error));
-    
+   
     
 }
 
 function openModal(evt) {
-    evt.preventDefault();
-   
+   evt.preventDefault();
     let id = evt.target.dataset.action;
     if (evt.target.nodeName !== 'IMG') {
         return

@@ -44,6 +44,7 @@ function onSearch(e) {
 }
 function createFilmCardsMarkUp(movieInfo) {
   galleryRef.insertAdjacentHTML('beforeend', markUpFilmCardTpl(movieInfo));
+ 
 }
 
 function clearImagesContainer() {

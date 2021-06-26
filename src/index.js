@@ -15,5 +15,5 @@ import './js/theme-switch';
 import './js/login';
 import './js/authFireBase';
 
-
+import './js/notification';
 

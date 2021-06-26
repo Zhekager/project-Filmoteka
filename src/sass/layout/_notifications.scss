@@ -1,0 +1,32 @@
+.info-more {
+  color: $white-color !important;
+  border-radius: 5px !important;
+  background: $btn-accent-color !important;
+  border: 1px solid $black-color !important;
+  width: 200px;
+  font-size: 12px;
+  top: 0;
+  right: 0;
+}
+
+.info-success {
+  color: $white-color !important;
+  border-radius: 5px !important;
+  background: $black-color !important;
+  border: 1px solid $btn-accent-color !important;
+  width: 200px;
+  font-size: 12px;
+  top: 0;
+  right: 0;
+}
+
+.info-error {
+  color: $btn-accent-color !important;
+  border-radius: 5px !important;
+  background: $white-color !important;
+  border: 1px solid $black-color !important;
+  width: 200px;
+  font-size: 12px;
+  top: 0;
+  right: 0;
+}
