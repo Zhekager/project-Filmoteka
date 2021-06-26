@@ -4,7 +4,8 @@ import markUpFilmCardTpl from '../templates/films.hbs'
 
 const arrowLeft = document.querySelector('.arrow-left'),
       arrowRight = document.querySelector('.arrow-right'),
-      paginationEl = document.querySelector('#pagination');
+      paginationEl = document.querySelector('#pagination'),
+      paginationPages = document.querySelector('.pagination-pages');
       
 const filmApiService = new FilmApiService();
 
@@ -136,7 +137,7 @@ function renderPagination(totalPages, result, searchQuery) {
       createListPage(currentPage);
       console.log(currentPage);
     }
-    disableArrowBtn(totalPages);
+    //disableArrowBtn(totalPages);
   }
 
   function onClickArrowRight() {
@@ -146,11 +147,11 @@ function renderPagination(totalPages, result, searchQuery) {
       createPagination(result, paginationEl, pages);
       createListPage(currentPage);
     }
-    disableArrowBtn(totalPages);
+    //disableArrowBtn(totalPages);
   }
 
   createPagination(result, paginationEl, pages);
-  disableArrowBtn(totalPages);
+  //disableArrowBtn(totalPages);
 }
 
 paginationEl.addEventListener('click', disableArrowBtnAfterPageClick);
@@ -228,7 +229,13 @@ function createFilmCardsMarkUp(movieInfo) {
   galleryRef.insertAdjacentHTML('beforeend', markUpFilmCardTpl(movieInfo));
 }
 
+function clearPaginationEl() {
+  paginationPages.innerHTML = '';
+}
+
 export { renderPaginationPopulerFilms };
+export { clearPaginationEl };
+
   
 
 
