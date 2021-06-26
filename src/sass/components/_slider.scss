@@ -6,17 +6,18 @@
   padding-bottom: 20px;
   font-size: 13px;
 
-  @media screen and (max-width: 1023px) {
+  @media screen and (max-width: 1023px ) {
     display: none;
   }
+  
 }
 //кнопки управления слайдером
 .arrow_title_back{
    color: $film-details;
    writing-mode: tb-rl;
-   transform:rotate(360deg);
+  //  transform:rotate(360deg);
    font-size:18px;
-   width: 15px;
+   width: 35px;
    height: 100px;
    margin: 0px;
 }
@@ -24,9 +25,9 @@
 .arrow_title_next{
    color: $film-details;
    writing-mode: tb-rl;
-   transform:rotate(180deg);
+  //  transform:rotate(180deg);
    font-size:18px;
-   width: 15px;
+   width: 35px;
    height: 100px;
    margin: 0px;
     
@@ -40,16 +41,38 @@
 }
 .glide__arrow {
     box-shadow: 0 0 15px $film-details;
+    background-color: rgba(255, 255, 255, 0.418);
+    padding: 10px 5px;
+    transition: 1s;
+    // transform: scale(1);
+  &:hover,
+  &:focus{
     background-color: $white-color;
-  
+  }
 }
 .glide__arrow--right{
-  right: -5em;
+  right: 1em;
   border-radius: 10px;
+  fill: $line-orange-color;
+  transition: 1s;
+  // transform: scale(1);
+     &:hover,
+     &:focus{
+       fill:$footer-text-color;
+     }
 };
+
+
 .glide__arrow--left{
-  left: -5em;
+  left: 1em;
   border-radius: 10px;
+  fill: $line-orange-color;
+  transition: 1s;
+  // transform: scale(1);
+    &:hover,
+    &:focus{
+      fill:$footer-text-color;
+    }
 }
 
 .slider-card {
@@ -72,6 +95,7 @@
 
 .slider-image {
   border-radius: 5px;
+ 
 }
 
 .rating-slider {
@@ -141,4 +165,10 @@
   cursor: pointer;
   margin: 0;
   z-index: 5;
+}
+
+.icon-arrow-left,
+.icon-arrow-right{
+  width: 32px;
+  height: 32px;
 }
