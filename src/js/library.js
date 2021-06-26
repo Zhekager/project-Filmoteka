@@ -1,6 +1,7 @@
 import FilmApiService from './apiService.js';
 import { clearImagesContainer, createFilmCardsMarkUp } from './showTrendingMovies.js';
 import getRefs from './refs.js';
+import { clearPaginationEl } from './pagination';
 
 const refs = getRefs();
 
@@ -152,7 +153,7 @@ refs.library.addEventListener('click', onLibraryClick);
 
 function onLibraryClick(e) {
   e.preventDefault();
-
+  clearPaginationEl();
   clearImagesContainer();
 
   e.target.classList.add('nav-link-current');
