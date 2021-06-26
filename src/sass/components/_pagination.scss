@@ -5,7 +5,7 @@
   padding-bottom: 40px;
 }
 
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
   .pagination {
     padding-bottom: 60px;
   }
@@ -17,6 +17,7 @@
   justify-content: center;
   align-items: center;
 }
+
 .pagination-arrow {
   width: 40px;
   height: 40px;
@@ -29,13 +30,21 @@
     background-color: $line-orange-color;
     color: $white-color;
   }
+
   &:active {
     background-color: $line-orange-color;
   }
 }
+
 .arrow-left {
   background-image: url('../../src/images/pagination/arrow-left.svg');
   background-repeat: no-repeat;
+}
+
+@media screen and (max-width: 480px) {
+  .arrow-left {
+    display: none;
+  }
 }
 
 .arrow-right {
@@ -55,11 +64,16 @@
   height: 40px;
   margin: 5px;
   border: none;
+  border-radius: 5px;
 
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
   background-color: $white-color;
+}
+.dark-theme-button {
+  background-color: #212121;
+  color: lightgrey;
 }
 
 .pages-numbers button:hover,
@@ -67,6 +81,15 @@
   background-color: $line-orange-color;
   color: $white-color;
   border-radius: 5px;
+}
+
+@media screen and (max-width: 480px) {
+  .pages-numbers button {
+    width: 30px;
+    height: 30px;
+    margin: 1px;
+    font-size: 10px;
+  }
 }
 
 .dots {
@@ -77,15 +100,9 @@
   padding: 10px 5px 1px 5px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 480px) {
   .dots {
-    display: none;
-  }
-}
-
-@media screen and (min-width: 768px) {
-  .dots {
-    display: inline-block;
+    padding: 10px 1px 1px 1px;
   }
 }
 

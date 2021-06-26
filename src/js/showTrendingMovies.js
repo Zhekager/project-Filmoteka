@@ -2,6 +2,7 @@ import FilmApiService from './apiService.js';
 import markUpFilmCardTpl from '../templates/films.hbs';
 import getRefs from './refs.js';
 import debounce from 'lodash.debounce';
+import { renderPaginationPopulerFilms } from './pagination';
 
 const refs = getRefs();
 
@@ -24,7 +25,7 @@ function renderTrendingMovies() {
 // поиск фильмов
 function onSearch(e) {
   filmsApiService.searchQuery = e.target.value.trim();
-
+  renderPaginationPopulerFilms();
   if (filmsApiService.searchQuery === '') {
     filmsApiService
       .fetchTrendingMovies()
