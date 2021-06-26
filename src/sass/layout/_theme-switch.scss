@@ -12,7 +12,7 @@
 .toolbar {
   display: flex;
   justify-content: flex-end;
-  padding: 16px 24px;
+  padding-top: 16px;
 }
 
 .theme-switch {
@@ -24,9 +24,9 @@
 .theme-switch-icon {
   color: currentColor;
   height: 20px;
-  width: 20px;
-  margin-right: 8px;
-  margin-left: 8px;
+  width: 15px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .theme-switch-control {
