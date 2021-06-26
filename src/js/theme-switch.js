@@ -35,8 +35,8 @@ themeSwitcherRef.addEventListener('change', () => {
     localStorage.setItem('Theme','lightTheme');
     bodyRef.classList.add(Theme.LIGHT);
     sliderWrapperRef.classList.add(Theme.LIGHT);
-    sliderWrappeBtnLeftRef.classList.add(Theme.LIGHT);
-    sliderWrappeBtnRightRef.classList.add(Theme.LIGHT);
+    // sliderWrappeBtnLeftRef.classList.add(Theme.LIGHT);
+    // sliderWrappeBtnRightRef.classList.add(Theme.LIGHT);
        // footerRef.classList.add(Theme.LIGHT);
       }
 });
