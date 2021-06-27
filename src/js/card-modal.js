@@ -5,8 +5,9 @@ import getRefs from '../js/refs';
 import FilmApiService from './apiService.js';
 import addToLibrary from './library.js';
 
- 
+
 const refs = getRefs();
+
 
 const filmsApiService = new FilmApiService();
 
