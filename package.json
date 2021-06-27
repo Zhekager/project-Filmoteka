@@ -30,6 +30,7 @@
     "@glidejs/glide": "^3.4.1",
     "basiclightbox": "^5.0.4",
     "debounce": "^1.2.1",
+    "firebase": "^8.6.8",
     "lodash.throttle": "^4.1.1",
     "movie-trailer": "^2.1.0",
     "spin.js": "^4.1.0",
