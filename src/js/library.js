@@ -1,5 +1,5 @@
 import FilmApiService from './apiService.js';
-import { clearImagesContainer, createFilmCardsMarkUp } from './showTrendingMovies.js';
+import { clearMoviesContainer, createFilmCardsMarkUp } from './showTrendingMovies.js';
 import getRefs from './refs.js';
 import { clearPaginationEl } from './pagination';
 import { clearSlider } from './slider';
@@ -120,7 +120,7 @@ function onBtnQueue() {
       }
 
       refs.btnWatched.addEventListener('click', onBtnWatched);
-      clearImagesContainer();
+      clearMoviesContainer();
     }
 }
 
@@ -145,7 +145,7 @@ function onBtnWatched() {
 
     // refs.btnWatched.removeEventListener('click', onBtnWatched);
     refs.btnQueue.addEventListener('click', onBtnQueue);
-    clearImagesContainer();
+    clearMoviesContainer();
   }
 }
 
@@ -156,7 +156,7 @@ function onLibraryClick(e) {
   e.preventDefault();
   clearSlider();
   clearPaginationEl();
-  clearImagesContainer();
+  clearMoviesContainer();
 
   e.target.classList.add('nav-link-current');
   refs.home.classList.remove('nav-link-current');

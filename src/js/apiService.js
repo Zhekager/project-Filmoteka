@@ -43,15 +43,15 @@ export default class FilmApiService {
       });
   }
   fetchPagination(currentPage) {
-    return fetch(`${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US&page=${this.page}`)
+    return fetch(
+      `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US&page=${this.page}`,
+    )
       .then(response => response.json())
-      .then( results  => {
+      .then(results => {
         return results;
       })
       .catch(error => console.log(error));
   }
-      
-  
 
   fetchPopularArticles() {
     const url = `${BASE_URL}/movie/popular?api_key=${KEY}&language=en-US&page=${this.page}`;
@@ -76,9 +76,7 @@ export default class FilmApiService {
         return data.map(movie => ({
           ...movie,
           release_date: movie.release_date.split('-')[0],
-          genres: movie.genre_ids
-            .map(id => genresList.filter(el => el.id === id))
-            .flat(),
+          genres: movie.genre_ids.map(id => genresList.filter(el => el.id === id)).flat(),
         }));
       });
     });
@@ -105,6 +103,9 @@ export default class FilmApiService {
     let genreList = result.genre_ids
       .map(id => genres.filter(genre => genre.id === id).map(genre => genre.name))
       .flat();
+    if (genreList.length === 0) {
+      return (genreList = [`Unknown`]);
+    }
     if (genreList.length === 1) {
       return (genreList = [`${genreList[0]}`]);
     }
@@ -116,6 +117,9 @@ export default class FilmApiService {
   }
   filterGenresLibrary(result) {
     let genreList = result.genres.map(genre => genre.name).flat();
+    if (genreList.length === 0) {
+      return (genreList = [`Unknown`]);
+    }
     if (genreList.length === 1) {
       return (genreList = [`${genreList[0]}`]);
     }
@@ -150,8 +154,7 @@ export default class FilmApiService {
       filmsArray = savedItems.MovieIDW;
     }
 
-    
-  // ----------------------
+    // ----------------------
     if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
       filmsArray.push(id);
     } else if (filmsArray && filmsArray.length && filmsArray.includes(id)) {
@@ -160,10 +163,8 @@ export default class FilmApiService {
       filmsArray = [];
       filmsArray.push(id);
     }
-   //-----------------------------
-    
-    
-    
+    //-----------------------------
+
     let movieIdStorageW = {
       MovieIDW: filmsArray,
     };
@@ -177,9 +178,8 @@ export default class FilmApiService {
       filmsArray = savedItems.MovieIDQ;
     }
 
-    
- //---------------------
-    
+    //---------------------
+
     if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
       filmsArray.push(id);
     } else if (filmsArray && filmsArray.length && filmsArray.includes(id)) {
@@ -188,12 +188,9 @@ export default class FilmApiService {
       filmsArray = [];
       filmsArray.push(id);
     }
-      
-//----------------------
-    
-    
-    
-    
+
+    //----------------------
+
     let movieIdStorageQ = {
       MovieIDQ: filmsArray,
     };
