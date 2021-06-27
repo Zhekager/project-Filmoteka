@@ -179,9 +179,9 @@ function disableArrowBtn(totalPages) {
   }
 }
 
-renderPaginationPopulerFilms();
+renderPaginationPopularFilms();
 
-function renderPaginationPopulerFilms() {
+function renderPaginationPopularFilms() {
   filmApiService
     .fetchPagination()
     .then(results => {
@@ -198,7 +198,7 @@ function createListPage(currentPage) {
 
   input.addEventListener('input', function () {
     if (input.value.length !== 0 && currentPage !== 1) {
-      //renderPaginationPopulerFilms();
+      //renderPaginationPopularFilms();
       // console.log(input.value);
       filmApiService
         .fetchSearch()
@@ -233,7 +233,7 @@ function clearPaginationEl() {
   paginationPages.innerHTML = '';
 }
 
-export { renderPaginationPopulerFilms };
+export { renderPaginationPopularFilms };
 export { clearPaginationEl };
 
   

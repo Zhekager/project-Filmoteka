@@ -2,7 +2,8 @@ import FilmApiService from './apiService.js';
 import markUpFilmCardTpl from '../templates/films.hbs';
 import getRefs from './refs.js';
 import debounce from 'lodash.debounce';
-import { renderPaginationPopulerFilms } from './pagination';
+import { renderPaginationPopularFilms } from './pagination';
+import toastify from './notification.js';
 
 const refs = getRefs();
 
@@ -24,31 +25,34 @@ function renderTrendingMovies() {
 
 // поиск фильмов
 function onSearch(e) {
-  filmsApiService.searchQuery = e.target.value.trim();
-  renderPaginationPopulerFilms();
-  if (filmsApiService.searchQuery === '') {
-    filmsApiService
-      .fetchTrendingMovies()
-      .then(createFilmCardsMarkUp)
-      .catch(error => console.log('error', error));
+  filmsApiService.searchQuery = e.target.value;
+  renderPaginationPopularFilms();
+
+  if (filmsApiService.searchQuery.trim() === '') {
+    return toastify.needMoreInfo();
   }
 
   filmsApiService.resetPage();
-  clearImagesContainer();
+  clearMoviesContainer();
 
   if (filmsApiService.searchQuery !== '') {
-    filmsApiService
-      .fetchSearch()
-      .then(createFilmCardsMarkUp)
-      .catch(error => console.log('error', error));
+    filmsApiService.fetchSearch().then(movies => {
+      if (movies.length === 0) {
+        toastify.onError();
+        renderTrendingMovies();
+      } else {
+        toastify.onSuccess();
+        createFilmCardsMarkUp(movies);
+      }
+    });
   }
 }
+
 function createFilmCardsMarkUp(movieInfo) {
   galleryRef.insertAdjacentHTML('beforeend', markUpFilmCardTpl(movieInfo));
- 
 }
 
-function clearImagesContainer() {
+function clearMoviesContainer() {
   galleryRef.innerHTML = '';
 }
 
@@ -58,13 +62,13 @@ refs.home.addEventListener('click', onHome);
 
 function onLogo() {
   e.preventDefault();
-  // clearImagesContainer();
+  // clearMoviesContainer();
   toggleHomeLogo();
 }
 
 function onHome() {
   e.preventDefault();
-  // clearImagesContainer();
+  // clearMoviesContainer();
   toggleHomeLogo();
 }
 
@@ -77,6 +81,6 @@ function toggleHomeLogo() {
   renderTrendingMovies();
 }
 
-export { clearImagesContainer };
+export { clearMoviesContainer };
 export { renderTrendingMovies };
 export { createFilmCardsMarkUp };
