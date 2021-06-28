@@ -28,4 +28,13 @@ function onError() {
   }).showToast();
 }
 
-export default { onSuccess, needMoreInfo, onError };
+function joySuccess() {
+  Toastify({
+    text: 'Ммм...заинтересовал фильмец;)',
+    duration: 2000,
+    stopOnFocus: true,
+    className: 'info-joy',
+  }).showToast();
+}
+
+export default { onSuccess, needMoreInfo, onError, joySuccess };

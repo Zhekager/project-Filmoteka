@@ -5,6 +5,7 @@ import getRefs from '../js/refs';
 import FilmApiService from './apiService.js';
 import addToLibrary from './library.js';
 
+import toastify from '../js/notification';
 
 const refs = getRefs();
 
@@ -12,7 +13,7 @@ const refs = getRefs();
 const filmsApiService = new FilmApiService();
 
 const cardFilm = document.querySelector('.gallery');
-cardFilm.addEventListener('click', openModal);
+cardFilm.addEventListener('click', openModal); 
 
  //функция получения фильма по ид
 
@@ -55,12 +56,13 @@ function closeModal() {
 }
 
 function openModal(evt) {
+    toastify.joySuccess();
    evt.preventDefault();
     let id = evt.target.dataset.action;
     if (evt.target.nodeName !== 'IMG') {
         return
     }
     getFullMovieInfo(id);
-   
+
 }
 
