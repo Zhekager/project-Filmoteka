@@ -12,8 +12,9 @@ import './js/slider';
 
 import './js/theme-switch';
 import './js/login';
-import './js/authFireBase';
+
 
 import './js/notification';
 import './js/preloader';
 
+import './js/authFireBaseConfig';
