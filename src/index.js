@@ -17,4 +17,5 @@ import './js/login';
 import './js/authFireBase';
 
 import './js/notification';
+import './js/preloader';
 
