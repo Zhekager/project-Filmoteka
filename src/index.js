@@ -14,4 +14,4 @@ import './js/notification';
 import './js/preloader';
 
 
-import './js/loading';
+// import './js/loading';
