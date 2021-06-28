@@ -25,11 +25,11 @@ export default function addToLibrary(movieId) {
         btnAddToWatched.style.backgroundColor = '#ff6b01';
         btnAddToWatched.style.color = '#ffffff';
         btnAddToWatched.style.borderColor = '#ff6b01';
-    }
+    } 
    
     if (btnAddToWatched.textContent === 'add to watched') {
       btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched);
-        
+         
     } else if (btnAddToWatched.textContent === 'remove from watched') {
       btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
     }
