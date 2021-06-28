@@ -10,7 +10,7 @@ import './js/card-modal';
 
 import './js/slider';
 import './js/loading';
-
+import'./js/filmoteka';
 
 import './js/theme-switch';
 import './js/login';
