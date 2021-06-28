@@ -16,8 +16,7 @@ document.getElementById('login').addEventListener('click', GoogleLogin)
 document.getElementById('logout').addEventListener('click', LogoutUser)
 
       function GoogleLogin(){
-        console.log('Login Btn Call')
-
+        
         firebase.auth().signInWithPopup(provider).then(res=>{
           console.log(res.user)
           document.getElementById('LoginScreen').style.display="none"
@@ -45,7 +44,7 @@ document.getElementById('logout').addEventListener('click', LogoutUser)
       }
 
       function LogoutUser(){
-        console.log('Logout Btn Call')
+      
         firebase.auth().signOut().then(()=>{
           document.getElementById('LoginScreen').style.display="block"
           document.getElementById('dashboard').style.display="none"
