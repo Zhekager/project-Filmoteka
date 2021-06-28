@@ -8,12 +8,12 @@ export default class FilmApiService {
     this.id = '';
     this.movieWatchedIdList = [];
     this.movieQueueIdList = [];
-  }
+  } 
   fetchTrendingMovies() {
     return fetch(
       `${BASE_URL}/trending/movie/week?api_key=${API_KEY}&language=en-US&page=${this.page}`,
     )
-      .then(response => response.json())
+      .then(response => response.json()) 
       .then(({ results }) => {
         return this.fetchFilmGenre().then(genres => {
           return results.map(result => ({
@@ -25,7 +25,7 @@ export default class FilmApiService {
           }));
         });
       });
-  }
+  }  
   fetchSearch() {
     const url = `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`;
     return fetch(url)
@@ -51,7 +51,7 @@ export default class FilmApiService {
         return results;
       })
       .catch(error => console.log(error));
-  }
+  } 
 
   fetchPopularArticles() {
     const url = `${BASE_URL}/movie/popular?api_key=${KEY}&language=en-US&page=${this.page}`;
@@ -129,17 +129,17 @@ export default class FilmApiService {
       return (genreList = `${genreList[0]}, ${genreList[1]}, Other`);
     }
   }
-  incrementPage() {
-    this.page += 1;
+  incrementPage() { 
+    this.page += 1; 
   }
   resetPage() {
-    this.page = 1;
+    this.page = 1; 
   }
   get query() {
-    return this.searchQuery;
+    return this.searchQuery; 
   }
   set query(newQuery) {
-    this.searchQuery = newQuery;
+    this.searchQuery = newQuery; spinner.show();
   }
   get pageNum() {
     return this.page;
