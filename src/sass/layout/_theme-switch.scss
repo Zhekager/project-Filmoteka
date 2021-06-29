@@ -92,7 +92,7 @@
   transform: translateX(35px);
 }
 
-.theme-switch-toggle:focus + .theme-switch-track,
+.theme-switch-toggle:hover + .theme-switch-track,
 .theme-switch-toggle:active + .theme-switch-track {
   box-shadow: 0 0 0 3px $btn-accent-color;
 }

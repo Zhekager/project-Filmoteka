@@ -107,9 +107,10 @@
   line-height: 10px;
   color: $black-color;
   text-transform: uppercase;
-  outline: none;
-  &:hover,
-  &:focus {
+  transition: 500;
+  
+  &:hover
+   {
     background-color: $btn-accent-color;
     color: $white-color;
     border: 1px solid $btn-accent-color;
