@@ -199,3 +199,5 @@ export default class FilmApiService {
     localStorage.setItem('queue', JSON.stringify(movieIdStorageQ));
   }
 }
+
+
