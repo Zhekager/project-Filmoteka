@@ -30,7 +30,7 @@ function onError() {
 
 function joySuccess() {
   Toastify({
-    text: 'Ммм...заинтересовал фильмец;)',
+    text: 'Interested in this movie? or see a series of Friends?;)',
     duration: 2000,
     stopOnFocus: true,
     className: 'info-joy',
