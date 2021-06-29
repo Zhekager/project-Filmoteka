@@ -43,8 +43,8 @@
   padding: 10px 2px;
   transition: 1s;
   // transform: scale(1);
-  &:hover,
-  &:focus {
+  &:hover
+  {
     background-color: $white-color;
   }
 }
