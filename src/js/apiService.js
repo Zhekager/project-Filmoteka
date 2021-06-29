@@ -6,8 +6,6 @@ export default class FilmApiService {
     this.searchQuery = '';
     this.page = 1;
     this.id = '';
-    this.movieWatchedIdList = [];
-    this.movieQueueIdList = [];
   }
   fetchTrendingMovies() {
     return fetch(
