@@ -33,7 +33,7 @@ export default function addToLibrary(movieId) {
     } else if (btnAddToWatched.textContent === 'remove from watched') {
       btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
     }
-    
+  
     function onBtnAddToWatched(e) {
         filmsApiService.watchedLocalStorage(movieId);
         e.target.textContent = 'remove from watched';
@@ -42,8 +42,9 @@ export default function addToLibrary(movieId) {
         e.target.style.color = '#ffffff';
         e.target.style.borderColor = '#ff6b01';
 
+      btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
         btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
-        btnAddToWatched.removeEventListener('click', onBtnAddToWatched); 
+         
     }
     
     function onBtnRemoveFromWatched(e) {
@@ -53,8 +54,11 @@ export default function addToLibrary(movieId) {
         e.target.style.color = '#000000';
         e.target.style.borderColor = '#000000';
      
-        btnAddToWatched.addEventListener('click', onBtnAddToWatched);
         btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched); 
+      btnAddToWatched.addEventListener('click', onBtnAddToWatched);
+        
+      
+      updateWatched();
     }
     
 // Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
@@ -84,8 +88,8 @@ export default function addToLibrary(movieId) {
         e.target.style.borderColor = '#ff6b01';
   
         btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
-        btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
-    }
+      btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
+  }
 
     function onBtnRemoveFromQueue(e) {
       filmsApiService.queueLocalStorage(movieId);
@@ -96,7 +100,9 @@ export default function addToLibrary(movieId) {
         
       btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
       btnAddToQueue.addEventListener('click', onBtnAddToQueue);
-    }   
+    
+      updateQueue();
+    }
 }
     
 // Реализация кнопок Watched и Queue в разделе My library
@@ -104,30 +110,29 @@ export default function addToLibrary(movieId) {
 refs.btnQueue.addEventListener('click', onBtnQueue);
 refs.btnWatched.addEventListener('click', onBtnWatched);
 
-function onBtnQueue() {
-    let saveFilm = localStorage.getItem('queue');
+function onBtnWatched() {
+  refs.btnQueue.classList.remove('add');
+  refs.btnWatched.classList.add('add');
+  // e.target.classList.add('add');
+  updateWatched();
 
-    if (saveFilm) {
-      const parceFilm = JSON.parse(saveFilm);
-
-      for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
-        let id = parceFilm.MovieIDQ[i];
-
-        filmsApiService.getFullMovieInfo(id).then(movieInfo => {
-          createFilmCardsMarkUp([movieInfo]);
-          removeHiddenVoteAverage();
-        }).catch(error => console.log('error', error));
-      }
-
-      refs.btnWatched.addEventListener('click', onBtnWatched);
-      clearMoviesContainer();
-    }
+  refs.btnQueue.addEventListener('click', onBtnQueue);
+      // clearMoviesContainer();
 }
 
-function onBtnWatched() {
-    refs.btnQueue.classList.remove('add');
-    let saveFilm = localStorage.getItem('watched');
+function onBtnQueue() {
+  refs.btnWatched.classList.remove('add');
+  refs.btnQueue.classList.add('add');
+  //  e.target.classList.add('add');
 
+  updateQueue();
+
+   refs.btnWatched.addEventListener('click', onBtnWatched);
+      // clearMoviesContainer();
+}
+
+function updateWatched() {
+  let saveFilm = localStorage.getItem('watched');
     if (saveFilm) {
       const parceFilm = JSON.parse(saveFilm);
 
@@ -140,13 +145,32 @@ function onBtnWatched() {
           createFilmCardsMarkUp([movieInfo]);
           removeHiddenVoteAverage();
         })
-        .catch(error => console.log('error', error));
+          .catch(error => console.log('error', error));
       }
 
-    // refs.btnWatched.removeEventListener('click', onBtnWatched);
-    refs.btnQueue.addEventListener('click', onBtnQueue);
-    clearMoviesContainer();
+    // refs.btnQueue.addEventListener('click', onBtnQueue);
+      clearMoviesContainer();
   }
+}
+
+function updateQueue() {
+  let saveFilm = localStorage.getItem('queue');
+    if (saveFilm) {
+      const parceFilm = JSON.parse(saveFilm);
+
+      for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
+        let id = parceFilm.MovieIDQ[i];
+
+        filmsApiService.getFullMovieInfo(id).then(movieInfo => {
+          createFilmCardsMarkUp([movieInfo]);
+          removeHiddenVoteAverage();
+        }).catch(error => console.log('error', error));
+      }
+
+      // refs.btnWatched.addEventListener('click', onBtnWatched);
+      clearMoviesContainer();
+  }
+  
 }
 
 // Изменение стилей, очистка контейнера и рендеринг из localStories при клике на My Library

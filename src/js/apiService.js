@@ -166,7 +166,6 @@ export default class FilmApiService {
       filmsArray = savedItems.MovieIDW;
     }
 
-    // ----------------------
     if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
       filmsArray.push(id);
     } else if (filmsArray && filmsArray.length && filmsArray.includes(id)) {
@@ -175,7 +174,6 @@ export default class FilmApiService {
       filmsArray = [];
       filmsArray.push(id);
     }
-    //-----------------------------
 
     let movieIdStorageW = {
       MovieIDW: filmsArray,
