@@ -56,13 +56,13 @@ function closeModal() {
 }
 
 function openModal(evt) {
-    toastify.joySuccess();
+  
    evt.preventDefault();
     let id = evt.target.dataset.action;
     if (evt.target.nodeName !== 'IMG') {
         return
     }
     getFullMovieInfo(id);
-
+  toastify.joySuccess();
 }
 
