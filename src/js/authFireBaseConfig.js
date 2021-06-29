@@ -38,8 +38,7 @@ document.getElementById('logout').addEventListener('click', LogoutUser)
             document.getElementById('LoginScreen').style.display = "none"
             document.getElementById('dashboard').style.display="block"
             // showUserDetails(user)
-          } else {
-            document.getElementById('user-avatar').classList.remove("is-hidden")
+          } else {           
           }
         })
       }
