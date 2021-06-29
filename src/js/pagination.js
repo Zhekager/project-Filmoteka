@@ -19,6 +19,7 @@ const filmApiService = new FilmApiService();
 
 
 let galleryRef = document.querySelector('.gallery');
+
 let currentPage = 1;
 let pages = 20;
 let pageCount;
@@ -28,7 +29,7 @@ function resetCurrentPage() {
   currentPage = 1;
 }
 
-function renderPagination(totalPages, result, searchQuery) {
+function renderPagination(totalPages, result) {
   paginationEl.innerHTML = '';
   resetCurrentPage();
 
@@ -123,7 +124,6 @@ function renderPagination(totalPages, result, searchQuery) {
       
       currentBtn.classList.remove('active');
       button.classList.add('active');
-      
       createPagination(result, paginationEl, pages);
     });
     return button;
@@ -179,34 +179,43 @@ function disableArrowBtn(totalPages) {
   }
 }
 
+
+let input = document.querySelector('.input-film');
 renderPaginationPopularFilms();
 
 function renderPaginationPopularFilms() {
+    filmApiService.searchQuery = input.value;
+  if (input.value.length !== 0) {
+        filmApiService
+      .fetchPaginationSearch()
+        .then(results => {
+          console.log(results);
+          renderPagination(results.total_pages, results.results);
+    })
+    .catch(error => console.log(error));
+  return;
+  }
   filmApiService
-    .fetchPagination()
-    .then(results => {
+  .fetchPagination()
+  .then(results => {
       renderPagination(results.total_pages, results.results);
     })
     .catch(error => console.log(error));
 }
 
+
 function createListPage(currentPage) {
-  let input = document.querySelector('.input-film');
-
-  filmApiService.page = currentPage;
-  filmApiService.searchQuery = input.value;
-
-  input.addEventListener('input', function () {
-    if (input.value.length !== 0 && currentPage !== 1) {
-      //renderPaginationPopularFilms();
-      // console.log(input.value);
-      filmApiService
-        .fetchSearch()
-        .then(createFilmCardsMarkUp)
-        .catch(error => console.log('error', error))
-      return;
-    }
-  })
+  // let input = document.querySelector('.input-film')
+      filmApiService.page = currentPage
+  filmApiService.searchQuery = input.value
+  
+  if (input.value.length !== 0) {
+        filmApiService
+      .fetchSearch()
+      .then(createFilmCardsMarkUp)
+    .catch(error => console.log('error', error))
+    return;
+      }
 
   if (currentPage == 1) {
     filmApiService

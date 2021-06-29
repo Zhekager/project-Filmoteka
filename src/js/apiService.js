@@ -53,6 +53,17 @@ export default class FilmApiService {
       .catch(error => console.log(error));
   }
 
+    fetchPaginationSearch(currentPage) {
+    return fetch(
+      `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`,
+    )
+      .then(response => response.json())
+      .then(results => {
+        return results;
+      })
+      .catch(error => console.log(error));
+  }
+
   fetchPopularArticles() {
     const url = `${BASE_URL}/movie/popular?api_key=${KEY}&language=en-US&page=${this.page}`;
     return fetch(url)
