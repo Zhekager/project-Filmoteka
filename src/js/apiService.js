@@ -6,8 +6,6 @@ export default class FilmApiService {
     this.searchQuery = '';
     this.page = 1;
     this.id = '';
-    this.movieWatchedIdList = [];
-    this.movieQueueIdList = [];
   }
   fetchTrendingMovies() {
     return fetch(
@@ -166,7 +164,6 @@ export default class FilmApiService {
       filmsArray = savedItems.MovieIDW;
     }
 
-    // ----------------------
     if (filmsArray && filmsArray.length && !filmsArray.includes(id)) {
       filmsArray.push(id);
     } else if (filmsArray && filmsArray.length && filmsArray.includes(id)) {
@@ -175,7 +172,6 @@ export default class FilmApiService {
       filmsArray = [];
       filmsArray.push(id);
     }
-    //-----------------------------
 
     let movieIdStorageW = {
       MovieIDW: filmsArray,

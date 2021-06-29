@@ -61,13 +61,13 @@ refs.logo.addEventListener('click', onLogo);
 refs.home.addEventListener('click', onHome);
 
 function onLogo() {
-  e.preventDefault();
+  // e.preventDefault();
   // clearMoviesContainer();
   toggleHomeLogo();
 }
 
 function onHome() {
-  e.preventDefault();
+  // e.preventDefault();
   // clearMoviesContainer();
   toggleHomeLogo();
 }
