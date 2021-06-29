@@ -16,7 +16,3 @@
     transition: $primary-duration $timing-function;
   }
 }
-
-.auth-hidden {
-  @extend %is-hidden;
-}

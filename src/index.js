@@ -9,9 +9,15 @@ import './js/slider';
 import'./js/filmoteka';
 import './js/theme-switch';
 import './js/login';
-import './js/authFireBase';
 import './js/notification';
 import './js/preloader';
+import './js/authFireBaseConfig';
+
+// import './js/authFireBase';
+
+// import './js/notification';
+// import './js/preloader';
 
 
 // import './js/loading';
+

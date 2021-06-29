@@ -3,13 +3,10 @@
 
         
         <!-- Theme-switch -->
-        <div class="container">
-
-   
-
-      <div class="toolbar">
+        <div class="container"> 
+          <div class="toolbar">
           
-        <div class="theme-switch">
+            <div class="theme-switch">
             <svg class="theme-switch-icon" role="img" aria-label="Иконка солнца">
                 <use href="./images/sprite.svg#sun"></use>
             </svg>
@@ -112,13 +109,18 @@
             
             <!-- Authorization -->
             <ul class="nav-list auth">
-                <li><button data-action="open-modal" class="auth-item" id="sign_in" type="button">Sign in</button></li>
-                <li><button class="auth-item auth-hidden" id="sign_out" type="button">Sign Out</button></li>
-            </ul>
+                <li><div id="LoginScreen">
+                <button class="auth-item" id="login">Login</button>
+                </div></li>
+                <li> <div id="dashboard">
+                <div id="userDetails"></div>
+                <button class="auth-item" id="logout">Logout</button>
+                </div></li>
+            </ul>       
+            
             </div>             
         </nav>
-       
-       
+              
         <form class="search-form" id="search-form">
             <div class="form-group">
                <label class="form-label-film">
