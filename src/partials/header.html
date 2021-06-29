@@ -37,25 +37,30 @@
                     <span class="logo-header">Filmoteka</span>
                 </a>
             </div>
+
+                <!-- Authorization -->
+                <div class="auth-logo-container auth-list">
+                        <div><div class="auth-avatar" id="user-avatar">
+                        <svg class="auth-icon" width="30px" height="30px">
+                            <use href="./images/sprite.svg#icon-user"></use>
+                        </svg>
+                        </div>
+                        <div id="LoginScreen">
+                            <button class="auth-item" id="login">Login</button>
+                        </div></div>
+                        
+                        <div id="dashboard">
+                            <div id="userDetails"></div>
+                            <button class="auth-item" id="logout">Logout</button>
+                        </div>                    
+                </div>
                      
             <div class="navigation js-navigation">
             <ul class="nav-list js-nav">
                 <li class="nav-item"><a href="./index.html" class="nav-link js-nav-home nav-link-current">Home</a></li>
                 <li class="nav-item"><a href="./index.html" class="nav-link js-nav-library">My library</a></li>
             </ul>
-            
-            <!-- Authorization -->
-            <ul class="nav-list auth">
-                <li><div id="LoginScreen">
-                <button class="auth-item" id="login">Login</button>
-                </div></li>
-                <li> <div id="dashboard">
-                <div id="userDetails"></div>
-                <button class="auth-item" id="logout">Logout</button>
-                </div></li>
-            </ul>       
-            
-            </div>             
+        </div>             
         </nav>
               
         <form class="search-form" id="search-form">

@@ -1,9 +1,8 @@
-.auth {
-  margin-left: 40px;
-}
 .auth-item {
   @extend %font-nav;
   padding: 5px;
+  margin-left: auto;
+  margin-right: auto;
   border-radius: 5px;
   display: block;
 
@@ -15,4 +14,28 @@
     background-color: $line-orange-color;
     transition: $primary-duration $timing-function;
   }
+}
+
+.auth-list {
+  padding: 0;
+}
+.auth-logo-container {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.auth-avatar {
+  position: relative;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 3px;
+  border-radius: 50%;
+  border: 1px solid #fff;
+  background-color: transparent;
+}
+.auth-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
