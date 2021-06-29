@@ -1,3 +1,30 @@
+Filmoteka
+A short-term team project by 7 collaborators:
+
+[Maryna Skrypnyk](https://github.com/Maryna-Skrypnyk).
+[Yana Filippova](https://github.com/Yana-Filippova).
+[Tetiana Shostak](https://github.com/Tetiana1386).
+[Alexandra Shyshkovskaya](https://github.com/Alexandra-Shyshkovskaya).
+[Natalia Prygunova](https://github.com/pryhunova).
+[Sonya Starodub](https://github.com/sonya287).
+[Władysław Reginiewicz ](https://github.com/Trevoule).
+
+My contribution to the project:
+-Basic markup in index.html
+-Create project structure and parcels for components
+-slider with trailers
+-footer with our team modal
+-scroll-up button
+
+Technology used:
+-HTML
+-SASS
+-Javascript
+-Parcel
+-NPM packages
+
+-------------------------------------------------------------------------------------------------------
+
 # parcel-project-template
 
 ## Зависимости
