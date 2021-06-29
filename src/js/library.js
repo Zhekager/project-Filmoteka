@@ -44,7 +44,8 @@ export default function addToLibrary(movieId) {
 
       btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
         btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
-         
+      
+      updateLibraryWatched();
     }
     
     function onBtnRemoveFromWatched(e) {
@@ -57,9 +58,14 @@ export default function addToLibrary(movieId) {
         btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched); 
       btnAddToWatched.addEventListener('click', onBtnAddToWatched);
         
-      
-      updateWatched();
+      updateLibraryWatched()
+  }
+  
+  function updateLibraryWatched() {
+    if (document.querySelector('.js-nav-library').classList.length === 3) {
+      onBtnWatched();
     }
+}
     
 // Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
     let saveFilmQueue = JSON.parse(localStorage.getItem('queue'));
@@ -89,7 +95,9 @@ export default function addToLibrary(movieId) {
   
         btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
       btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
-  }
+  
+      updateLibraryQueue()
+    }
 
     function onBtnRemoveFromQueue(e) {
       filmsApiService.queueLocalStorage(movieId);
@@ -101,9 +109,15 @@ export default function addToLibrary(movieId) {
       btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
       btnAddToQueue.addEventListener('click', onBtnAddToQueue);
     
-      updateQueue();
+      updateLibraryQueue()
     }
 }
+
+function updateLibraryQueue() {
+    if (document.querySelector('.js-nav-library').classList.length === 3) {
+      onBtnQueue();
+    }
+  }
     
 // Реализация кнопок Watched и Queue в разделе My library
 
@@ -113,21 +127,10 @@ refs.btnWatched.addEventListener('click', onBtnWatched);
 function onBtnWatched() {
   refs.btnQueue.classList.remove('add');
   refs.btnWatched.classList.add('add');
-  // e.target.classList.add('add');
+
   updateWatched();
-
-  refs.btnQueue.addEventListener('click', onBtnQueue);
-      // clearMoviesContainer();
-}
-
-function onBtnQueue() {
-  refs.btnWatched.classList.remove('add');
-  refs.btnQueue.classList.add('add');
-  //  e.target.classList.add('add');
-
-  updateQueue();
-
-   refs.btnWatched.addEventListener('click', onBtnWatched);
+  
+  // refs.btnQueue.addEventListener('click', onBtnQueue);
       // clearMoviesContainer();
 }
 
@@ -148,10 +151,21 @@ function updateWatched() {
           .catch(error => console.log('error', error));
       }
 
-    // refs.btnQueue.addEventListener('click', onBtnQueue);
+    refs.btnQueue.addEventListener('click', onBtnQueue);
       clearMoviesContainer();
   }
 }
+
+function onBtnQueue() {
+  refs.btnWatched.classList.remove('add');
+  refs.btnQueue.classList.add('add');
+
+  updateQueue();
+
+  //  refs.btnWatched.addEventListener('click', onBtnWatched);
+      // clearMoviesContainer();
+}
+  
 
 function updateQueue() {
   let saveFilm = localStorage.getItem('queue');
@@ -167,7 +181,7 @@ function updateQueue() {
         }).catch(error => console.log('error', error));
       }
 
-      // refs.btnWatched.addEventListener('click', onBtnWatched);
+      refs.btnWatched.addEventListener('click', onBtnWatched);
       clearMoviesContainer();
   }
   
