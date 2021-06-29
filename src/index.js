@@ -12,12 +12,3 @@ import './js/login';
 import './js/notification';
 import './js/preloader';
 import './js/authFireBaseConfig';
-
-// import './js/authFireBase';
-
-// import './js/notification';
-// import './js/preloader';
-
-
-// import './js/loading';
-

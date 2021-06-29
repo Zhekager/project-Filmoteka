@@ -36,11 +36,12 @@
   text-decoration: underline;
   color: $footer-text-color;
   cursor: pointer;
-  transition: 0.8s;
-  &:hover {
+  transition: 0.5s;
+  &:hover,
+  &:focus {
     text-decoration: none;
-    transform: scale(1.03);
-    color: $red-text-color;
+    transform: scale(1.1);
+    color: $btn-accent-color;
   }
 }
 
@@ -55,7 +56,56 @@
 .favorite {
   display: inline-flex;
   align-items: center;
+  border-radius: 50%;
+  background: rgba(204, 169, 44, 0.301);
+  cursor: pointer;
+  box-shadow: 0 0 0 rgba(204,169,44, 0.4);
+  animation: pulse 3s infinite;
 }
+.favorite:hover {
+  animation: none;
+}
+
+@-webkit-keyframes pulse {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+  }
+  70% {
+      -webkit-box-shadow: 0 0 0 12px rgba(204,169,44, 0);
+  }
+  100% {
+      -webkit-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+  }
+}
+@keyframes pulse {
+  0% {
+    -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    box-shadow: 0 0 0 0 rgba(204,169,44, 0.4);
+    transform: scale(1);
+  }
+  70% {
+      -moz-box-shadow: 0 0 0 12px rgba(204,169,44, 0);
+      box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+      transform: scale(1.3);
+  }
+  100% {
+      -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+      transform: scale(1);
+  }
+}
+
+
+.favorite-icon{
+  width: 16px;
+  height: 14px;
+}
+
+
+
+
+
+
 .copyright-accent {
   color: $line-orange-color;
   font-weight: 600;
@@ -72,18 +122,9 @@
 
 };
 
-
-
-
-
 $pink: $line-orange-color;
 @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400');
 
-// body {
-//   background: #424B54;
-//   font-family: 'Source Sans Pro', sans-serif;
-//   overflow: hidden;
-// }
 
 form {
   display: flex;
@@ -104,9 +145,9 @@ input {
 
 .tooltip {
   position: relative;
-  // margin: 5px;
   border-radius: 100%;
   color: #FFF;
+  padding: 0px 4px;
 }
 
 .tooltip:before,
@@ -138,11 +179,14 @@ input {
   font-size: 13px;
   font-weight: 300;
   top: -50px;
-  left: -10px;
+  left: -70px;
    padding-top: 5px;
   border-radius: 5px;
   letter-spacing: 1px;
   transform: translateY(20px);
+  @media screen and (max-width: 768px){
+    display: none;
+  }
   @media screen and (min-width: 769px){
     top: -55px;
   }
