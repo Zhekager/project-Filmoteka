@@ -1,8 +1,8 @@
 .header {
   padding-top: 0;
   padding-bottom: 0;
-  height: 230px;
-  text-align: center;
+  // height: 230px;
+  // text-align: center;
 }
 
 .overlay {
@@ -282,7 +282,7 @@
 
 .container-header {
   padding-top: 24px;
-  padding-bottom: 98px;
+  padding-bottom: 28px;
 
   @media screen and (min-width: 768px) {
     padding-top: 20px;
@@ -325,7 +325,7 @@
 
 .navigation {
   display: flex;
-  // margin-left: auto;
+  margin-left: auto;
 }
 
 .navigation.is-hidden {
@@ -413,6 +413,8 @@
 .search-form {
   display: flex;
   justify-content: center;
+  // margin: -50px 0 auto auto;
+
 }
 
 .search-form.is-hidden {
@@ -473,124 +475,4 @@
       }
     }
   }
-}
-
-
-
-
-@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
-
-
-a {
-  color: white;
-  
-  
-}
-
-.filterwrapper {
-    position: absolute;
-    z-index: -1;
-    pointer-events: none;
-    opacity: 0;
-}
-
-.svgtext {
-    display: block;
-    position: relative;
-    overflow: hidden;
-    margin: 0 auto;
-}
-
-.intro {
-    margin-bottom: 3em;
-}
-
-hr {
-    height: 0;
-    border-bottom: solid #cccccc 1px;
-}
-
-.glitch-filter-example {
-    margin: 0;
-}
-
-.glitch-filter-example__heading {
-    margin: 0;
-    margin-bottom: 1em;
-    padding: 0;
-    display: block;
-    position: relative;
-}
-
-.glitch-filter-example__demo{
-  @media screen and (max-width: 768px){
-    display: none;
-  }
-  @media screen and (min-width: 769px){
-     margin-top: -41px;
-  }
-
-
-}
-.glitch-filter-example__filtered-text {
-    filter: url(#filter);
-    fill: white;
-
-    @media screen and (min-width: 768px) {
-      display: inline-flex;
-      align-items: center;
-      margin-left: 10px;
-      // color: $white-color;
-      font-weight: 500;
-      font-size: 30px;
-      line-height: 1.17;
-    }
-}
-
-.top-r,
-.bot-r,
-.top-g,
-.bot-g {
-    stroke: #ffffff;
-}
-
-.top-r {
-    stroke-width: 100px;
-    animation: topani 3.5s linear infinite;
-}
-
-.bot-r {
-    stroke-width: 100px;
-    animation: botani 4s linear infinite;
-}
-
-.top-g {
-    stroke-width: 50px;
-    animation: topani 4s linear reverse infinite;
-}
-
-.bot-g {
-    stroke-width: 50%;
-    animation: botani 3.5s linear reverse infinite;
-}
-
-@mixin createRandomKeyframes( $numberOfKeys ) {
-    $delta: round(100/$numberOfKeys);
-    
-    @for $i from 1 through $numberOfKeys {
-        $time: ($i*$delta - random($delta)) +'%';
-        #{$time} {
-            stroke-width: random(200) + px;
-        }
-    }
-}
-
-@keyframes topani {
-  @include createRandomKeyframes( 10 + random(10)
-   );
-}
-
-@keyframes botani {
-  @include createRandomKeyframes( 10 + random(10) 
-  );
 }
