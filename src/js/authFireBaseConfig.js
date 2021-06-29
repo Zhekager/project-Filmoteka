@@ -29,7 +29,7 @@ document.getElementById('logout').addEventListener('click', LogoutUser)
 
       function showUserDetails(user){
         document.getElementById('userDetails').innerHTML = `
-          <img src="${user.photoURL}" style="width:55px; border-radius: 50%;">`
+          <img src="${user.photoURL}" style="width:55px; border-radius: 50%; margin-bottom: 3px;">`
       }
 
       function checkAuthState(){
