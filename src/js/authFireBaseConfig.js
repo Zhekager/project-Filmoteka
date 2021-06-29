@@ -27,18 +27,17 @@ document.getElementById('logout').addEventListener('click', LogoutUser)
         })
       }
 
-      function showUserDetails(user){
-        document.getElementById('userDetails').innerHTML = `
-          <img src="${user.photoURL}" style="width:55px; border-radius: 50%; margin-bottom: 3px;">`
-      }
+      // function showUserDetails(user){
+      //   document.getElementById('userDetails').innerHTML = `
+      //     <img src="${user.photoURL}" style="width:55px; border-radius: 50%; margin-bottom: 3px;">`
+      // }
 
       function checkAuthState(){
         firebase.auth().onAuthStateChanged(user=>{
           if(user){
             document.getElementById('LoginScreen').style.display = "none"
-            document.getElementById('user-avatar').classList.add("is-hidden")
             document.getElementById('dashboard').style.display="block"
-            showUserDetails(user)
+            // showUserDetails(user)
           } else {
             document.getElementById('user-avatar').classList.remove("is-hidden")
           }
