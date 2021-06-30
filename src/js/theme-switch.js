@@ -17,6 +17,7 @@ const delClassElem = () => {
   refs.sliderWrappeBtnLeft.classList.remove(Theme.LIGHT, Theme.GRAY);
   refs.sliderWrappeBtnRight.classList.remove(Theme.LIGHT, Theme.GRAY);
   refs.footer.classList.remove(Theme.LIGHT, Theme.GRAY);
+  refs.copyrightLogo.classList.remove(Theme.LIGHT, Theme.DARK);
 }
   
 refs.themeSwitcher.addEventListener('change', () => {
@@ -28,6 +29,7 @@ refs.themeSwitcher.addEventListener('change', () => {
     refs.sliderWrappeBtnLeft.classList.add(Theme.GRAY);
     refs.sliderWrappeBtnRight.classList.add(Theme.GRAY);
     refs.footer.classList.add(Theme.GRAY);
+    refs.copyrightLogo.classList.add(Theme.DARK);
        } else {
     localStorage.setItem('Theme','lightTheme');
     refs.body.classList.add(Theme.LIGHT);
@@ -41,4 +43,5 @@ refs.themeSwitcher.addEventListener('change', () => {
       refs.sliderWrappeBtnLeft.classList.add(Theme.GRAY);
       refs.sliderWrappeBtnRight.classList.add(Theme.GRAY);
       refs.footer.classList.add(Theme.GRAY);
+      refs.copyrightLogo.classList.add(Theme.DARK);
    }

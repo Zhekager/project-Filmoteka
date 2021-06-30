@@ -21,6 +21,7 @@ export default function getRefs() {
     sliderWrappeBtnLeft: document.querySelector('.glide__arrow--left'),
     sliderWrappeBtnRight: document.querySelector('.glide__arrow--right'),
     footer: document.querySelector('.footer'),
+    copyrightLogo: document.querySelector('.copyright-logo'),
 };
 }
 
