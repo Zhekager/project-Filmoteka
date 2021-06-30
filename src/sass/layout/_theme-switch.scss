@@ -14,6 +14,11 @@
   background-color: rgba(21, 21, 21, 0.7);
 }
 
+.dark-theme-copyright {
+  background-color: transparent;
+  color: $white-color;
+}
+
 .toolbar {
   display: flex;
   justify-content: flex-end;
