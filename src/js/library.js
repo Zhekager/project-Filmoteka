@@ -3,6 +3,7 @@ import { clearMoviesContainer, createFilmCardsMarkUp } from './showTrendingMovie
 import getRefs from './refs.js';
 import { clearPaginationEl } from './pagination';
 import { clearSlider } from './slider';
+import trailer from './trailers.js';
 
 const refs = getRefs();
 
@@ -11,7 +12,9 @@ const filmsApiService = new FilmApiService();
 export default function addToLibrary(movieId) {
 
     const btnAddToWatched = document.querySelector('#add-to-watched');
-    const btnAddToQueue = document.querySelector('#add-to-queue');
+  const btnAddToQueue = document.querySelector('#add-to-queue');
+  const btnTrailer = document.querySelector('.watch-trailer');
+  btnTrailer.addEventListener('click', trailer.createTrailerLink(btnTrailer));
 
     // Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
     
