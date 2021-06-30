@@ -1,2 +1,0 @@
-.preloader{position:fixed;left:0;top:0;width:100%;height:100%;background-color:#fff;z-index:2;transition:all 1s;opacity:1;visibility:visible}.preloader .loader{width:75px;height:75px;border-radius:50%;border:10px solid #afadad;border-top-color:#ff6b08;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);animation:spin 2s linear infinite}.preloader.done{opacity:0;visibility:hidden}@keyframes spin{0%{transform:translate(-50%,-50%) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(1turn)}}
-/*# sourceMappingURL=/project-Filmoteka/_spinner.2b7074fc.css.map */
