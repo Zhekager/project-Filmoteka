@@ -1,22 +1,12 @@
 import FilmApiService from './apiService.js';
 import markUpFilmCardTpl from '../templates/films.hbs'
 
-
 const arrowLeft = document.querySelector('.arrow-left'),
       arrowRight = document.querySelector('.arrow-right'),
       paginationEl = document.querySelector('#pagination'),
       paginationPages = document.querySelector('.pagination-pages');
       
 const filmApiService = new FilmApiService();
-
-
-// const BASE_URL = 'https://api.themoviedb.org/3';
-// const API_KEY = '92ffb34e08e714eb390805a25b0a06d3';
-// const cardFilm = document.querySelector('.js-card-film'),
-//   arrowLeft = document.querySelector('.arrow-left'),
-//   arrowRight = document.querySelector('.arrow-right'),
-//   paginationEl = document.querySelector('#pagination');
-
 
 let galleryRef = document.querySelector('.gallery');
 
@@ -179,7 +169,6 @@ function disableArrowBtn(totalPages) {
   }
 }
 
-
 let input = document.querySelector('.input-film');
 renderPaginationPopularFilms();
 
@@ -202,7 +191,6 @@ function renderPaginationPopularFilms() {
     })
     .catch(error => console.log(error));
 }
-
 
 function createListPage(currentPage) {
   // let input = document.querySelector('.input-film')
