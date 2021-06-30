@@ -54,6 +54,12 @@
   background-repeat: no-repeat;
 }
 
+@media screen and (max-width: 480px) {
+  .arrow-right {
+    display: none;
+  }
+}
+
 .pages-numbers {
   display: flex;
   flex-wrap: wrap;
@@ -73,10 +79,6 @@
   line-height: 1.33;
   background-color: $white-color;
 }
-.dark-theme-button {
-  background-color: #212121;
-  color: lightgrey;
-}
 
 .pages-numbers button:hover,
 .pages-numbers button.active {
@@ -91,7 +93,7 @@
     width: 30px;
     height: 30px;
     margin: 1px;
-    font-size: 10px;
+    font-size: 8px;
   }
 }
 
