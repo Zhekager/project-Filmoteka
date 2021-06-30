@@ -13,10 +13,8 @@ export default function getRefs() {
     btnWatched: document.querySelector('[data-action="btn-watched"]'),
     btnAddToQueue: document.querySelector('#add-to-queue'),
     btnAddToWatched: document.querySelector('#add-to-watched'),
-
     navigation: document.querySelector('.navigation'),
     btnModalClose: document.querySelector('[data-modal-close]'),
-    
     themeSwitcher: document.querySelector('#theme-switch-toggle'),
     modalContent: document.querySelector('.cardFilm'),
     sliderWrapper: document.querySelector('.slider-wrapper'),
