@@ -9,7 +9,7 @@ const firebaseConfig = {
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-// document.getElementById('dashboard').style.display="none"
+document.getElementById('logout').style.display="none"
 document.getElementById('login').addEventListener('click', GoogleLogin)
 document.getElementById('logout').addEventListener('click', LogoutUser)
 
@@ -44,7 +44,6 @@ const provider = new firebase.auth.GoogleAuthProvider()
             document.getElementById('login').style.display = "none"
             document.getElementById('userDetails').style.display = "block"
             document.getElementById('logout').style.display="block"
-            // document.getElementById('dashboard').style.display="block"
             showUserDetails(user)
           }else{            
           }

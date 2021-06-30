@@ -1,13 +1,10 @@
 import filmTpl from '../templates/filmModal.hbs';
 import * as basicLightbox from 'basiclightbox';
 import 'basiclightbox/dist/basicLightbox.min.css';
-import getRefs from '../js/refs';
 import FilmApiService from './apiService.js';
 import addToLibrary from './library.js';
 
 import toastify from '../js/notification';
-
-const refs = getRefs();
 
 
 const filmsApiService = new FilmApiService();

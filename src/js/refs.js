@@ -14,9 +14,15 @@ export default function getRefs() {
     btnAddToQueue: document.querySelector('#add-to-queue'),
     btnAddToWatched: document.querySelector('#add-to-watched'),
 
-   navigation: document.querySelector('.navigation'),
+    navigation: document.querySelector('.navigation'),
     btnModalClose: document.querySelector('[data-modal-close]'),
-
+    
+    themeSwitcher: document.querySelector('#theme-switch-toggle'),
+    modalContent: document.querySelector('.cardFilm'),
+    sliderWrapper: document.querySelector('.slider-wrapper'),
+    sliderWrappeBtnLeft: document.querySelector('.glide__arrow--left'),
+    sliderWrappeBtnRight: document.querySelector('.glide__arrow--right'),
+    footer: document.querySelector('.footer'),
 };
 }
 
