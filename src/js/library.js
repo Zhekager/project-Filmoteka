@@ -129,9 +129,6 @@ function onBtnWatched() {
   refs.btnWatched.classList.add('add');
 
   updateWatched();
-  
-  // refs.btnQueue.addEventListener('click', onBtnQueue);
-      // clearMoviesContainer();
 }
 
 function updateWatched() {
@@ -161,9 +158,6 @@ function onBtnQueue() {
   refs.btnQueue.classList.add('add');
 
   updateQueue();
-
-  //  refs.btnWatched.addEventListener('click', onBtnWatched);
-      // clearMoviesContainer();
 }
   
 
