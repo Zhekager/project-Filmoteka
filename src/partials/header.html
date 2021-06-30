@@ -3,7 +3,7 @@
 
         
         <!-- Theme-switch -->
-        <div class="container"> 
+        
           <div class="toolbar">
           
             <div class="theme-switch">
@@ -23,7 +23,6 @@
                 <use href="./images/sprite.svg#moon"></use>
             </svg>
         </div>
-        </div>
       </div>
     <div class="container container-header" id="home">
 
@@ -42,16 +41,16 @@
                     <li class="nav-item"><a href="./index.html" class="nav-link js-nav-home nav-link-current">Home</a></li>
                     <li class="nav-item"><a href="./index.html" class="nav-link js-nav-library" data-update>My library</a></li>
                     <li class="nav-item">
-                        <!-- Authorization -->
-                        <div id="LoginScreen">
-                            <button class="auth-item" id="login">Login</button>
-                        </div>
-                        <div id="dashboard">
-                            <div class="userDetails" id="userDetails"></div>
-                            <button class="auth-item" id="logout">Logout</button>
-                        </div>
-                    </li>
-                </ul>
+                <!-- Authorization -->
+                <div class="auth" >
+                <div id="LoginScreen">
+                    <button class="auth-item" id="login">Login</button>
+                </div>
+                <button class="auth-item" id="logout">Logout</button>                
+                <div class="user-info" id="userDetails"></div>                   
+                </div>                
+                </li>              
+        </ul>
             </div>
         </nav>
         
