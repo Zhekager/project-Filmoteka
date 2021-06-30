@@ -1,3 +1,5 @@
+import getRefs from "./refs";
+
 //меняет цвет темы
 const Theme = {
   LIGHT: 'light-theme',
@@ -5,44 +7,38 @@ const Theme = {
   GRAY: 'grey-background-theme',
 };
 
-const bodyRef = document.querySelector('body');
-const themeSwitcherRef = document.querySelector('#theme-switch-toggle');
-const modalContentRef = document.querySelector('.card-film');
-const sliderWrapperRef = document.querySelector('.slider-wrapper');
-const sliderWrappeBtnLeftRef = document.querySelector('.glide__arrow--left');
-const sliderWrappeBtnRightRef = document.querySelector('.glide__arrow--right');
-const footerRef = document.querySelector('.footer');
+const refs = getRefs();
 
-// console.log(modalContentRef);
+// console.log(refs.modalContent);
 
 const delClassElem = () => {
-  bodyRef.classList.remove(Theme.LIGHT, Theme.DARK);
-  sliderWrapperRef.classList.remove(Theme.LIGHT, Theme.DARK);
-  sliderWrappeBtnLeftRef.classList.remove(Theme.LIGHT, Theme.GRAY);
-  sliderWrappeBtnRightRef.classList.remove(Theme.LIGHT, Theme.GRAY);
-  footerRef.classList.remove(Theme.LIGHT, Theme.GRAY);
+  refs.body.classList.remove(Theme.LIGHT, Theme.DARK);
+  refs.sliderWrapper.classList.remove(Theme.LIGHT, Theme.DARK);
+  refs.sliderWrappeBtnLeft.classList.remove(Theme.LIGHT, Theme.GRAY);
+  refs.sliderWrappeBtnRight.classList.remove(Theme.LIGHT, Theme.GRAY);
+  refs.footer.classList.remove(Theme.LIGHT, Theme.GRAY);
 }
   
-themeSwitcherRef.addEventListener('change', () => {
+refs.themeSwitcher.addEventListener('change', () => {
   delClassElem();
-  if (themeSwitcherRef.checked) {
+  if (refs.themeSwitcher.checked) {
     localStorage.setItem('Theme','darkTheme');
-    bodyRef.classList.add(Theme.DARK);
-    sliderWrapperRef.classList.add(Theme.DARK);
-    sliderWrappeBtnLeftRef.classList.add(Theme.GRAY);
-    sliderWrappeBtnRightRef.classList.add(Theme.GRAY);
-        footerRef.classList.add(Theme.GRAY);
+    refs.body.classList.add(Theme.DARK);
+    refs.sliderWrapper.classList.add(Theme.DARK);
+    refs.sliderWrappeBtnLeft.classList.add(Theme.GRAY);
+    refs.sliderWrappeBtnRight.classList.add(Theme.GRAY);
+    refs.footer.classList.add(Theme.GRAY);
        } else {
     localStorage.setItem('Theme','lightTheme');
-    bodyRef.classList.add(Theme.LIGHT);
-    sliderWrapperRef.classList.add(Theme.LIGHT);
+    refs.body.classList.add(Theme.LIGHT);
+    refs.sliderWrapper.classList.add(Theme.LIGHT);
       }
 });
     if(localStorage.getItem('Theme') === 'darkTheme'){
-      themeSwitcherRef.setAttribute('checked', true);
-      bodyRef.classList.add(Theme.DARK);
-      sliderWrapperRef.classList.add(Theme.DARK);
-      sliderWrappeBtnLeftRef.classList.add(Theme.GRAY);
-      sliderWrappeBtnRightRef.classList.add(Theme.GRAY);
-      footerRef.classList.add(Theme.GRAY);
+      refs.themeSwitcher.setAttribute('checked', true);
+      refs.body.classList.add(Theme.DARK);
+      refs.sliderWrapper.classList.add(Theme.DARK);
+      refs.sliderWrappeBtnLeft.classList.add(Theme.GRAY);
+      refs.sliderWrappeBtnRight.classList.add(Theme.GRAY);
+      refs.footer.classList.add(Theme.GRAY);
    }
