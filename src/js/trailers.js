@@ -2,6 +2,14 @@ import * as basicLightbox from 'basiclightbox';
 
 function createTrailerLink(elementRef) {
   const trailerBtn = elementRef;
+  // console.log(trailerBtn.length==undefined);
+
+  if (trailerBtn.length==undefined) {
+    trailerBtn.addEventListener('click', e => {
+      drawModalForTrailler(e.target.dataset.id);
+    })
+   return;
+  }
 
   trailerBtn.forEach(el =>
     el.addEventListener('click', e => {
