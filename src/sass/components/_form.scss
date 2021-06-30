@@ -190,6 +190,9 @@
   cursor: pointer;
   background-repeat: no-repeat;
   background-image: url('https://img.icons8.com/material-two-tone/24/000000/multiply.png');
+box-shadow:none;
+
+@include transit(box-shadow);
 
   &:hover,
   &:focus {
