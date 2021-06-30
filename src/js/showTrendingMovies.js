@@ -39,7 +39,7 @@ function onSearch(e) {
     filmsApiService.fetchSearch().then(movies => {
       if (movies.length === 0) {
         toastify.onError();
-        renderTrendingMovies();
+        // renderTrendingMovies();
       } else {
         toastify.onSuccess();
         createFilmCardsMarkUp(movies);
