@@ -1,4 +1,9 @@
 body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
   font-family: $main-font;
   letter-spacing: 0.03em;
   background-color: $white-color;
