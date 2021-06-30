@@ -1,5 +1,5 @@
-#Filmoteka
-A short-term team project by 7 collaborators:
+# Filmoteka
+## A short-term team project by 7 collaborators:
 
 - [Maryna Skrypnyk](https://github.com/Maryna-Skrypnyk).
 - [Yana Filippova](https://github.com/Yana-Filippova).
@@ -9,14 +9,14 @@ A short-term team project by 7 collaborators:
 - [Sonya Starodub](https://github.com/sonya287).
 - [Władysław Reginiewicz ](https://github.com/Trevoule).
 
-### My contribution to the project:
+## My contribution to the project:
 - Basic markup in index.html.
 - Create project structure and parcels for components.
 - slider with trailers.
 - footer with our team modal.
 - scroll-up button.
 
-### Technology used:
+## Technology used:
 - HTML.
 - SASS.
 - Javascript.
