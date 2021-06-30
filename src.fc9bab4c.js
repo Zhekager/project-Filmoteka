@@ -58,4 +58,4 @@ const e={apiKey:"AIzaSyAc20GtxbnwovpESU-Dac2b-nhS3RPE_PM",authDomain:"filmoteka-
 },{}],"Focm":[function(require,module,exports) {
 "use strict";require("./sass/main.scss"),require("./js/showTrendingMovies"),require("./js/pagination"),require("./js/upScrol"),require("./js/library"),require("./js/modalTeam"),require("./js/card-modal"),require("./js/slider"),require("./js/theme-switch"),require("./js/login"),require("./js/notification"),require("./js/preloader"),require("./js/authFireBaseConfig");
 },{"./sass/main.scss":"clu1","./js/showTrendingMovies":"nlib","./js/pagination":"o8lo","./js/upScrol":"XtGD","./js/library":"BfNj","./js/modalTeam":"fDFk","./js/card-modal":"e8OF","./js/slider":"wzuc","./js/theme-switch":"JIhF","./js/login":"NYJS","./js/notification":"SiMs","./js/preloader":"BeZ8","./js/authFireBaseConfig":"HQOa"}]},{},["Focm"], null)
-//# sourceMappingURL=/project-Filmoteka/src.f88b6d9d.js.map
+//# sourceMappingURL=/project-Filmoteka/src.fc9bab4c.js.map
