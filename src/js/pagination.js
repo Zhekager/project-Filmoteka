@@ -1,11 +1,13 @@
-import FilmApiService from './apiService.js';
-import markUpFilmCardTpl from '../templates/films.hbs'
+import { hideSpinner, showSpinner } from './spinner';
+import FilmApiService from './apiService';
+
+import markUpFilmCardTpl from '../templates/films.hbs';
 
 const arrowLeft = document.querySelector('.arrow-left'),
-      arrowRight = document.querySelector('.arrow-right'),
-      paginationEl = document.querySelector('#pagination'),
-      paginationPages = document.querySelector('.pagination-pages');
-      
+  arrowRight = document.querySelector('.arrow-right'),
+  paginationEl = document.querySelector('#pagination'),
+  paginationPages = document.querySelector('.pagination-pages');
+
 const filmApiService = new FilmApiService();
 
 let galleryRef = document.querySelector('.gallery');
@@ -34,7 +36,7 @@ function renderPagination(totalPages, result) {
 
     let maxLeftPage = currentPage - Math.floor(pagesSeach / 2);
     let maxRightPage = currentPage + Math.floor(pagesSeach / 2);
-    
+
     if (maxLeftPage < 1) {
       maxLeftPage = 1;
       maxRightPage = pagesSeach;
@@ -99,7 +101,7 @@ function renderPagination(totalPages, result) {
     let button = document.createElement('button');
     button.innerText = page;
     if (currentPage == page) {
-      button.classList.add('active'); 
+      button.classList.add('active');
     }
 
     button.addEventListener('click', function () {
@@ -108,10 +110,10 @@ function renderPagination(totalPages, result) {
 
       let currentBtn = document.querySelector('.pages-numbers button.active');
       currentBtn.addEventListener('click', createListPage(currentPage));
-      
+
       arrowLeft.addEventListener('click', createListPage(currentPage - 1));
       arrowRight.addEventListener('click', createListPage(currentPage));
-      
+
       currentBtn.classList.remove('active');
       button.classList.add('active');
       createPagination(result, paginationEl, pages);
@@ -150,7 +152,6 @@ function disableArrowBtnAfterPageClick(event) {
   if (event.target.tagName != 'BUTTON') {
     return;
   } else {
-    
     disableArrowBtn(pageCount);
   }
 }
@@ -173,43 +174,46 @@ let input = document.querySelector('.input-film');
 renderPaginationPopularFilms();
 
 function renderPaginationPopularFilms() {
-    filmApiService.searchQuery = input.value;
+  filmApiService.searchQuery = input.value;
   if (input.value.length !== 0) {
-        filmApiService
+    filmApiService
       .fetchPaginationSearch()
-        .then(results => {
-          console.log(results);
-          renderPagination(results.total_pages, results.results);
-    })
-    .catch(error => console.log(error));
-  return;
+      .then(results => {
+        console.log(results);
+        renderPagination(results.total_pages, results.results);
+      })
+      .catch(error => console.log(error));
+    return;
   }
   filmApiService
-  .fetchPagination()
-  .then(results => {
+    .fetchPagination()
+    .then(results => {
       renderPagination(results.total_pages, results.results);
     })
     .catch(error => console.log(error));
 }
 
 function createListPage(currentPage) {
+  showSpinner();
   // let input = document.querySelector('.input-film')
-      filmApiService.page = currentPage
-  filmApiService.searchQuery = input.value
-  
+  filmApiService.page = currentPage;
+  filmApiService.searchQuery = input.value;
+
   if (input.value.length !== 0) {
-        filmApiService
+    filmApiService
       .fetchSearch()
       .then(createFilmCardsMarkUp)
-    .catch(error => console.log('error', error))
+      .catch(error => console.log('error', error))
+      .finally(hideSpinner);
     return;
-      }
+  }
 
   if (currentPage == 1) {
     filmApiService
       .fetchTrendingMovies()
       .then(createFilmCardsMarkUp)
-      .catch(error => console.log('error', error));
+      .catch(error => console.log('error', error))
+      .finally(hideSpinner);
     return;
   }
 
@@ -217,7 +221,8 @@ function createListPage(currentPage) {
     filmApiService
       .fetchTrendingMovies()
       .then(createFilmCardsMarkUp)
-      .catch(error => console.log('error', error));
+      .catch(error => console.log('error', error))
+      .finally(hideSpinner);
   }
 }
 
@@ -232,8 +237,3 @@ function clearPaginationEl() {
 
 export { renderPaginationPopularFilms };
 export { clearPaginationEl };
-
-  
-
-
-

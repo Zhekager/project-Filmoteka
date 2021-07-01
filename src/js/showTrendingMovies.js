@@ -1,9 +1,10 @@
-import FilmApiService from './apiService.js';
+import FilmApiService from './apiService';
 import markUpFilmCardTpl from '../templates/films.hbs';
-import getRefs from './refs.js';
+import getRefs from './refs';
 import debounce from 'lodash.debounce';
 import { renderPaginationPopularFilms } from './pagination';
-import toastify from './notification.js';
+import toastify from './notification';
+import { showSpinner, hideSpinner } from './spinner';
 
 const refs = getRefs();
 
@@ -14,21 +15,25 @@ refs.searchInput.addEventListener('input', debounce(onSearch, 500));
 let galleryRef = document.querySelector('.gallery');
 
 // фетч популярных фильмов - стартовая страница
+showSpinner();
 renderTrendingMovies();
 
 function renderTrendingMovies() {
   filmsApiService
     .fetchTrendingMovies()
     .then(createFilmCardsMarkUp)
-    .catch(error => console.log('error', error));
+    .catch(error => console.log('error', error))
+    .finally(hideSpinner);
 }
 
 // поиск фильмов
 function onSearch(e) {
   filmsApiService.searchQuery = e.target.value;
+  showSpinner();
   renderPaginationPopularFilms();
 
   if (filmsApiService.searchQuery.trim() === '') {
+    hideSpinner();
     return toastify.needMoreInfo();
   }
 
@@ -38,10 +43,12 @@ function onSearch(e) {
   if (filmsApiService.searchQuery !== '') {
     filmsApiService.fetchSearch().then(movies => {
       if (movies.length === 0) {
+        hideSpinner();
         toastify.onError();
         // renderTrendingMovies();
       } else {
         toastify.onSuccess();
+        hideSpinner();
         createFilmCardsMarkUp(movies);
       }
     });
@@ -63,12 +70,14 @@ refs.home.addEventListener('click', onHome);
 function onLogo() {
   // e.preventDefault();
   // clearMoviesContainer();
+  showSpinner();
   toggleHomeLogo();
 }
 
 function onHome() {
   // e.preventDefault();
   // clearMoviesContainer();
+  showSpinner();
   toggleHomeLogo();
 }
 

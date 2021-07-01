@@ -1,127 +1,126 @@
-import FilmApiService from './apiService.js';
-import { clearMoviesContainer, createFilmCardsMarkUp } from './showTrendingMovies.js';
-import getRefs from './refs.js';
+import FilmApiService from './apiService';
+import { clearMoviesContainer, createFilmCardsMarkUp } from './showTrendingMovies';
+import getRefs from './refs';
 import { clearPaginationEl } from './pagination';
 import { clearSlider } from './slider';
 import trailer from './trailers.js';
+import { showSpinner, hideSpinner } from './spinner';
 
 const refs = getRefs();
 
 const filmsApiService = new FilmApiService();
 
 export default function addToLibrary(movieId) {
-
-    const btnAddToWatched = document.querySelector('#add-to-watched');
+  const btnAddToWatched = document.querySelector('#add-to-watched');
   const btnAddToQueue = document.querySelector('#add-to-queue');
   const btnTrailer = document.querySelector('.watch-trailer');
   btnTrailer.addEventListener('click', trailer.createTrailerLink(btnTrailer));
 
-    // Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
-    
-    let saveFilmWatched = JSON.parse(localStorage.getItem('watched'));
+  // Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
 
-    btnAddToWatched.addEventListener('click', onBtnAddToWatched);
-    btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
-    
-    if (saveFilmWatched && saveFilmWatched.MovieIDW.includes(movieId)) {
-        btnAddToWatched.textContent = 'remove from watched';
-        btnAddToWatched.style.backgroundColor = '#ff6b01';
-        btnAddToWatched.style.color = '#ffffff';
-        btnAddToWatched.style.borderColor = '#ff6b01';
-    } 
-   
-    if (btnAddToWatched.textContent === 'add to watched') {
-      btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched);
-         
-    } else if (btnAddToWatched.textContent === 'remove from watched') {
-      btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
-    }
-  
-    function onBtnAddToWatched(e) {
-        filmsApiService.watchedLocalStorage(movieId);
-        e.target.textContent = 'remove from watched';
-      
-        e.target.style.backgroundColor = '#ff6b01';
-        e.target.style.color = '#ffffff';
-        e.target.style.borderColor = '#ff6b01';
+  let saveFilmWatched = JSON.parse(localStorage.getItem('watched'));
 
-      btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
-        btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
-      
-      updateLibraryWatched();
-    }
-    
-    function onBtnRemoveFromWatched(e) {
-        filmsApiService.watchedLocalStorage(movieId);
-        e.target.textContent = 'add to watched';
-        e.target.style.backgroundColor = '#ffffff';
-        e.target.style.color = '#000000';
-        e.target.style.borderColor = '#000000';
-     
-        btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched); 
-      btnAddToWatched.addEventListener('click', onBtnAddToWatched);
-        
-      updateLibraryWatched()
+  btnAddToWatched.addEventListener('click', onBtnAddToWatched);
+  btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
+
+  if (saveFilmWatched && saveFilmWatched.MovieIDW.includes(movieId)) {
+    btnAddToWatched.textContent = 'remove from watched';
+    btnAddToWatched.style.backgroundColor = '#ff6b01';
+    btnAddToWatched.style.color = '#ffffff';
+    btnAddToWatched.style.borderColor = '#ff6b01';
   }
-  
+
+  if (btnAddToWatched.textContent === 'add to watched') {
+    btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched);
+  } else if (btnAddToWatched.textContent === 'remove from watched') {
+    btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
+  }
+
+  function onBtnAddToWatched(e) {
+    filmsApiService.watchedLocalStorage(movieId);
+    e.target.textContent = 'remove from watched';
+
+    e.target.style.backgroundColor = '#ff6b01';
+    e.target.style.color = '#ffffff';
+    e.target.style.borderColor = '#ff6b01';
+
+    btnAddToWatched.removeEventListener('click', onBtnAddToWatched);
+    btnAddToWatched.addEventListener('click', onBtnRemoveFromWatched);
+
+    updateLibraryWatched();
+  }
+
+  function onBtnRemoveFromWatched(e) {
+    filmsApiService.watchedLocalStorage(movieId);
+    e.target.textContent = 'add to watched';
+    e.target.style.backgroundColor = '#ffffff';
+    e.target.style.color = '#000000';
+    e.target.style.borderColor = '#000000';
+
+    btnAddToWatched.removeEventListener('click', onBtnRemoveFromWatched);
+    btnAddToWatched.addEventListener('click', onBtnAddToWatched);
+
+    updateLibraryWatched();
+  }
+
   function updateLibraryWatched() {
     if (document.querySelector('.js-nav-library').classList.length === 3) {
       onBtnWatched();
     }
-}
-    
-// Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
-    let saveFilmQueue = JSON.parse(localStorage.getItem('queue'));
+  }
 
-    btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+  // Реализация кнопки Queue внутри модалки на добавление и удаление с библиотеки и изменение стиля
+  let saveFilmQueue = JSON.parse(localStorage.getItem('queue'));
+
+  btnAddToQueue.addEventListener('click', onBtnAddToQueue);
+  btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
+
+  if (saveFilmQueue && saveFilmQueue.MovieIDQ.includes(movieId)) {
+    btnAddToQueue.textContent = 'remove from queue';
+    btnAddToQueue.style.backgroundColor = '#ff6b01';
+    btnAddToQueue.style.color = '#ffffff';
+    btnAddToQueue.style.borderColor = '#ff6b01';
+  }
+
+  if (btnAddToQueue.textContent === 'add to queue') {
+    btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
+  } else if (btnAddToQueue.textContent === 'remove from queue') {
+    btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
+  }
+
+  function onBtnAddToQueue(e) {
+    filmsApiService.queueLocalStorage(movieId);
+    e.target.textContent = 'remove from queue';
+    e.target.style.backgroundColor = '#ff6b01';
+    e.target.style.color = '#ffffff';
+    e.target.style.borderColor = '#ff6b01';
+
+    btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
     btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
 
-    if (saveFilmQueue && saveFilmQueue.MovieIDQ.includes(movieId)) {
-        btnAddToQueue.textContent = 'remove from queue';
-        btnAddToQueue.style.backgroundColor = '#ff6b01';
-        btnAddToQueue.style.color = '#ffffff';
-        btnAddToQueue.style.borderColor = '#ff6b01';
-    }
+    updateLibraryQueue();
+  }
 
-    if (btnAddToQueue.textContent === 'add to queue') {
-        btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
-    } else if (btnAddToQueue.textContent === 'remove from queue') {
-        btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
-    }
+  function onBtnRemoveFromQueue(e) {
+    filmsApiService.queueLocalStorage(movieId);
+    e.target.textContent = 'add to queue';
+    e.target.style.backgroundColor = '#ffffff';
+    e.target.style.color = '#000000';
+    e.target.style.borderColor = '#000000';
 
-    function onBtnAddToQueue(e) {
-        filmsApiService.queueLocalStorage(movieId);
-        e.target.textContent = 'remove from queue';
-        e.target.style.backgroundColor = '#ff6b01';
-        e.target.style.color = '#ffffff';
-        e.target.style.borderColor = '#ff6b01';
-  
-        btnAddToQueue.removeEventListener('click', onBtnAddToQueue);
-      btnAddToQueue.addEventListener('click', onBtnRemoveFromQueue);
-  
-      updateLibraryQueue()
-    }
+    btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
+    btnAddToQueue.addEventListener('click', onBtnAddToQueue);
 
-    function onBtnRemoveFromQueue(e) {
-      filmsApiService.queueLocalStorage(movieId);
-      e.target.textContent = 'add to queue';
-      e.target.style.backgroundColor = '#ffffff';
-      e.target.style.color = '#000000';
-      e.target.style.borderColor = '#000000';
-        
-      btnAddToQueue.removeEventListener('click', onBtnRemoveFromQueue);
-      btnAddToQueue.addEventListener('click', onBtnAddToQueue);
-    
-      updateLibraryQueue()
-    }
+    updateLibraryQueue();
+  }
 }
 
 function updateLibraryQueue() {
-    if (document.querySelector('.js-nav-library').classList.length === 3) {
-      onBtnQueue();
-    }
+  if (document.querySelector('.js-nav-library').classList.length === 3) {
+    onBtnQueue();
   }
-    
+}
+
 // Реализация кнопок Watched и Queue в разделе My library
 
 refs.btnQueue.addEventListener('click', onBtnQueue);
@@ -136,11 +135,12 @@ function onBtnWatched() {
 
 function updateWatched() {
   let saveFilm = localStorage.getItem('watched');
-    if (saveFilm) {
-      const parceFilm = JSON.parse(saveFilm);
+  if (saveFilm) {
+    const parceFilm = JSON.parse(saveFilm);
 
-      for (let i = 0; i < parceFilm.MovieIDW.length; i += 1) {
-        let id = parceFilm.MovieIDW[i];
+    for (let i = 0; i < parceFilm.MovieIDW.length; i += 1) {
+      let id = parceFilm.MovieIDW[i];
+      showSpinner();
 
       filmsApiService
         .getFullMovieInfo(id)
@@ -148,11 +148,12 @@ function updateWatched() {
           createFilmCardsMarkUp([movieInfo]);
           removeHiddenVoteAverage();
         })
-          .catch(error => console.log('error', error));
-      }
+        .catch(error => console.log('error', error))
+        .finally(hideSpinner);
+    }
 
     refs.btnQueue.addEventListener('click', onBtnQueue);
-      clearMoviesContainer();
+    clearMoviesContainer();
   }
 }
 
@@ -162,26 +163,29 @@ function onBtnQueue() {
 
   updateQueue();
 }
-  
 
 function updateQueue() {
   let saveFilm = localStorage.getItem('queue');
-    if (saveFilm) {
-      const parceFilm = JSON.parse(saveFilm);
+  if (saveFilm) {
+    const parceFilm = JSON.parse(saveFilm);
 
-      for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
-        let id = parceFilm.MovieIDQ[i];
+    for (let i = 0; i < parceFilm.MovieIDQ.length; i += 1) {
+      let id = parceFilm.MovieIDQ[i];
+      showSpinner();
 
-        filmsApiService.getFullMovieInfo(id).then(movieInfo => {
+      filmsApiService
+        .getFullMovieInfo(id)
+        .then(movieInfo => {
           createFilmCardsMarkUp([movieInfo]);
           removeHiddenVoteAverage();
-        }).catch(error => console.log('error', error));
-      }
+        })
+        .catch(error => console.log('error', error))
+        .finally(hideSpinner);
+    }
 
-      refs.btnWatched.addEventListener('click', onBtnWatched);
-      clearMoviesContainer();
+    refs.btnWatched.addEventListener('click', onBtnWatched);
+    clearMoviesContainer();
   }
-  
 }
 
 // Изменение стилей, очистка контейнера и рендеринг из localStories при клике на My Library
@@ -209,9 +213,7 @@ function removeHiddenVoteAverage() {
     .forEach(el => el.classList.remove('visually-hidden'));
 }
 
-
 function renderMarkup(moviesArray) {
   refs.cardLibrary.innerHTML = cardFilmsTpl(moviesArray);
   trailer.createTrailerLink(document.querySelectorAll('.btn-youtube'));
 }
-
