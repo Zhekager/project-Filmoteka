@@ -51,7 +51,7 @@ export default class FilmApiService {
       .catch(error => console.log(error));
   }
 
-    fetchPaginationSearch(currentPage) {
+  fetchPaginationSearch(currentPage) {
     return fetch(
       `${BASE_URL}/search/movie?api_key=${API_KEY}&language=en-US&page=${this.page}&query=${this.searchQuery}`,
     )
@@ -149,14 +149,13 @@ export default class FilmApiService {
   }
   set query(newQuery) {
     this.searchQuery = newQuery;
-    spinner.show();
   }
   get pageNum() {
     return this.page;
   }
   set pageNum(newPage) {
     this.page = newPage;
-   }
+  }
   watchedLocalStorage(id) {
     const savedItems = JSON.parse(localStorage.getItem('watched'));
     let filmsArray;
@@ -206,5 +205,3 @@ export default class FilmApiService {
     localStorage.setItem('queue', JSON.stringify(movieIdStorageQ));
   }
 }
-
-
