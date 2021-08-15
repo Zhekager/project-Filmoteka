@@ -1,13 +1,13 @@
-# Filmoteka
-## A short-term team project by 7 collaborators:
-
-- [Maryna Skrypnyk](https://github.com/Maryna-Skrypnyk).
-- [Yana Filippova](https://github.com/Yana-Filippova).
-- [Tetiana Shostak](https://github.com/Tetiana1386).
-- [Alexandra Shyshkovskaya](https://github.com/Alexandra-Shyshkovskaya).
-- [Natalia Prygunova](https://github.com/pryhunova).
-- [Sonya Starodub](https://github.com/sonya287).
-- [Władysław Reginiewicz ](https://github.com/Trevoule).
+## Site project " :movie_camera: Filmoteka"
+## A short-term team project by 8 collaborators:
+- [**Team lead**: Yevhenii Herasymenko](https://github.com/Zhekager).
+- [**Scrum master** & **Front-end developer**: Maryna Skrypnyk](https://github.com/Maryna-Skrypnyk).
+- [**Front-end developer**: Yana Filippova](https://github.com/Yana-Filippova).
+- [**Front-end developer**: Tetiana Shostak](https://github.com/Tetiana1386).
+- [**Front-end developer**: Alexandra Shyshkovskaya](https://github.com/Alexandra-Shyshkovskaya).
+- [**Front-end developer**: Natalia Prygunova](https://github.com/pryhunova).
+- [**Front-end developer**: Sonya Starodub](https://github.com/sonya287).
+- [**Front-end developer**: Władysław Reginiewicz ](https://github.com/Trevoule).
 
 ## My contribution to the project:
 - Basic markup in index.html.
@@ -23,54 +23,20 @@
 - Parcel.
 - NPM packages.
 
--------------------------------------------------------------------------------------------------------
 
-# parcel-project-template
 
-## Зависимости
+:computer: **Our goal** was to make a site that matches the layout, and also fulfills all the tasks set from the technical assignment. The main purpose of the site is to display popular films of the week, search for a specific film, as well as organize a user library to manage movie lists.
 
-На компьютере должена быть установлена LTS-версия [Node.js](https://nodejs.org/en/).
+:white_check_mark: **Throughout the project, we**:
 
-## Перед началом работы
+- practiced teamwork skills with Git;
+- continued to work with the collector Parcel;
+- methodology used Scrum;
+- закрепляли знания по HTML и CSS.
+- закрепляли полученные за курс знания по JavaScript.
 
-Один раз на проект установить все зависимости.
 
-```shell
-npm ci
-```
+В результате слаженной командной работы :handshake: получился наш проект: ⬇ [_Welcome!_](https://github.com/Zhekager/project-Filmoteka) ⬇
 
-### Разработка
+<a href="https://zhekager.github.io/project-Filmoteka/index.html"><img src="https://i.ibb.co/543th4v/Screenshot-2021-06-07-152531.png" alt="Filmoteka" border="0"></a>
 
-Запустить режим разработки.
-
-```shell
-npm run dev
-```
-
-Во вкладке браузера перейти по адресу [http://localhost:1234](http://localhost:1234).
-
-### Деплой
-
-Сборка будет автоматически собирать и деплоить продакшен версию проекта на GitHub Pages, в ветку
-`gh-pages`, каждый раз когда обновляется ветка `main`. Например, после прямого пуша или принятого
-пул-реквеста. Для этого необходимо в файле `package.json` отредактировать поле `homepage` и скрипт
-`build`, заменив `имя_пользователя` и `имя_репозитория` на свои.
-
-```json
-"homepage": "https://имя_пользователя.github.io/имя_репозитория",
-"scripts": {
-  "build": "parcel build src/*.html --public-url /имя_репозитория/"
-},
-```
-
-Через какое-то время живую страницу можно будет посмотреть по адресу указанному в отредактированном
-свойстве `homepage`, например
-[https://goitacademy.github.io/parcel-project-template](https://goitacademy.github.io/parcel-project-template).
-
-## Файлы и папки
-
-- Все паршалы файлов стилей должны лежать в папке `src/sass` и импортироваться в
-  `src/sass/main.scss`
-- Изображения добавляйте в папку `src/images`, заранее оптимизировав их. Сборщик просто копирует
-  используемые изображения чтобы не нагружать систему оптимизацией картинок, так как на слабых
-  компьютерах это может занять прилично времени.
