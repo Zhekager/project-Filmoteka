@@ -24,11 +24,11 @@
 - practiced teamwork skills with Git;
 - continued to work with the collector Parcel;
 - methodology used Scrum;
-- закрепляли знания по HTML и CSS.
-- закрепляли полученные за курс знания по JavaScript.
+- consolidated knowledge of HTML and CSS.
+- consolidated the knowledge gained during the course JavaScript.
 
 
-В результате слаженной командной работы :handshake: получился наш проект: ⬇ [_Welcome!_](https://github.com/Zhekager/project-Filmoteka) ⬇
+As a result of well-coordinated teamwork :handshake: our project turned out: ⬇ [_Welcome!_](https://github.com/Zhekager/project-Filmoteka) ⬇
 
 <a href="https://zhekager.github.io/project-Filmoteka/index.html"><img src="https://i.ibb.co/543th4v/Screenshot-2021-06-07-152531.png" alt="Filmoteka" border="0"></a>
 
