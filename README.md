@@ -16,14 +16,6 @@
 - footer with our team modal.
 - scroll-up button.
 
-## Technology used:
-- HTML.
-- SASS.
-- Javascript.
-- Parcel.
-- NPM packages.
-
-
 
 :computer: **Our goal** was to make a site that matches the layout, and also fulfills all the tasks set from the technical assignment. The main purpose of the site is to display popular films of the week, search for a specific film, as well as organize a user library to manage movie lists.
 
